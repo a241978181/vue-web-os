@@ -26,7 +26,7 @@ Ctrl + C
 yarn analysis
 ```
 
-#项目图片预览
+# 项目图片预览
 
 ![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5L01.png "vue-web-os")  
 ![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5OTx.png "vue-web-os")  
@@ -34,7 +34,7 @@ yarn analysis
 ![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5HX9.png "vue-web-os")  
 
 
-#项目技术栈
+# 项目技术栈
 "@xunlei/vue-context-menu": "^1.0.2",<br>
     "axios": "^0.19.0",<br>
     "babel-polyfill": "^6.26.0",<br>
