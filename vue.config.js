@@ -7,7 +7,7 @@ const ThemeColorReplacer = require("webpack-theme-color-replacer");
 const forElementUI = require("webpack-theme-color-replacer/forElementUI");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/vue-starter/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/vue-web-os/" : "/",
   productionSourceMap: false,
   devServer: {
 	openPage:'#/signin',
