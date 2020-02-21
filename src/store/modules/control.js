@@ -24,11 +24,27 @@ const control = {
 		
 		
 //***********************************万分注意!!!!!!!*************************************************
+	//退出系统
+	outComputer(state){
+		state.personalInformationViewBool=false
+		state.startInformationViewBool=false
+		state.oneViewBool=false
+		state.twoViewBool= false
+		state.threeViewBool= false
+		state.fourViewBool= false
+		state.fiveViewBool= false
+		state.taskList= []
+	},
+	
+	//显示页面
 	refresh(state){
 		state.personalInformationViewBool=false
 		state.startInformationViewBool=false
 		state.oneViewBool=false
 		state.twoViewBool= false
+		state.threeViewBool= false
+		state.fourViewBool= false
+		state.fiveViewBool= false
 	},
 		
 //***********************************基本增删改*************************************************

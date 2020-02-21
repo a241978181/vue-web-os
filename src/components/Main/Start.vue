@@ -54,7 +54,7 @@
 		methods: {
 			//退出系统
 			out() {
-				this.$store.commit("refresh");
+				this.$store.commit("outComputer");
 				localStorage.clear();
 				this.$router.push("/signin");
 			},

@@ -21,7 +21,7 @@ const router = new Router({
 			path: "/signin",
 			name: "Signin",
 			meta: {
-				title: "Vue Starter"
+				title: "vue-web-os"
 			},
 			component: Signin
 		},
@@ -39,7 +39,7 @@ const router = new Router({
 			path: "/layout",
 			name: "Layout",
 			meta: {
-				title: "layout"
+				title: "系统管理"
 			},
 			component: Layout
 		},
