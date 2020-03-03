@@ -129,7 +129,8 @@
 </script>
 <style lang="scss" scoped>
 	.big {
-		height: 47rem;
+		display: flex;
+		height: 100%;
 		background: url(https://s2.ax1x.com/2020/02/18/3ivxaj.jpg) 0 0 no-repeat;
 		background-size: 100% 100%;
 		padding: 0;

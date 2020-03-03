@@ -101,7 +101,7 @@
 		height: 30rem;
 		margin-bottom: 2.5rem;
 		background-color: #232323;
-		top: 14.5rem;
+		bottom: 0rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
