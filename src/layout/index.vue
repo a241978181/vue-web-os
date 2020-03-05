@@ -66,7 +66,7 @@
 						icoName: 'el-icon-user-solid', // icon (icon图标 )
 						btnName: '个人信息' // The name of the menu option (菜单名称)
 					}, {
-						fnHandler: 'shuaXin', // 显示桌面
+						fnHandler: 'shuaXin', // 刷新
 						icoName: 'el-icon-refresh',
 						btnName: '刷新' //
 					}, {
@@ -91,10 +91,7 @@
 		methods: {
 			//整蛊--刷新
 			shuaXin() {
-				this.$message({
-					message: '刷新个脑袋，不提醒你还真以为是Windows了！',
-					type: 'warning'
-				});
+				location.reload(false)
 			},
 			//显示桌面
 			refresh() {
