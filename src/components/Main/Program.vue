@@ -6,7 +6,7 @@
 				<span><b>{{menu.menuName}}</b></span>
 			</div>
 		</div>
-		<component v-if="componentBool" :is="allComps[menu.englishName]" :menu="menu"></component>
+		<component  :is="allComps[menu.englishName]" :menu="menu"></component>
 	</div>
 </template>
 

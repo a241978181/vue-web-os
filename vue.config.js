@@ -7,18 +7,12 @@ const ThemeColorReplacer = require("webpack-theme-color-replacer");
 const forElementUI = require("webpack-theme-color-replacer/forElementUI");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/vue-web-os/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "http://49.233.186.140/" : "/",
   productionSourceMap: false,
   devServer: {
 	openPage:'#/signin',
     port: 8080, // 配置端口号
-    // 配置代理
-    proxy: {
-      v2: {
-        target: "http://api.douban.com/",
-        changeOrigin: true
-      }
-    }
+
   },
   configureWebpack: config => {
     // 如果带有 --report 就开启可视化服务
