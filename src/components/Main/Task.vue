@@ -11,7 +11,7 @@
 			<div class="taskItem" v-for="task in taskList">
 				<a @click="open(task)">
 					<Icon color="white" size="large" :type="task.icon" style="margin: 0.5rem;" />
-					<span style="color: white;margin-right: 0.5rem"><b>{{task.menuName}}</b></span>
+					<span style="color: white;margin-right: 0.5rem"><b>{{task.permissionsname}}</b></span>
 				</a>
 			</div>
 
@@ -59,7 +59,7 @@
 			},
 			//打开或关闭某一任务
 			open(menu) {
-				let vuexMethods = menu.englishName.slice(0, 1).toUpperCase() + menu.englishName.slice(1);
+				let vuexMethods = menu.permissionsenglish.slice(0, 1).toUpperCase() + menu.permissionsenglish.slice(1);
 				this.$store.commit("setTrue" + vuexMethods + "VB");
 			},
 			//打开或关闭开始菜单
@@ -88,7 +88,7 @@
 
 	.taskItem {
 		background-color: #000000;
-		width: 5rem;
+		width: 6rem;
 		height: 2.5rem;
 		display: flex;
 		align-items: center;

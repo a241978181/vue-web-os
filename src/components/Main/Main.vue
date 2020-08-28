@@ -1,6 +1,6 @@
 <template>
 	<div style="width: 80%;margin:0rem">
-		<Program v-for="item in menuList" :key="item.menuName" :menu="item"></Program>
+		<Program v-for="item in permissionsList" :key="item.permissionsname" :menu="item"></Program>
 	</div>
 </template>
 
@@ -14,14 +14,19 @@
 		data() {
 			return {
 				//功能列表
-				menuList: [],
+        permissionsList: [],
 			}
 		},
 		methods: {
 			//查询所拥有的权限
 			getMenuList() {
-				let menuList = JSON.parse(localStorage.getItem("menuList"));
-				this.menuList = menuList;
+        let permissionsList = JSON.parse(localStorage.getItem("permissionsList"));
+        this.permissionsList=[];
+        for(var i=0;i<permissionsList.length;i++){
+          if (permissionsList[i].type==1) {
+            this.permissionsList.push(permissionsList[i]);
+          }
+        }
 			}
 		},
 		mounted() {

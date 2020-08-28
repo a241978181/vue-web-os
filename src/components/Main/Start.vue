@@ -8,7 +8,7 @@
 						<div class="taskItem" v-for="task in menuList">
 							<a style="width:95% ;" @click="open(task)">
 								<Icon color="white" size="35" :type="task.icon" style="margin: 1rem;" />
-								<span style="color: white;margin-right: 0.5rem"><b>{{task.menuName}}</b></span>
+								<span style="color: white;margin-right: 0.5rem"><b>{{task.permissionsname}}</b></span>
 							</a>
 						</div>
 				</Scroll>
@@ -31,7 +31,7 @@
 		data() {
 			return {
 				//功能列表
-				menuList: [],
+        permissionsList: [],
 			}
 		},
 		computed: {
@@ -61,11 +61,11 @@
 			//打开某一任务
 			open(menu) {
 				if (this.isTaskList(menu)) {
-					let vuexMethods = menu.englishName.slice(0, 1).toUpperCase() + menu.englishName.slice(1);
+					let vuexMethods = menu.permissionsenglish.slice(0, 1).toUpperCase() + menu.permissionsenglish.slice(1);
 					this.$store.commit("setTrue" + vuexMethods + "VB");
 					this.$store.commit("setFalseSIVB");
 				} else {
-					let vuexMethods = menu.englishName.slice(0, 1).toUpperCase() + menu.englishName.slice(1);
+					let vuexMethods = menu.permissionsenglish.slice(0, 1).toUpperCase() + menu.permissionsenglish.slice(1);
 					this.$store.commit("setTrue" + vuexMethods + "VB");
 					this.$store.commit("addTaskList", menu);
 					this.$store.commit("setFalseSIVB");
@@ -84,8 +84,13 @@
 			},
 			//查询所拥有的权限
 			getMenuList() {
-				let menuList = JSON.parse(localStorage.getItem("menuList"));
-				this.menuList = menuList;
+        let permissionsList = JSON.parse(localStorage.getItem("permissionsList"));
+        this.menuList=[];
+        for(var i=0;i<permissionsList.length;i++){
+          if (permissionsList[i].type==1) {
+            this.menuList.push(permissionsList[i]);
+          }
+        }
 			}
 		},
 		mounted() {

@@ -3,10 +3,10 @@
 		<div class="zhong">
 			<Button @click="showView" :type="menu.color" class="buttonIcon" :icon="menu.icon"></Button>
 			<div class="text">
-				<span><b>{{menu.menuName}}</b></span>
+				<span><b>{{menu.permissionsname}}</b></span>
 			</div>
 		</div>
-		<component  :is="allComps[menu.englishName]" :menu="menu"></component>
+		<component  :is="allComps[menu.permissionsenglish]" :menu="menu"></component>
 	</div>
 </template>
 
@@ -38,10 +38,10 @@
 			showView(){
 				this.componentBool=true;
 				if (this.isTaskList(this.menu)) {
-					let vuexMethods=this.menu.englishName.slice(0,1).toUpperCase()+this.menu.englishName.slice(1);
+					let vuexMethods=this.menu.permissionsenglish.slice(0,1).toUpperCase()+this.menu.permissionsenglish.slice(1);
 					this.$store.commit("setTrue"+vuexMethods+"VB");
 				} else{
-					let vuexMethods=this.menu.englishName.slice(0,1).toUpperCase()+this.menu.englishName.slice(1);
+					let vuexMethods=this.menu.permissionsenglish.slice(0,1).toUpperCase()+this.menu.permissionsenglish.slice(1);
 					this.$store.commit("setTrue"+vuexMethods+"VB");
 					this.$store.commit("addTaskList",this.menu);
 				}

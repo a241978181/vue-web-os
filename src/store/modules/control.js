@@ -6,13 +6,10 @@ const control = {
 		personalInformationViewBool: false,
 		//开始菜单面板
 		startInformationViewBool:false,
-		//one面板展示键
-		oneViewBool: false,
-		//two面板展示键
-		twoViewBool: false,
-		threeViewBool:false,
-		fourViewBool:false,
-		fiveViewBool:false,
+		//云盘面板展示键
+		cloudDiskViewBool:false,
+		//用户管理面板展示键
+		userManagementViewBool:false,
 		//任务栏任务对象
 		taskList: [],
 	},
@@ -28,11 +25,8 @@ const control = {
 	outComputer(state){
 		state.personalInformationViewBool=false
 		state.startInformationViewBool=false
-		state.oneViewBool=false
-		state.twoViewBool= false
-		state.threeViewBool= false
-		state.fourViewBool= false
-		state.fiveViewBool= false
+		state.cloudDiskViewBool=false
+		state.userManagementViewBool=false
 		state.taskList= []
 	},
 	
@@ -40,11 +34,8 @@ const control = {
 	refresh(state){
 		state.personalInformationViewBool=false
 		state.startInformationViewBool=false
-		state.oneViewBool=false
-		state.twoViewBool= false
-		state.threeViewBool= false
-		state.fourViewBool= false
-		state.fiveViewBool= false
+		state.cloudDiskViewBool=false
+		state.userManagementViewBool=false
 	},
 		
 //***********************************基本增删改*************************************************
@@ -86,35 +77,17 @@ const control = {
 		setFalseSIVB(state) {
 			state.startInformationViewBool = false
 		},
-		setTrueOneVB(state) {
-			state.oneViewBool = true
+		setTrueCloudDiskVB(state) {
+			state.cloudDiskViewBool=true
 		},
-		setFalseOneVB(state) {
-			state.oneViewBool = false
+		setFalseCloudDiskVB(state) {
+			state.cloudDiskViewBool=false
 		},
-		setTrueTwoVB(state) {
-			state.twoViewBool = true
+		setTrueUserManagementVB(state) {
+			state.userManagementViewBool=true
 		},
-		setFalseTwoVB(state) {
-			state.twoViewBool = false
-		},
-		setTrueThreeVB(state) {
-			state.threeViewBool = true
-		},
-		setFalseThreeVB(state) {
-			state.threeViewBool = false
-		},
-		setTrueFourVB(state) {
-			state.fourViewBool = true
-		},
-		setFalseFourVB(state) {
-			state.fourViewBool = false
-		},
-		setTrueFiveVB(state) {
-			state.fiveViewBool = true
-		},
-		setFalseFiveVB(state) {
-			state.fiveViewBool = false
+		setFalseUserManagementVB(state) {
+			state.userManagementViewBool=false
 		},
 	},
 	actions: {
