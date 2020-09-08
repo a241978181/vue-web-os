@@ -21,15 +21,87 @@ if (debug) {
     code: 0,
     msg: "Success",
     data: {
-      menu: [
-        // {
-        //   name: "Dashboard",
-        //   name_en: "Dashboard",
-        //   router: "/dashboard",
-        //   icon: "el-icon-menu",
-        //   children: []
-        // },
-      ]
+      menu: [{
+        "id": 1,
+        "permissionsname": "功能介绍",
+        "permissionsenglish": "cloudDisk",
+        "state": true,
+        "type": 1,
+        "parentid": 0,
+        "color": "primary",
+        "icon": "ios-cloud",
+        "image": null
+      }, {
+        "id": 2,
+        "permissionsname": "弹出框",
+        "permissionsenglish": "bigFileUpload",
+        "state": true,
+        "type": 2,
+        "parentid": 1,
+        "color": "primary",
+        "icon": "ios-cloud-upload",
+        "image": null
+      }, {
+        "id": 3,
+        "permissionsname": "系统介绍",
+        "permissionsenglish": "userManagement",
+        "state": true,
+        "type": 1,
+        "parentid": 0,
+        "color": "success",
+        "icon": "ios-body",
+        "image": null
+      }, {
+        "id": 4,
+        "permissionsname": "安装与启动",
+        "permissionsenglish": "personnelList",
+        "state": true,
+        "type": 2,
+        "parentid": 3,
+        "color": "success",
+        "icon": "ios-globe",
+        "image": null
+      }, {
+        "id": 5,
+        "permissionsname": "按钮",
+        "permissionsenglish": "documentCenter",
+        "state": true,
+        "type": 2,
+        "parentid": 1,
+        "color": "primary",
+        "icon": "ios-albums",
+        "image": null
+      }, {
+        "id": 6,
+        "permissionsname": "页面跳转",
+        "permissionsenglish": "pageJump",
+        "state": true,
+        "type": 2,
+        "parentid": 1,
+        "color": "primary",
+        "icon": "ios-crop",
+        "image": null
+      }, {
+        "id": 7,
+        "permissionsname": "新增模块",
+        "permissionsenglish": "addModule",
+        "state": true,
+        "type": 2,
+        "parentid": 3,
+        "color": "success",
+        "icon": "ios-grid",
+        "image": null
+      }, {
+        "id": 7,
+        "permissionsname": "新增页面",
+        "permissionsenglish": "addPage",
+        "state": true,
+        "type": 2,
+        "parentid": 3,
+        "color": "success",
+        "icon": "ios-easel",
+        "image": null
+      },]
     }
   });
 

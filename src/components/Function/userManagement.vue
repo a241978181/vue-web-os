@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Modal width="900" id="modalView" :fullscreen="fullscreen" v-model="isUserManagementViewBool" footer-hide :draggable="draggable" :closable="false" >
+		<Modal width="900" id="modalView" :fullscreen="fullscreen" v-model="isViewBool" footer-hide :draggable="draggable" :closable="false" >
 			<div slot="header" style="width: 100%;display: flex;align-items: center;justify-content:space-between;">
 				<div style="width: 50%;display: flex;align-items: center;">
 					<Icon size="25" :type="menu.icon" style="margin: 0.5rem;" />
@@ -17,13 +17,13 @@
 			<div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
 				<div class="BTL">
 					<ButtonGroup>
-						<Button @click="openMenu(item)" :ghost="indexButton==index?false:true" v-for="(item,index) in permissionsList"  :type="item.color">
+						<Button @click="openMenu(item,index)" :ghost="indexButton==index?false:true" v-for="(item,index) in permissionsList"  :type="item.color">
 							<Icon :type="item.icon" />
 							{{item.permissionsname}}
 						</Button>
 					</ButtonGroup>
 				</div>
-				<component  :is="allComps[permissionsItem.permissionsenglish]" :menu="permissionsItem"></component>
+				<component @routerTo="openMenu2(arguments)"  :is="allComps[permissionsItem.permissionsenglish]" :menu="permissionsItem"></component>
 			</div>
 		</Modal>
 	</div>
@@ -54,24 +54,29 @@
 		},
 		computed: {
 			//判断是否展示该面板
-			isUserManagementViewBool: {
+			isViewBool: {
 				get() {
-					return this.$store.state.control.userManagementViewBool;
+					return this.$store.state.control.userManagement;
 				},
 				set(v) {
-					this.$store.commit("setFalseUserManagementVB");
+          this.$store.commit("setFalseVB",'userManagement');
 				}
 			},
 		},
 		methods: {
+			//子组件调用打开菜单
+			openMenu2(values){
+				this.indexButton=values[1];
+				this.permissionsItem=values[0];
+			},
 			//打开菜单
-			openMenu(item){
+			openMenu(item,index){
 				this.indexButton=index;
 				this.permissionsItem=item;
 			},
 			//关闭对话框
 			closeView(){
-				this.$store.commit("setFalseUserManagementVB");
+				this.$store.commit("setFalseVB",'userManagement');
 				this.$store.commit("deleteTaskList",this.menu);
 			},
 			//缩小对话框
@@ -86,7 +91,7 @@
 			},
 			//最小化
 			mini(){
-				this.$store.commit("setFalseUserManagementVB");
+        this.$store.commit("setFalseVB",'userManagement');
 			},
 			//查询所拥有的菜单
 			getMenuList() {

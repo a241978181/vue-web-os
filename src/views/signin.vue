@@ -62,12 +62,10 @@ export default {
     Login(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$http
-              .post("login", {
+          this.$http.post("login", {
                 username: this.form.name,
                 password: this.form.password
-              })
-              .then(res => {
+              }).then(res => {
                 let userInfo = JSON.stringify(res)
                 localStorage.userInfo = userInfo;
                 localStorage.token = res.token;
@@ -80,70 +78,12 @@ export default {
     },
     //权限模式下
     getMenu() {
-      let permissionsList = [{
-        "id": 1,
-        "permissionsname": "导航栏",
-        "permissionsenglish": "cloudDisk",
-        "state": true,
-        "type": 1,
-        "parentid": 0,
-        "color": "primary",
-        "icon": "ios-cloud",
-        "image": null
-      }, {
-        "id": 2,
-        "permissionsname": "弹出框",
-        "permissionsenglish": "bigFileUpload",
-        "state": true,
-        "type": 2,
-        "parentid": 1,
-        "color": "primary",
-        "icon": "ios-cloud-upload",
-        "image": null
-      }, {
-        "id": 3,
-        "permissionsname": "用户管理",
-        "permissionsenglish": "userManagement",
-        "state": true,
-        "type": 1,
-        "parentid": 0,
-        "color": "success",
-        "icon": "ios-body",
-        "image": null
-      }, {
-        "id": 4,
-        "permissionsname": "人员列表",
-        "permissionsenglish": "personnelList",
-        "state": true,
-        "type": 2,
-        "parentid": 3,
-        "color": "success",
-        "icon": "ios-body",
-        "image": null
-      }, {
-        "id": 5,
-        "permissionsname": "按钮",
-        "permissionsenglish": "documentCenter",
-        "state": true,
-        "type": 2,
-        "parentid": 1,
-        "color": "primary",
-        "icon": "ios-albums",
-        "image": null
-      }, {
-        "id": 6,
-        "permissionsname": "页面跳转",
-        "permissionsenglish": "pageJump",
-        "state": true,
-        "type": 2,
-        "parentid": 1,
-        "color": "primary",
-        "icon": "ios-crop",
-        "image": null
-      }];
-      let JsonPermissionsList = JSON.stringify(permissionsList)
-      localStorage.setItem("permissionsList", JsonPermissionsList);
-      this.$router.push("/layout");
+		this.$http.post("getMenu", {}).then(res => {
+				let permissionsList =res.menu ;
+				let JsonPermissionsList = JSON.stringify(permissionsList)
+				localStorage.setItem("permissionsList", JsonPermissionsList);
+				this.$router.push("/layout");
+		    });
     }
 
   },

@@ -59,8 +59,7 @@
 			},
 			//打开或关闭某一任务
 			open(menu) {
-				let vuexMethods = menu.permissionsenglish.slice(0, 1).toUpperCase() + menu.permissionsenglish.slice(1);
-				this.$store.commit("setTrue" + vuexMethods + "VB");
+				this.$store.commit("setTrueVB",menu.permissionsenglish);
 			},
 			//打开或关闭开始菜单
 			openStart(){

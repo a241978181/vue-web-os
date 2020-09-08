@@ -38,11 +38,10 @@
 			showView(){
 				this.componentBool=true;
 				if (this.isTaskList(this.menu)) {
-					let vuexMethods=this.menu.permissionsenglish.slice(0,1).toUpperCase()+this.menu.permissionsenglish.slice(1);
-					this.$store.commit("setTrue"+vuexMethods+"VB");
+				  console.log(this.menu.permissionsenglish)
+					this.$store.commit("setTrueVB",this.menu.permissionsenglish);
 				} else{
-					let vuexMethods=this.menu.permissionsenglish.slice(0,1).toUpperCase()+this.menu.permissionsenglish.slice(1);
-					this.$store.commit("setTrue"+vuexMethods+"VB");
+					this.$store.commit("setTrueVB",this.menu.permissionsenglish);
 					this.$store.commit("addTaskList",this.menu);
 				}
 			},

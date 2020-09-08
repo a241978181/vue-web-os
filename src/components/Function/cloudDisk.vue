@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Modal width="900" id="modalView" :fullscreen="fullscreen" v-model="isCloudDiskViewBool" footer-hide :draggable="draggable" :closable="false" >
+		<Modal width="900" id="modalView" :fullscreen="fullscreen" v-model="isViewBool" footer-hide :draggable="draggable" :closable="false" >
 			<div slot="header" style="width: 100%;display: flex;align-items: center;justify-content:space-between;">
 				<div style="width: 50%;display: flex;align-items: center;">
 					<Icon size="25" :type="menu.icon" style="margin: 0.5rem;" />
@@ -54,12 +54,12 @@
 		},
 		computed: {
 			//判断是否展示该面板
-			isCloudDiskViewBool: {
+			isViewBool: {
 				get() {
-					return this.$store.state.control.cloudDiskViewBool;
+					return this.$store.state.control.cloudDisk;
 				},
 				set(v) {
-					this.$store.commit("setFalseCloudDiskVB");
+					this.$store.commit("setFalseVB",'cloudDisk');
 				}
 			},
 		},
@@ -76,7 +76,7 @@
 			},
 			//关闭对话框
 			closeView(){
-				this.$store.commit("setFalseCloudDiskVB");
+        this.$store.commit("setFalseVB",'cloudDisk');
 				this.$store.commit("deleteTaskList",this.menu);
 			},
 			//缩小对话框
@@ -91,7 +91,7 @@
 			},
 			//最小化
 			mini(){
-				this.$store.commit("setFalseCloudDiskVB");
+        this.$store.commit("setFalseVB",'cloudDisk');
 			},
 			//查询所拥有的菜单菜单
 			getMenuList() {

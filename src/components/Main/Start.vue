@@ -61,12 +61,10 @@
 			//打开某一任务
 			open(menu) {
 				if (this.isTaskList(menu)) {
-					let vuexMethods = menu.permissionsenglish.slice(0, 1).toUpperCase() + menu.permissionsenglish.slice(1);
-					this.$store.commit("setTrue" + vuexMethods + "VB");
+					this.$store.commit("setTrueVB",menu.permissionsenglish);
 					this.$store.commit("setFalseSIVB");
 				} else {
-					let vuexMethods = menu.permissionsenglish.slice(0, 1).toUpperCase() + menu.permissionsenglish.slice(1);
-					this.$store.commit("setTrue" + vuexMethods + "VB");
+          this.$store.commit("setTrueVB",menu.permissionsenglish);
 					this.$store.commit("addTaskList", menu);
 					this.$store.commit("setFalseSIVB");
 				}

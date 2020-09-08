@@ -2,40 +2,42 @@ import axios from 'axios' //如果有action
 
 const control = {
 	state: {
-		//个人信息面板展示键
+		//个人信息
 		personalInformationViewBool: false,
-		//开始菜单面板
+		//开始菜单
 		startInformationViewBool:false,
-		//云盘面板展示键
-		cloudDiskViewBool:false,
-		//用户管理面板展示键
-		userManagementViewBool:false,
 		//任务栏任务对象
 		taskList: [],
+		//------------------------------------------分割线--------------------------------------
+		//功能介绍面板展示键
+		cloudDisk:false,
+		//系统介绍面板展示键
+		userManagement:false,
+		//新增模块时的其他面板展示键......
 	},
 	getters: {
 
 	},
 	mutations: {
-		
-		
-		
-//***********************************万分注意!!!!!!!*************************************************
+
 	//退出系统
 	outComputer(state){
-		state.personalInformationViewBool=false
-		state.startInformationViewBool=false
-		state.cloudDiskViewBool=false
-		state.userManagementViewBool=false
-		state.taskList= []
+		for(let key in state){
+			if(key=='taskList'){
+				state[key]=[];
+			}else{
+				state[key]=false;
+			}
+		}
 	},
 	
 	//显示页面
 	refresh(state){
-		state.personalInformationViewBool=false
-		state.startInformationViewBool=false
-		state.cloudDiskViewBool=false
-		state.userManagementViewBool=false
+		for(let key in state){
+			if(!(key=='taskList')){
+				state[key]=false;
+			}
+		}
 	},
 		
 //***********************************基本增删改*************************************************
@@ -77,18 +79,13 @@ const control = {
 		setFalseSIVB(state) {
 			state.startInformationViewBool = false
 		},
-		setTrueCloudDiskVB(state) {
-			state.cloudDiskViewBool=true
+		setTrueVB(state,key){
+			state[key]=true;
 		},
-		setFalseCloudDiskVB(state) {
-			state.cloudDiskViewBool=false
-		},
-		setTrueUserManagementVB(state) {
-			state.userManagementViewBool=true
-		},
-		setFalseUserManagementVB(state) {
-			state.userManagementViewBool=false
-		},
+		setFalseVB(state,key){
+			state[key]=false;
+		}
+
 	},
 	actions: {
 		//动态获取键

@@ -17,9 +17,11 @@
     <el-dialog
         title="提示"
         :visible.sync="dialogVisible"
-        width="30%"
+        width="60%"
         :modal="false">
-      <span>这是一段信息</span>
+      <div style="background-color: #e2fbff;width: 100%;height: 25rem;display:flex;align-items: center;justify-content: center;">
+		  <h1>这里是一个弹出框</h1>
+	  </div>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
