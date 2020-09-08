@@ -130,6 +130,16 @@ export default {
         "color": "primary",
         "icon": "ios-albums",
         "image": null
+      }, {
+        "id": 6,
+        "permissionsname": "页面跳转",
+        "permissionsenglish": "pageJump",
+        "state": true,
+        "type": 2,
+        "parentid": 1,
+        "color": "primary",
+        "icon": "ios-crop",
+        "image": null
       }];
       let JsonPermissionsList = JSON.stringify(permissionsList)
       localStorage.setItem("permissionsList", JsonPermissionsList);

@@ -121,6 +121,9 @@
 
 		},
 		mounted() {
+			if(localStorage.getItem("token")==null){
+				this.$router.push({path:'/signin'})
+			}
 		}
 	}
 </script>
