@@ -30,10 +30,10 @@ yarn analysis
 ```
 
 # 项目图片预览
-
+# 
+![vue-web-os](https://s1.ax1x.com/2020/09/08/wQ5IsS.jpg "vue-web-os") 
 ![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5L01.png "vue-web-os")  
 ![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5OTx.png "vue-web-os")  
-![vue-web-os](https://s2.ax1x.com/2020/02/19/3A576J.png "vue-web-os")  
 ![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5HX9.png "vue-web-os")  
 
 
