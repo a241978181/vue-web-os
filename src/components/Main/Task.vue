@@ -26,7 +26,7 @@
         <Tooltip :content="isNetwork?'WIFI已开启':'WIFI已关闭'" placement="top-end">
           <Button style="width: 25px" size="large" type="text" ghost   :icon="isNetwork?'ios-wifi':'ios-wifi-outline'"></Button>
         </Tooltip>
-        <div style="display: flex;flex-direction:column;align-items: center">
+        <div style="display: flex;flex-direction:column;align-items: center;width: 90px">
           <span bodyonselectstart="returnfalse" style="color: white;font-size: 10px" oncopy="event.returnValue=false;" ondragstart="window.event.returnValue=false" oncontextmenu="window.event.returnValue=false" onselectstart="event.returnValue=false">{{timeItem.date}}</span>
           <span bodyonselectstart="returnfalse" style="color: white;font-size: 10px" oncopy="event.returnValue=false;" ondragstart="window.event.returnValue=false" oncontextmenu="window.event.returnValue=false" onselectstart="event.returnValue=false">{{timeItem.time}}</span>
         </div>
