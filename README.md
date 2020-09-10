@@ -2,56 +2,57 @@
 [点此基本展示网址](http://49.233.186.140/#/signin)
 
 # vue-web-os
-一个基于vue2.6+elementui2.13.0＋iview4的仿云桌面系统（Windows10），现已开发基本模板，可以正常去使用
+一个基于vue2.6+elementui2.13.0＋iview4的仿云桌面系统（Windows10），本项目是在其他脚手架的基础上进行改进的，已经完成了权限模块
+、登录验证模块、axios请求模块。vue-web-os项目可用于开发中大型软件，已经用于实际项目的有云盘系统与企业级OA系统。喜欢的小伙伴可以
+免费拿去使用。
+#
+如有对该项目不解的小伙伴可以加我微信：2417978181咨询我哦！
 
 # 求赞
 该系统会不间断的升级维护，喜欢的小主给个免费的star吧，谢谢❤
 
 # 启动项目
 ```Java
-# install dependencies
+# 配置环境
 yarn install
 
-# serve with hot reload at localhost:8080
+# 运行启动项目
 yarn serve
 
-# build for production with minification
+# 打包项目
 yarn build
 
-# preview your dist files
+# 测试打包项目（需要安装http-server插件）
 cd dist
 http-server
 
-# stop your local http server
-Ctrl + C
-
-# analysis your dist files
-yarn analysis
 ```
+
+
+
 
 # 项目图片预览
 # 
+#####项目展示
 ![vue-web-os](https://s1.ax1x.com/2020/09/08/wQ5IsS.jpg "vue-web-os") 
-![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5L01.png "vue-web-os")  
-![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5OTx.png "vue-web-os")  
-![vue-web-os](https://s2.ax1x.com/2020/02/19/3A5HX9.png "vue-web-os")  
+#####登录首页展示
+![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtyWj.jpg "vue-web-os") 
+#####桌面展示
+![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtcSs.jpg "vue-web-os")  
+#####开始菜单与鼠标右键展示
+![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtrFg.jpg "vue-web-os")  
+#####模块与页面展示
+![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtsYQ.jpg "vue-web-os")  
+
 
 
 # 项目技术栈
-"@xunlei/vue-context-menu": "^1.0.2",<br>
-    "axios": "^0.19.0",<br>
-    "babel-polyfill": "^6.26.0",<br>
-    "core-js": "^3.4.3",<br>
-    "element-ui": "^2.13.0",<br>
-    "font-awesome": "^4.7.0",<br>
-    "jsonp": "^0.2.1",<br>
-    "mockjs": "^1.1.0",<br>
-    "v-contextmenu": "^2.9.0",<br>
-    "view-design": "^4.1.2",<br>
-    "vue": "^2.6.10",<br>
-    "vue-contextmenu": "^1.5.10",<br>
-    "vue-count-to": "^1.0.13",<br>
-    "vue-i18n": "^8.15.3",<br>
-    "vue-router": "^3.1.3",<br>
-    "vuex": "^3.1.2"<br>
-	
+###### vue 2.6
+###### element-ui 1.13.0
+###### iview 4
+###### vue-context-menu 1.0.2
+###### mockjs 1.1.0
+###### vuex	3.1.2
+###### axios 0.19.0
+###### echarts
+其他的我就不太多累述了，大家可以自己拉取下来查看一下。
