@@ -100,8 +100,8 @@
 			//显示右键菜单
 			showMenu() {
 				event.preventDefault()
-				var x = event.clientX
-				var y = event.clientY
+				var x = event.clientX+1;
+				var y = event.clientY+1;
 				// Get the current location
 				this.contextMenuData.axis = {
 					x,
