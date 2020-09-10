@@ -5,7 +5,7 @@
 			<div style="width: 100%;height: 8rem;display: flex;align-items: center;">
 				<div style="width: 35%;height: 100%;display: flex;flex-direction: column;align-items: center;border: #000000 solid 1px;">
 					<Avatar style="margin-top: 0.75rem;" :src="userInfo.avatarUrl" icon="ios-person" size="70" />
-					<Button style="margin: 0.75rem 0px;" size="small" type="info">修改资料</Button>
+					<Button style="margin: 0.75rem 0px;" @click="updateInfo()" size="small" type="info">修改资料</Button>
 				</div>
 				<div style="width: 20%;height: 100%;display: flex;flex-direction: column;align-items: center;">
 					<div class="tableItem">
@@ -60,6 +60,10 @@
 			}
 		},
 		methods: {
+		  //修改资料按钮
+      updateInfo(){
+        this.$message.warning("暂无此功能哦！")
+      },
 			//获取个人信息
 			getUserInfo() {
 				this.userInfo = JSON.parse(localStorage.getItem("userInfo"));

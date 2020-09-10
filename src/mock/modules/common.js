@@ -23,7 +23,7 @@ if (debug) {
     data: {
       menu: [{
         "id": 1,
-        "permissionsname": "功能介绍",
+        "permissionsname": "技术解决",
         "permissionsenglish": "cloudDisk",
         "state": true,
         "type": 1,

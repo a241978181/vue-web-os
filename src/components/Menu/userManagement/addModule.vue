@@ -4,7 +4,7 @@
     <br/>
     <h3>新增模块</h3>
     <br/>
-    <p><b>模块</b>是指桌面上的【功能介绍】与【系统介绍】</p>
+    <p><b>模块</b>是指桌面上的【技术解决】与【系统介绍】</p>
     <br/>
     <p><b>1.新增权限</b></p>
     <p>
@@ -15,7 +15,7 @@
     <p>在[/src/store/modules/control.js]中，向【state】中加入你的【面板展示键】<span>面板展示键为你权限中的英文名称，默认值为【false】</span></p>
     <br/>
     <p><b>3.创建模块</b></p>
-    <p>在[/src/components/Function/]中，复制一个【cloudDisk.vue】的文件名称为权限中的英文名称,之后将该页面中的这几个地方修改成为你权限中的英文名称。</p>
+    <p>在[/src/components/Function/]中，复制一个【cloudDisk.vue】的文件,名称为权限中的英文名称,之后将该页面中的这几个地方修改成为你权限中的英文名称。</p>
     <b style="color: red">点击下方图片可以放大查看</b>
     <div style="display: flex;align-items: center;width:1200px;height: 250px;">
       <el-image

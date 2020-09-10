@@ -2,7 +2,6 @@
 	<div>
 		<div v-if="startInformationViewBool" class="startView">
 			<!-- 任务栏 -->
-
 			<div class="taskBar" >
 				<Scroll style="width: 100%;" height="450"  >
 						<div class="taskItem" v-for="task in menuList">
@@ -13,8 +12,6 @@
 						</div>
 				</Scroll>
 			</div>
-
-
 			<!-- 工具栏 -->
 			<div class="toolbar">
 				<div class="toolbarLine">
@@ -52,6 +49,7 @@
 			}
 		},
 		methods: {
+
 			//退出系统
 			out() {
 				this.$store.commit("outComputer");

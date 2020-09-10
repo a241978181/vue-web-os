@@ -3,7 +3,7 @@ import axios from 'axios' //如果有action
 const control = {
 	state: {
 		//个人信息
-		personalInformationViewBool: false,
+		personalInformationViewBool: true,
 		//开始菜单
 		startInformationViewBool:false,
 		//任务栏任务对象

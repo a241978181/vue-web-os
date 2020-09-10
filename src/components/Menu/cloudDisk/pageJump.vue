@@ -6,7 +6,7 @@
 		<span>本项目的页面跳转无法使用路由进行跳转，下面按钮为演示跳转的可行方法</span>
 		<br/>
 		<br/>
-		<el-button @click="goto()" type="primary">点击我跳转到【按钮介绍】标签下</el-button>
+		<el-button @click="goto()" type="primary">点击我跳转到【按钮】标签页面下</el-button>
 	</div>
 </template>
 
