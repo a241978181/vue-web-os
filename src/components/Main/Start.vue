@@ -53,7 +53,9 @@
 			//退出系统
 			out() {
 				this.$store.commit("outComputer");
-				localStorage.clear();
+				localStorage.removeItem("userInfo");
+				localStorage.removeItem("permissionsList");
+				localStorage.removeItem("token");
 				this.$router.push("/signin");
 			},
 			//打开某一任务

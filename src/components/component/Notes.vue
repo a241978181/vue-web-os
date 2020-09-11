@@ -50,12 +50,12 @@
 		},
 		computed: {
 			//判断是否展示该面板
-			isPersonalInformationViewBool: {
+      isPersonalInformationViewBool: {
 				get() {
 					return this.$store.state.control.personalInformationViewBool;
 				},
 				set(v) {
-					this.$store.commit("setFalsePIVB");
+					this.$store.commit("setFalseVB","personalInformationViewBool");
 				}
 			}
 		},

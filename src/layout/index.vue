@@ -1,6 +1,6 @@
 <template>
-	<div class="big" @contextmenu="showMenu">
-		<vue-context-menu :contextMenuData="contextMenuData" @showUser="showUser" @refresh="refresh" @shuaXin="shuaXin"></vue-context-menu>
+	<div class="big" id="big" @contextmenu="showMenu">
+		<vue-context-menu @showWallpaper="showWallpaper" :contextMenuData="contextMenuData" @showUser="showUser" @refresh="refresh" @shuaXin="shuaXin"></vue-context-menu>
 		<!-- 桌面 -->
 		<div class="layout">
 			<!-- 桌面主体 -->
@@ -12,8 +12,10 @@
 				</div>
 				<!-- 主体右边 -->
 				<div style="width: 650px;">
-					<!-- 便签 -->
+					<!-- 个人信息 -->
 					<Notes></Notes>
+          <!-- 壁纸 -->
+          <Wallpaper @updateImae="updateImae"></Wallpaper>
 				</div>
 			</div>
 			<div class="layout-down">
@@ -37,7 +39,8 @@
 <script>
 	import Footer from "@/components/Footer";
 	import Main from "@/components/Main/Main";
-	import Notes from "@/components/Main/Notes";
+	import Notes from "@/components/component/Notes";
+  import Wallpaper from "@/components/component/wallpaper";
 	import Task from "@/components/Main/Task";
 	import Start from "@/components/Main/Start";
 	export default {
@@ -48,6 +51,7 @@
 			Notes,
 			Task,
 			Start,
+      Wallpaper,
 		},
 		data() {
 			return {
@@ -73,7 +77,11 @@
 						fnHandler: 'refresh', // 显示桌面
 						icoName: 'el-icon-view',
 						btnName: '显示桌面' //
-					}, ]
+					}, {
+            fnHandler: 'showWallpaper', // 显示桌面
+            icoName: 'el-icon-s-marketing',
+            btnName: '壁纸' //
+          }, ]
 				}
 			}
 		},
@@ -86,7 +94,7 @@
 				set(v) {
 					this.$store.commit("setFalseSIVB");
 				}
-			}
+			},
 		},
 		methods: {
 			//整蛊--刷新
@@ -108,22 +116,36 @@
 					y
 				}
 			},
-			//右键--显示桌面
+			//右键--显示个人信息
 			showUser() {
-				this.$store.commit("setTruePIVB");
+				this.$store.commit("setTrueVB","personalInformationViewBool");
 			},
+      //右键--显示壁纸选项
+      showWallpaper(){
+        this.$store.commit("setTrueVB","wallpaperViewBool");
+      },
 			//鼠标左键点击
 			danji() {
 				if (this.startInformationViewBool) {
 					this.$store.commit("setFalseSIVB");
 				}
-			}
-
+			},
+      //修改桌面背景
+      updateImae(){
+			  let desktopBackground=localStorage.getItem("desktopBackground");
+			  if (desktopBackground==null){
+          desktopBackground='https://s1.ax1x.com/2020/09/11/wtunxK.jpg';
+        }
+        let big=document.getElementById('big');
+        big.style.cssText="background: url("+desktopBackground+") 0 0 no-repeat;" +
+            "background-size: 100% 100%;";
+      }
 		},
 		mounted() {
 			if(localStorage.getItem("token")==null){
 				this.$router.push({path:'/signin'})
 			}
+			this.updateImae();
 		}
 	}
 </script>
@@ -131,7 +153,7 @@
 	.big {
 		display: flex;
 		height: 100%;
-		background: url(https://s2.ax1x.com/2020/02/18/3ivxaj.jpg) 0 0 no-repeat;
+		background: url(https://s1.ax1x.com/2020/09/11/wtunxK.jpg) 0 0 no-repeat;
 		background-size: 100% 100%;
 		padding: 0;
 		margin: 0;

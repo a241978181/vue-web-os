@@ -3,12 +3,14 @@ import axios from 'axios' //如果有action
 const control = {
 	state: {
 		//个人信息
-		personalInformationViewBool: true,
+		personalInformationViewBool: false,
+		//壁纸
+		wallpaperViewBool:false,
 		//开始菜单
 		startInformationViewBool:false,
 		//任务栏任务对象
 		taskList: [],
-		//------------------------------------------分割线--------------------------------------
+		//------------------------------------------面板展示键--------------------------------------
 		//功能介绍面板展示键
 		cloudDisk:false,
 		//系统介绍面板展示键
@@ -67,12 +69,6 @@ const control = {
 
 		//****************************************所有展示界面键************************************************
 		
-		setTruePIVB(state) {
-			state.personalInformationViewBool = true
-		},
-		setFalsePIVB(state) {
-			state.personalInformationViewBool = false
-		},
 		setTrueSIVB(state) {
 			state.startInformationViewBool = true
 		},
