@@ -48,7 +48,7 @@ http-server
 # 项目技术栈
 ###### vue 2.6
 ###### element-ui 1.13.0
-###### iview 4
+###### iview 4.3.2
 ###### vue-context-menu 1.0.2
 ###### mockjs 1.1.0
 ###### vuex	3.1.2
