@@ -4,7 +4,7 @@
 			<!-- 任务栏 -->
 			<div class="taskBar" >
 				<Scroll style="width: 100%;" height="450"  >
-						<div class="taskItem" v-for="task in menuList">
+						<div class="taskItem" v-for="task in permissionsList">
 							<a style="width:95% ;" @click="open(task)">
 								<Icon color="white" size="35" :type="task.icon" style="margin: 1rem;" />
 								<span style="color: white;margin-right: 0.5rem"><b>{{task.permissionsname}}</b></span>
@@ -23,12 +23,13 @@
 </template>
 
 <script>
+import {getPermissionsList} from '@/utils/permissions.js'
 	export default {
 		name: "Start",
 		data() {
 			return {
 				//功能列表
-        permissionsList: [],
+        permissionsList: getPermissionsList(1,null),
 			}
 		},
 		computed: {
@@ -80,19 +81,8 @@
 				}
 				return false;
 			},
-			//查询所拥有的权限
-			getMenuList() {
-        let permissionsList = JSON.parse(localStorage.getItem("permissionsList"));
-        this.menuList=[];
-        for(var i=0;i<permissionsList.length;i++){
-          if (permissionsList[i].type==1) {
-            this.menuList.push(permissionsList[i]);
-          }
-        }
-			}
 		},
 		mounted() {
-			this.getMenuList();
 		}
 	}
 </script>

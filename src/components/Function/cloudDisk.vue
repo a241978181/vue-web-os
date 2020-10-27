@@ -31,6 +31,7 @@
 
 <script>
 	import allComps from '../Menu/cloudDisk/index.js'
+  import {getPermissionsList} from '@/utils/permissions.js'
 	export default {
 		name: "cloudDisk",
 		props: {
@@ -49,7 +50,7 @@
 				//当前菜单按钮
 				indexButton:null,
 				//菜单
-				permissionsList:[],
+				permissionsList:getPermissionsList(2,this.menu.id),
 			}
 		},
 		computed: {

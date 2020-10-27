@@ -6,6 +6,7 @@
 
 <script>
 	import Program from "./Program.vue";
+  import {getPermissionsList} from '@/utils/permissions.js'
 	export default {
 		name: "Main",
 		components: {
@@ -14,23 +15,12 @@
 		data() {
 			return {
 				//功能列表
-        permissionsList: [],
+        permissionsList: getPermissionsList(1,null),
 			}
 		},
 		methods: {
-			//查询所拥有的权限
-			getMenuList() {
-        let permissionsList = JSON.parse(localStorage.getItem("permissionsList"));
-        this.permissionsList=[];
-        for(var i=0;i<permissionsList.length;i++){
-          if (permissionsList[i].type==1) {
-            this.permissionsList.push(permissionsList[i]);
-          }
-        }
-			}
 		},
 		mounted() {
-			this.getMenuList();
 		}
 	}
 </script>

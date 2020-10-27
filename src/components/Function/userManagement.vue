@@ -30,7 +30,8 @@
 </template>
 
 <script>
-	import allComps from '../Menu/userManagement/index.js' 
+	import allComps from '../Menu/userManagement/index.js'
+  import {getPermissionsList} from '@/utils/permissions.js'
 	export default {
 		name: "userManagement",
 		props: {
@@ -49,7 +50,7 @@
 				//当前菜单按钮
 				indexButton:null,
 				//菜单
-				permissionsList:[],
+				permissionsList:getPermissionsList(2,this.menu.id),
 			}
 		},
 		computed: {
@@ -93,19 +94,8 @@
 			mini(){
         this.$store.commit("setFalseVB",'userManagement');
 			},
-			//查询所拥有的菜单
-			getMenuList() {
-				let permissionsList = JSON.parse(localStorage.getItem("permissionsList"));
-				this.permissionsList=[];
-				for(var i=0;i<permissionsList.length;i++){
-					if (permissionsList[i].type==2&&permissionsList[i].parentid==this.menu.id) {
-						this.permissionsList.push(permissionsList[i]);
-					}
-				}
-			}
 		},
 		mounted() {
-			this.getMenuList();
 		}
 	}
 </script>
