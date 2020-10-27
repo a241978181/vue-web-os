@@ -1,28 +1,13 @@
 <template>
 	<div>
 		<Modal width="900" id="modalView" :fullscreen="fullscreen" v-model="isViewBool" footer-hide :draggable="draggable" :closable="false" >
-			<div slot="header" style="width: 100%;display: flex;align-items: center;justify-content:space-between;">
-				<div style="width: 50%;display: flex;align-items: center;">
-					<Icon size="25" :type="menu.icon" style="margin: 0.5rem;" />
-					<span style="color: white;"><b>{{menu.permissionsname}}</b></span>
-				</div>
-				<div style="width: 90px;display: flex;align-items: center;justify-content: space-between">
-					<Button size="large" type="text" ghost @click="mini()" icon="md-remove"></Button>
-					<Button size="large" type="text" ghost v-show="!fullscreen" @click="big()" icon="ios-expand"></Button>
-					<Button size="large" type="text" ghost v-show="fullscreen" @click="small()" icon="md-expand"></Button>
-					<Button size="large" type="text" ghost @click="closeView()" icon="md-close"></Button>
-				</div>
-			</div>
+        <!-- 头-->
+        <FuctionHeader slot="header" @mini="mini" @big="big" @small="small" @closeView="closeView" :fullscreen="fullscreen" :menu="menu"></FuctionHeader>
+
 			<!-- 主体 -->
 			<div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
-				<div class="BTL">
-					<ButtonGroup>
-						<Button @click="openMenu(item,index)" :ghost="indexButton==index?false:true"  v-for="(item,index) in permissionsList"  :type="item.color">
-							<Icon :type="item.icon" />
-							{{item.permissionsname}}
-						</Button>
-					</ButtonGroup>
-				</div>
+        <!--标题栏-->
+        <FuctionTitle @openMenu="openMenu" :permissionsList="permissionsList" :indexButton="indexButton"></FuctionTitle>
 				<component @routerTo="openMenu2(arguments)"  :is="allComps[permissionsItem.permissionsenglish]" :menu="permissionsItem"></component>
 			</div>
 		</Modal>
@@ -32,14 +17,22 @@
 <script>
 	import allComps from '../Menu/cloudDisk/index.js'
   import {getPermissionsList} from '@/utils/permissions.js'
+  import FuctionHeader from "@/components/util/FuctionHeader";
+  import FuctionTitle from "@/components/util/FuctionTitle";
 	export default {
 		name: "cloudDisk",
 		props: {
 			menu: '',
 		},
+    components:{
+      FuctionHeader,
+      FuctionTitle
+    },
 		data() {
 			return {
-				// 组件集合
+			  //该属性为权限属性，需要修改为自己的权限英文名称，一般和当前页面name对应
+			  ItemName:'cloudDisk',
+        // 组件集合
 				allComps: allComps,
 				//当前组件
 				permissionsItem:'',
@@ -57,10 +50,10 @@
 			//判断是否展示该面板
 			isViewBool: {
 				get() {
-					return this.$store.state.control.cloudDisk;
+					return this.$store.state.control[this.ItemName];
 				},
 				set(v) {
-					this.$store.commit("setFalseVB",'cloudDisk');
+					this.$store.commit("setFalseVB",this.ItemName);
 				}
 			},
 		},
@@ -77,7 +70,7 @@
 			},
 			//关闭对话框
 			closeView(){
-        this.$store.commit("setFalseVB",'cloudDisk');
+        this.$store.commit("setFalseVB",this.ItemName);
 				this.$store.commit("deleteTaskList",this.menu);
 			},
 			//缩小对话框
@@ -92,21 +85,10 @@
 			},
 			//最小化
 			mini(){
-        this.$store.commit("setFalseVB",'cloudDisk');
+        this.$store.commit("setFalseVB",this.ItemName);
 			},
-			//查询所拥有的菜单菜单
-			getMenuList() {
-				let permissionsList = JSON.parse(localStorage.getItem("permissionsList"));
-				this.permissionsList=[];
-				for(var i=0;i<permissionsList.length;i++){
-					if (permissionsList[i].type==2&&permissionsList[i].parentid==this.menu.id) {
-						this.permissionsList.push(permissionsList[i]);
-					}
-				}
-			}
 		},
 		mounted() {
-			this.getMenuList();
 		}
 	}
 </script>

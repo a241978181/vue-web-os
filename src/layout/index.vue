@@ -32,12 +32,9 @@
 
 
 
-		<!-- 页脚 -->
-		<!-- <Footer></Footer> -->
 	</div>
 </template>
 <script>
-	import Footer from "@/components/Footer";
 	import Main from "@/components/Main/Main";
 	import Notes from "@/components/component/Notes";
   import Wallpaper from "@/components/component/wallpaper";
@@ -46,7 +43,6 @@
 	export default {
 		name: 'layout',
 		components: {
-			Footer,
 			Main,
 			Notes,
 			Task,
