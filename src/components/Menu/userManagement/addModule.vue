@@ -15,22 +15,7 @@
     <p>在[/src/store/modules/control.js]中，向【state】中加入你的【面板展示键】<span>面板展示键为你权限中的英文名称，默认值为【false】</span></p>
     <br/>
     <p><b>3.创建模块</b></p>
-    <p>在[/src/components/Function/]中，复制一个【cloudDisk.vue】的文件,名称为权限中的英文名称,之后将该页面中的这几个地方修改成为你权限中的英文名称。</p>
-    <b style="color: red">点击下方图片可以放大查看</b>
-    <div style="display: flex;align-items: center;width:1200px;height: 250px;">
-      <el-image
-          style="width: 250px; height: 150px;margin-right: 50px"
-          :src="srcList[0]" :preview-src-list="srcList"
-          fit="scale-down"></el-image>
-      <el-image
-          style="width: 250px; height: 150px;margin-right: 50px"
-          :src="srcList[1]" :preview-src-list="srcList"
-          fit="scale-down"></el-image>
-      <el-image
-          style="width: 250px; height: 150px;margin-right: 50px"
-          :src="srcList[2]" :preview-src-list="srcList"
-          fit="scale-down"></el-image>
-    </div>
+    <p>在[/src/components/Function/]中，复制一个【cloudDisk.vue】的文件,名称修改为权限中的英文名称,之后将该页面中【ItemName】属性修改成为你权限中的英文名称。</p>
   </div>
 </template>
 
