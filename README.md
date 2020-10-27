@@ -1,5 +1,10 @@
 #体验网址
-[点此基本展示网址](http://49.233.186.140/#/signin)
+[点此基本展示网址http://49.233.186.140/#/signin](http://49.233.186.140/#/signin)
+#
+
+#### 微更新
+*  最近更新：*2020年10月27日*
+*  更新内容：*优化了权限模型和代码冗余*
 
 # vue-web-os
 一个基于vue2.6+elementui2.13.0＋iview4的仿云桌面系统（Windows10），本项目是在其他脚手架的基础上进行改进的，已经完成了权限模块
@@ -42,11 +47,13 @@ http-server
 ##### 登录首页展示
 ![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtyWj.jpg "vue-web-os") 
 ##### 桌面展示
-![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtcSs.jpg "vue-web-os")  
+![vue-web-os](https://s1.ax1x.com/2020/10/27/BQdqpQ.jpg "vue-web-os")  
+##### 小工具
+![vue-web-os](https://s1.ax1x.com/2020/10/27/BQwF1J.jpg "vue-web-os")
 ##### 开始菜单与鼠标右键展示
-![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtrFg.jpg "vue-web-os")  
+![vue-web-os](https://s1.ax1x.com/2020/10/27/BQwZ0x.jpg "vue-web-os")  
 ##### 模块与页面展示
-![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtsYQ.jpg "vue-web-os")  
+![vue-web-os](https://s1.ax1x.com/2020/10/27/BQwutO.jpg "vue-web-os")  
 
 
 
