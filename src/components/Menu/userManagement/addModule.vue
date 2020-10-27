@@ -21,15 +21,15 @@
       <el-image
           style="width: 250px; height: 150px;margin-right: 50px"
           :src="srcList[0]" :preview-src-list="srcList"
-          :fit="scale-down"></el-image>
+          fit="scale-down"></el-image>
       <el-image
           style="width: 250px; height: 150px;margin-right: 50px"
           :src="srcList[1]" :preview-src-list="srcList"
-          :fit="scale-down"></el-image>
+          fit="scale-down"></el-image>
       <el-image
           style="width: 250px; height: 150px;margin-right: 50px"
           :src="srcList[2]" :preview-src-list="srcList"
-          :fit="scale-down"></el-image>
+          fit="scale-down"></el-image>
     </div>
   </div>
 </template>
