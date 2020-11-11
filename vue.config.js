@@ -7,7 +7,7 @@ const ThemeColorReplacer = require("webpack-theme-color-replacer");
 const forElementUI = require("webpack-theme-color-replacer/forElementUI");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "http://49.233.186.140/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "http://106.52.164.100/" : "/",
   productionSourceMap: false,
   devServer: {
 	openPage:'#/signin',
