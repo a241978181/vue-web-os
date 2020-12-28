@@ -24,13 +24,14 @@
 </template>
 
 <script>
-    import allComps from '../Menu/cloudDisk/index.js'
+    //有了页面之后记得修改一下这里的导入路径哦！！！
+    import allComps from '../Menu/template/index.js'
     import {getPermissionsList} from '@/utils/permissions.js'
     import FuctionHeader from "@/components/util/FuctionHeader";
     import FuctionTitle from "@/components/util/FuctionTitle";
 
     export default {
-        name: "cloudDisk",
+        name: "template",
         props: {
             menu: '',
         },
@@ -41,7 +42,7 @@
         data() {
             return {
                 //该属性为权限属性，需要修改为自己的权限英文名称，一般和当前页面name对应
-                ItemName: 'cloudDisk',
+                ItemName: 'template',
                 // 组件集合
                 allComps: allComps,
                 //当前组件

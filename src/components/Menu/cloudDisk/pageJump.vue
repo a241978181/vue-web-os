@@ -18,7 +18,7 @@
 		},
 		data(){
 			return{
-				
+
 			}
 		},
 		methods:{
@@ -27,10 +27,10 @@
 				//documentCenter为跳转页面的英文名称，必须是同级目录中的
 				this.$emit("routerTo",{permissionsenglish:"documentCenter"},1);
 			}
-			
+
 		},
 		mounted() {
-			
+
 		}
 	}
 </script>

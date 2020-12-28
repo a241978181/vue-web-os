@@ -1,7 +1,7 @@
 <template>
 	<div class="ProgramButton">
 		<div class="zhong">
-			<Button @click="showView" :type="menu.color" class="buttonIcon" :icon="menu.icon"></Button>
+			<Button style="font-size: 2rem" @click="showView" :type="menu.color" class="buttonIcon" :icon="menu.icon"></Button>
 			<div class="text">
 				<span><b>{{menu.permissionsname}}</b></span>
 			</div>

@@ -15,7 +15,8 @@
     <p>在[/src/store/modules/control.js]中，向【state】中加入你的【面板展示键】<span>面板展示键为你权限中的英文名称，默认值为【false】</span></p>
     <br/>
     <p><b>3.创建模块</b></p>
-    <p>在[/src/components/Function/]中，复制一个【cloudDisk.vue】的文件,名称修改为权限中的英文名称,之后将该页面中【ItemName】属性修改成为你权限中的英文名称。</p>
+    <p>在[/src/components/Function/template/]中，复制一个【template.vue】的模板文件放到[/src/components/Function/]下。将其名称修改为权限中的英文名称,
+      也就是【permissionsenglish】字段的值，之后将该页面中[data--return]中的【ItemName】变量属性修改成为你权限中的英文名称。</p>
   </div>
 </template>
 
