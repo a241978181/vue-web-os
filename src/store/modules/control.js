@@ -15,6 +15,8 @@ const control = {
 		cloudDisk:false,
 		//系统介绍面板展示键
 		userManagement:false,
+		//插件展示面板展示键
+		plugShow:false,
 		//新增模块时的其他面板展示键......
 	},
 	getters: {
@@ -32,7 +34,7 @@ const control = {
 			}
 		}
 	},
-	
+
 	//显示页面
 	refresh(state){
 		for(let key in state){
@@ -41,7 +43,7 @@ const control = {
 			}
 		}
 	},
-		
+
 //***********************************基本增删改*************************************************
 		//添加一个任务
 		addTaskList(state, task) {
@@ -68,7 +70,7 @@ const control = {
 
 
 		//****************************************所有展示界面键************************************************
-		
+
 		setTrueSIVB(state) {
 			state.startInformationViewBool = true
 		},

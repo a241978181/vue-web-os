@@ -101,9 +101,29 @@ if (debug) {
         "color": "success",
         "icon": "ios-easel",
         "image": null
+      },{
+        "id": 8,
+        "permissionsname": "插件展示",
+        "permissionsenglish": "plugShow",
+        "state": true,
+        "type": 1,
+        "parentid": 0,
+        "color": "info",
+        "icon": "ios-basket",
+        "image": null
+      },{
+        "id": 9,
+        "permissionsname": "拖拽列表",
+        "permissionsenglish": "slidingList",
+        "state": true,
+        "type": 2,
+        "parentid": 8,
+        "color": "info",
+        "icon": "ios-apps",
+        "image": null
       },]
     }
   });
 
- 
+
 }
