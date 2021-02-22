@@ -18,6 +18,10 @@ Vue.use(ViewUI);
 // 引入全局工具函数
 import * as utils from "./utils";
 // 引入全局过滤器
+import * as filters from '@/filters';
+Object.keys(filters).forEach((key) => {
+  Vue.filter(key, filters[key]);
+});
 // import '@/filters'
 import "font-awesome/scss/font-awesome.scss";
 // 在入口处引入模拟的假数据

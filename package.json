@@ -10,6 +10,7 @@
   "dependencies": {
     "@xunlei/vue-context-menu": "^1.0.2",
     "axios": "^0.19.0",
+    "dayjs": "^1.8.33",
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.4.3",
     "element-ui": "^2.13.2",
