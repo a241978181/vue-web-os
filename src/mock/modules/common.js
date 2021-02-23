@@ -121,6 +121,17 @@ if (debug) {
         "color": "info",
         "icon": "ios-apps",
         "image": null
+      },{
+        "id": 10,
+        "permissionsname": "隐藏路由",
+        "permissionsenglish": "hiddenRouting",
+        "state": true,
+        "type": 2,
+        "parentid": 1,
+        "color": "success",
+        "icon": "ios-apps",
+        "image": null,
+        "hidden":true
       },]
     }
   });

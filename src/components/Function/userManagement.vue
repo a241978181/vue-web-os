@@ -10,7 +10,7 @@
 						<a> <Icon @click="refresh" style="margin-right: 5px" size="25" type="md-aperture" /></a>
 					</el-tooltip>
 					<!--标题栏-->
-					<FuctionTitle @openMenu="openMenu" :permissionsList="permissionsList"
+					<FuctionTitle  @openMenu="openMenu" :permissionsList="permissionsList"
 								  :indexButton="indexButton"></FuctionTitle>
 				</div>
 				<component @routerTo="openMenu2(arguments)"  :is="allComps[permissionsItem.permissionsenglish]" :menu="permissionsItem"></component>
