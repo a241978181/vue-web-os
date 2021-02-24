@@ -24,7 +24,11 @@
         <p>在[/src/components/Menu/<b style="color: red">当前模块的【permissionsenglish】</b>]中，创建一个vue页面，名称为新增权限的【permissionsenglish】字段值。
         </p>
         <br/>
-        <p><b>4.修改模块导入</b></p>
+        <p><b>4.复制index.js文件</b></p>
+        <p>在[/src/components/Function/template/]中，复制一个【index.js】的文件放到[/src/components/Menu/你创建的文件夹/]下,也就是第二步骤中创建的模块包。
+        </p>
+        <br/>
+        <p><b>5.修改模块导入</b></p>
         <p>在[/src/components/Function/]中，找到<b style="color: red">包含当前页面的模块</b>，修改如下图的引入组件路径。</p>
         <br/><br/>
         <img src="https://s3.ax1x.com/2020/12/28/roKKVf.jpg"/>

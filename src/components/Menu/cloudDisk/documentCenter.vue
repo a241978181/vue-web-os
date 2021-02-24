@@ -23,15 +23,23 @@
     name: "documentCenter",
     props: {
       menu: '',
+      //需要使用参数时填写
+      data:''
     },
     components: {},
     data() {
       return {}
     },
     methods: {
+      isData(){
+        if (this.data){
+          this.$message.success("您携带的参数name为："+this.data.name)
+        }
+      }
 
     },
     mounted() {
+      this.isData();
     }
   }
 </script>

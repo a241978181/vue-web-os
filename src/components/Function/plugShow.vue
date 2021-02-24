@@ -17,14 +17,13 @@
                                   :indexButton="indexButton"></FuctionTitle>
                 </div>
                 <component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.permissionsenglish]"
-                           :menu="permissionsItem"></component>
+                           :menu="permissionsItem" :data="data"></component>
             </div>
         </Modal>
     </div>
 </template>
 
 <script>
-    //有了页面之后记得修改一下这里的导入路径哦！！！
     import allComps from '../Menu/plugShow/index.js'
     import {getPermissionsList} from '@/utils/permissions.js'
     import FuctionHeader from "@/components/util/FuctionHeader";
@@ -55,6 +54,8 @@
                 indexButton: null,
                 //菜单
                 permissionsList: getPermissionsList(2, this.menu.id),
+                //页面跳转时的数据
+                data:''
             }
         },
         computed: {
@@ -80,13 +81,18 @@
             },
             //子组件调用打开菜单
             openMenu2(values) {
-                this.indexButton = values[1];
+                this.indexButton = values[0].permissionsenglish;
                 this.permissionsItem = values[0];
+                if (values[1]){
+                    this.data=values[1];
+                }
+
             },
             //打开菜单
             openMenu(item, index) {
-                this.indexButton = index;
+                this.indexButton = item.permissionsenglish;
                 this.permissionsItem = item;
+                this.data='';
             },
             //关闭对话框
             closeView() {

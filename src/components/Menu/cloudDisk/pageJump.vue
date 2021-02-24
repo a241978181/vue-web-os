@@ -7,6 +7,7 @@
 		<br/>
 		<br/>
 		<el-button @click="goto()" type="primary">点击我跳转到【按钮】标签页面下</el-button>
+		<el-button @click="goto3()" type="primary">点击我跳转到【按钮】标签页面下并携带参数</el-button>
 		<el-button @click="goto2()" type="primary">点击我跳转到【隐藏页面】标签页面下</el-button>
 	</div>
 </template>
@@ -25,8 +26,14 @@
 		methods:{
 			//页面跳转
 			goto(){
-				//documentCenter为跳转页面的英文名称，必须是同级目录中的
-				this.$emit("routerTo",{permissionsenglish:"documentCenter"},1);
+				// documentCenter为跳转页面的英文名称，必须是同级目录中的页面
+				this.$emit("routerTo",{permissionsenglish:"documentCenter"});
+			},
+			//页面跳转
+			goto3(){
+				// documentCenter为跳转页面的英文名称，必须是同级目录中的页面
+				// {name:'参数'} 为携带的参数
+				this.$emit("routerTo",{permissionsenglish:"documentCenter"},{name:'我是一个参数'});
 			},
 			//页面跳转
 			goto2(){

@@ -30,7 +30,8 @@ if (debug) {
         "parentid": 0,
         "color": "primary",
         "icon": "ios-cloud",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 2,
         "permissionsname": "弹出框",
@@ -40,7 +41,8 @@ if (debug) {
         "parentid": 1,
         "color": "primary",
         "icon": "ios-cloud-upload",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 3,
         "permissionsname": "系统介绍",
@@ -50,7 +52,8 @@ if (debug) {
         "parentid": 0,
         "color": "success",
         "icon": "ios-body",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 4,
         "permissionsname": "安装与启动",
@@ -60,7 +63,8 @@ if (debug) {
         "parentid": 3,
         "color": "success",
         "icon": "ios-globe",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 5,
         "permissionsname": "按钮",
@@ -70,7 +74,8 @@ if (debug) {
         "parentid": 1,
         "color": "primary",
         "icon": "ios-albums",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 6,
         "permissionsname": "页面跳转",
@@ -80,7 +85,8 @@ if (debug) {
         "parentid": 1,
         "color": "primary",
         "icon": "ios-crop",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 7,
         "permissionsname": "新增模块",
@@ -90,7 +96,8 @@ if (debug) {
         "parentid": 3,
         "color": "success",
         "icon": "ios-grid",
-        "image": null
+        "image": null,
+        "hidden":false
       }, {
         "id": 7,
         "permissionsname": "新增页面",
@@ -100,7 +107,8 @@ if (debug) {
         "parentid": 3,
         "color": "success",
         "icon": "ios-easel",
-        "image": null
+        "image": null,
+        "hidden":false
       },{
         "id": 8,
         "permissionsname": "插件展示",
@@ -110,7 +118,8 @@ if (debug) {
         "parentid": 0,
         "color": "info",
         "icon": "ios-basket",
-        "image": null
+        "image": null,
+        "hidden":false
       },{
         "id": 9,
         "permissionsname": "拖拽列表",
@@ -120,7 +129,8 @@ if (debug) {
         "parentid": 8,
         "color": "info",
         "icon": "ios-apps",
-        "image": null
+        "image": null,
+        "hidden":false
       },{
         "id": 10,
         "permissionsname": "隐藏路由",
