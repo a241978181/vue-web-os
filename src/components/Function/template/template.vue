@@ -17,7 +17,7 @@
                                   :indexButton="indexButton"></FuctionTitle>
                 </div>
                 <component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.permissionsenglish]"
-                           :menu="permissionsItem"></component>
+                           :menu="permissionsItem" :dataItem="dataItem"></component>
             </div>
         </Modal>
     </div>
@@ -55,6 +55,8 @@
                 indexButton: null,
                 //菜单
                 permissionsList: getPermissionsList(2, this.menu.id),
+                //页面跳转时的数据
+                dataItem:null
             }
         },
         computed: {
@@ -80,13 +82,17 @@
             },
             //子组件调用打开菜单
             openMenu2(values) {
-                this.indexButton = values[1];
+                this.indexButton = values[0].permissionsenglish;
                 this.permissionsItem = values[0];
+                if (values[1]){
+                    this.dataItem=values[1];
+                }
             },
             //打开菜单
             openMenu(item, index) {
                 this.indexButton = index;
                 this.permissionsItem = item;
+                this.dataItem=null;
             },
             //关闭对话框
             closeView() {
