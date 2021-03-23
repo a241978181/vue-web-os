@@ -24,7 +24,7 @@
     props: {
       menu: '',
       //需要使用参数时填写
-      data:''
+      dataItem:''
     },
     components: {},
     data() {
@@ -32,8 +32,8 @@
     },
     methods: {
       isData(){
-        if (this.data){
-          this.$message.success("您携带的参数name为："+this.data.name)
+        if (this.dataItem){
+          this.$message.success("您携带的参数name为："+this.dataItem.name)
         }
       }
 
