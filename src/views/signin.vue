@@ -18,7 +18,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" size="small" @click="Login('form')">登陆</el-button>
+            <el-button :loading="loading" type="primary" size="small" @click="Login('form')">登陆</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -34,6 +34,7 @@ export default {
   name: "signin",
   data() {
     return {
+      loading:false,
       form: {
         name: localStorage.userName || "admin",
         password: localStorage.passwordInfo || "654321"
@@ -60,6 +61,7 @@ export default {
   },
   methods: {
     Login(formName) {
+      this.loading=true;
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.$http.post("login", {
@@ -75,6 +77,7 @@ export default {
           return false;
         }
       });
+      this.loading=false;
     },
     //权限模式下
     getMenu() {

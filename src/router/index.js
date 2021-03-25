@@ -12,6 +12,10 @@ const Notfound = () => import("@/views/404")
 const Layout = () => import("@/layout")
 
 const router = new Router({
+	mode: 'hash',
+	scrollBehavior: () => {
+		history.pushState(null, null, document.URL)
+	},
 	routes: [{
 			path: '/',
 			redirect: '/signin',
@@ -67,5 +71,7 @@ router.beforeEach((to, from, next) => {
 	//   next();
 	// }
 });
-
+router.afterEach((to, from) => {
+	history.pushState(null, null, location.protocol + '//' + location.host + '/#' + to.path)
+})
 export default router;

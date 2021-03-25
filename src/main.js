@@ -45,3 +45,6 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
+window.addEventListener('popstate', function() {
+  history.pushState(null, null, document.URL)
+})
