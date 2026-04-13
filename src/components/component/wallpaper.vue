@@ -1,7 +1,7 @@
 <template>
 	<div >
     <el-dialog top="250px" width="300px" :visible.sync="wallpaperViewBool"
-           v-dialogDrag="true" :modal="false" title="壁纸" id="notes">
+           v-dialogDrag="true" :modal="false" :close-on-click-modal="false" title="壁纸" id="notes">
       <div style="width: 100%;display: flex;align-items: center;flex-wrap:wrap;">
         <div style="width: 89px" v-for="item in imgArr" :key="item.name">
           <a>

@@ -46,6 +46,14 @@ body {
   border-right: none !important;
 }
 
+/* 解决多开窗口点击穿透问题 */
+.el-dialog__wrapper {
+  pointer-events: none;
+}
+.el-dialog {
+  pointer-events: auto;
+}
+
 .el-menu-item [class^="el-icon-"] {
   color: #333;
 }

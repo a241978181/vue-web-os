@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<el-dialog top="20px" width="300px" :visible.sync="isPersonalInformationViewBool"
-		 v-dialogDrag="true" :modal="false" title="个人信息" id="notes">
+		 v-dialogDrag="true" :modal="false" :close-on-click-modal="false" title="个人信息" id="notes">
 			<div style="width: 100%;height: 8rem;display: flex;align-items: center;">
 				<div style="width: 35%;height: 100%;display: flex;flex-direction: column;align-items: center;border: #000000 solid 1px;">
 					<el-avatar style="margin-top: 0.75rem;" :src="userInfo.avatarUrl" icon="el-icon-user-solid" :size="70"></el-avatar>

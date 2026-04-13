@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog width="900px" top="5vh" id="modalView" custom-class="os-dialog" :fullscreen="fullscreen" :visible.sync="isViewBool" :modal="false" v-dialogDrag="draggable" :show-close="false">
+        <el-dialog width="900px" top="5vh" id="modalView" custom-class="os-dialog" :fullscreen="fullscreen" :visible.sync="isViewBool" :modal="false" :close-on-click-modal="false" v-dialogDrag="draggable" :show-close="false">
             <!-- 头-->
             <FuctionHeader slot="title" @mini="mini" @big="big" @small="small" @closeView="closeView"
                            :fullscreen="fullscreen" :menu="menu"></FuctionHeader>
