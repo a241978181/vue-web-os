@@ -11,10 +11,8 @@ import i18n from "./lang";
 //导入右键菜单组件
 import VueContextMenu from 'vue-contextmenu'
 Vue.use(VueContextMenu)
-//引入viewUI
-import ViewUI from 'view-design';
-import 'view-design/dist/styles/iview.css';
-Vue.use(ViewUI);
+// 注释view-design，引入dialogDrag
+import '@/utils/dialogDrag.js';
 // 引入全局工具函数
 import * as utils from "./utils";
 // 引入全局过滤器

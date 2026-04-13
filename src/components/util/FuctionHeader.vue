@@ -1,15 +1,15 @@
 <!--模块的头部-->
 <template>
-  <div  style="width: 100%;display: flex;align-items: center;justify-content:space-between;">
+  <div @dblclick="toggleFullscreen" style="display: flex;align-items: center;justify-content: space-between; width: 100%; height: 100%; user-select: none;">
   <div style="width: 50%;display: flex;align-items: center;">
-    <Icon size="25" :type="menu.icon" style="margin: 0.5rem;" />
+    <i :class="menu.icon" style="font-size: 25px; margin: 0.5rem; color: white;"></i>
     <span style="color: white;"><b>{{menu.permissionsname}}</b></span>
   </div>
-  <div style="width: 90px;display: flex;align-items: center;justify-content: space-between">
-    <Button size="large" type="text" ghost  @click="$emit('mini')" icon="md-remove"></Button>
-    <Button size="large" type="text" ghost v-show="!fullscreen" @click="$emit('big')" icon="ios-expand"></Button>
-    <Button size="large" type="text" ghost v-show="fullscreen" @click="$emit('small')" icon="md-expand"></Button>
-    <Button size="large" type="text" ghost @click="$emit('closeView')" icon="md-close"></Button>
+  <div style="display: flex;align-items: center;justify-content: flex-end; width: 140px;">
+    <el-button type="text" style="color: white; font-size: 18px; padding: 0 5px;" @click="$emit('mini')" icon="el-icon-minus"></el-button>
+    <el-button type="text" style="color: white; font-size: 18px; padding: 0 5px;" v-show="!fullscreen" @click="$emit('big')" icon="el-icon-full-screen"></el-button>
+    <el-button type="text" style="color: white; font-size: 18px; padding: 0 5px;" v-show="fullscreen" @click="$emit('small')" icon="el-icon-copy-document"></el-button>
+    <el-button type="text" style="color: white; font-size: 18px; padding: 0 5px;" @click="$emit('closeView')" icon="el-icon-close"></el-button>
   </div>
   </div>
 </template>
@@ -28,7 +28,14 @@ export default {
     return {
     }
   },
-  methods:{
+  methods: {
+    toggleFullscreen() {
+      if (this.fullscreen) {
+        this.$emit('small');
+      } else {
+        this.$emit('big');
+      }
+    }
   }
 }
 

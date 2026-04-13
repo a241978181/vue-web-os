@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<Modal style="right: 2px;" :styles="{top: '20px'}" :footer-hide="true" width="300" v-model="isPersonalInformationViewBool"
-		 draggable scrollable title="个人信息" id="notes">
+		<el-dialog top="20px" width="300px" :visible.sync="isPersonalInformationViewBool"
+		 v-dialogDrag="true" :modal="false" title="个人信息" id="notes">
 			<div style="width: 100%;height: 8rem;display: flex;align-items: center;">
 				<div style="width: 35%;height: 100%;display: flex;flex-direction: column;align-items: center;border: #000000 solid 1px;">
-					<Avatar style="margin-top: 0.75rem;" :src="userInfo.avatarUrl" icon="ios-person" size="70" />
-					<Button style="margin: 0.75rem 0px;" @click="updateInfo()" size="small" type="info">修改资料</Button>
+					<el-avatar style="margin-top: 0.75rem;" :src="userInfo.avatarUrl" icon="el-icon-user-solid" :size="70"></el-avatar>
+					<el-button style="margin: 0.75rem 0px;" @click="updateInfo()" size="small" type="info">修改资料</el-button>
 				</div>
 				<div style="width: 20%;height: 100%;display: flex;flex-direction: column;align-items: center;">
 					<div class="tableItem">
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 			</div>
-		</Modal>
+		</el-dialog>
 	</div>
 </template>
 
@@ -88,11 +88,11 @@
 	}
 </style>
 <style>
-	#notes .ivu-modal {
+	#notes .el-dialog {
 		margin-right: 20px;
 	}
 
-	#notes .ivu-modal-header {
+	#notes .el-dialog__header {
 		background-color: #348DC1;
 	}
 </style>

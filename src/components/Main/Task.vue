@@ -2,16 +2,16 @@
 	<div class="task">
 
 		<!-- 开始菜单 -->
-		<div style="width: 50px;height: 2.5rem;">
-			<Button @click="openStart()" size="large" type="text" icon="logo-windows" ghost></Button>
+		<div style="width: 50px;height: 2.5rem;display: flex;align-items: center;justify-content: center;">
+			<el-button @click="openStart()" size="large" type="text" icon="fa fa-windows" style="color: white; font-size: 20px; padding: 0;"></el-button>
 		</div>
 		<!-- 任务主体 -->
 		<div style="width: 100%;height: 2.5rem;display: flex;align-items: center;justify-content: flex-start;">
 
 			<div class="taskItem" v-for="task in taskList">
-				<a @click="open(task)">
-					<Icon color="white" size="large" :type="task.icon" style="margin: 0.5rem;" />
-					<span style="color: white;margin-right: 0.5rem"><b>{{task.permissionsname}}</b></span>
+					<a style="display: flex; align-items: center; justify-content: center; width: 100%;" @click="open(task)">
+					<i style="color: white; font-size: 20px; margin-right: 0.5rem;" :class="task.icon"></i>
+					<span style="color: white; white-space: nowrap;"><b>{{task.permissionsname}}</b></span>
 				</a>
 			</div>
 
@@ -20,12 +20,12 @@
 		<div style="width: 190px;height: 2.5rem;display: flex;align-items: center;justify-content: flex-end;">
 			<!-- 时间 -->
 			<div style="width: 95%;height: 2.5rem;display: flex;align-items: center;justify-content: flex-end">
-        <Tooltip :content="'剩余电量：'+electricity.batteryLevel+ '%'" placement="top-end">
-          <Button style="width: 25px" size="large" type="text" ghost   :icon="electricity.batteryCharging?'ios-battery-charging':electricity.batteryLevel<=30?'ios-battery-dead':'ios-battery-full'"></Button>
-        </Tooltip>
-        <Tooltip :content="isNetwork?'WIFI已开启':'WIFI已关闭'" placement="top-end">
-          <Button style="width: 25px" size="large" type="text" ghost   :icon="isNetwork?'ios-wifi':'ios-wifi-outline'"></Button>
-        </Tooltip>
+        <el-tooltip :content="'剩余电量：'+electricity.batteryLevel+ '%'" placement="top-end">
+          <el-button style="width: 25px; color: white; font-size: 18px; padding: 0;" size="large" type="text" :icon="electricity.batteryCharging?'fa fa-plug':electricity.batteryLevel<=30?'fa fa-battery-empty':'fa fa-battery-full'"></el-button>
+        </el-tooltip>
+        <el-tooltip :content="isNetwork?'WIFI已开启':'WIFI已关闭'" placement="top-end">
+          <el-button style="width: 25px; color: white; font-size: 18px; padding: 0;" size="large" type="text" :icon="isNetwork?'fa fa-wifi':'fa fa-exclamation-triangle'"></el-button>
+        </el-tooltip>
         <div style="display: flex;flex-direction:column;align-items: center;width: 90px">
           <span bodyonselectstart="returnfalse" style="color: white;font-size: 10px" oncopy="event.returnValue=false;" ondragstart="window.event.returnValue=false" oncontextmenu="window.event.returnValue=false" onselectstart="event.returnValue=false">{{timeItem.date}}</span>
           <span bodyonselectstart="returnfalse" style="color: white;font-size: 10px" oncopy="event.returnValue=false;" ondragstart="window.event.returnValue=false" oncontextmenu="window.event.returnValue=false" onselectstart="event.returnValue=false">{{timeItem.time}}</span>

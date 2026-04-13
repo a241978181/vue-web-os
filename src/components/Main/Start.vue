@@ -3,14 +3,14 @@
 		<div v-if="startInformationViewBool" class="startView">
 			<!-- 任务栏 -->
 			<div class="taskBar" >
-				<Scroll style="width: 100%;" height="450"  >
-						<div class="taskItem" v-for="task in permissionsList">
+				<div style="width: 100%; height: 450px; overflow-y: auto;">
+						<div class="taskItem" v-for="task in permissionsList" :key="task.id">
 							<a style="width:95% ;" @click="open(task)">
-								<Icon color="white" size="35" :type="task.icon" style="margin: 1rem;" />
+								<i style="color: white; font-size: 35px; margin: 1rem;" :class="task.icon"></i>
 								<span style="color: white;margin-right: 0.5rem"><b>{{task.permissionsname}}</b></span>
 							</a>
 						</div>
-				</Scroll>
+				</div>
 			</div>
 			<!-- 工具栏 -->
 			<div class="toolbar">

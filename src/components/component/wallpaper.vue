@@ -1,7 +1,7 @@
 <template>
 	<div >
-    <Modal style="right: 2px;" :styles="{top: '250px'}" :footer-hide="true" width="300" v-model="wallpaperViewBool"
-           draggable scrollable title="壁纸" id="notes">
+    <el-dialog top="250px" width="300px" :visible.sync="wallpaperViewBool"
+           v-dialogDrag="true" :modal="false" title="壁纸" id="notes">
       <div style="width: 100%;display: flex;align-items: center;flex-wrap:wrap;">
         <div style="width: 89px" v-for="item in imgArr" :key="item.name">
           <a>
@@ -15,7 +15,7 @@
           </a>
         </div>
       </div>
-    </Modal>
+    </el-dialog>
 	</div>
 </template>
 
@@ -72,11 +72,11 @@
 <style scoped="scoped">
 </style>
 <style>
-#notes .ivu-modal {
+#notes .el-dialog {
   margin-right: 20px;
 }
 
-#notes .ivu-modal-header {
+#notes .el-dialog__header {
   background-color: #348DC1;
 }
 </style>

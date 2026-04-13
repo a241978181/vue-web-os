@@ -29,7 +29,7 @@ if (debug) {
         "type": 1,
         "parentid": 0,
         "color": "primary",
-        "icon": "ios-cloud",
+        "icon": "el-icon-folder",
         "image": null,
         "hidden":false
       }, {
@@ -40,7 +40,7 @@ if (debug) {
         "type": 2,
         "parentid": 1,
         "color": "primary",
-        "icon": "ios-cloud-upload",
+        "icon": "el-icon-upload",
         "image": null,
         "hidden":false
       }, {
@@ -51,7 +51,7 @@ if (debug) {
         "type": 1,
         "parentid": 0,
         "color": "success",
-        "icon": "ios-body",
+        "icon": "el-icon-user",
         "image": null,
         "hidden":false
       }, {
@@ -62,7 +62,7 @@ if (debug) {
         "type": 2,
         "parentid": 3,
         "color": "success",
-        "icon": "ios-globe",
+        "icon": "el-icon-position",
         "image": null,
         "hidden":false
       }, {
@@ -73,7 +73,7 @@ if (debug) {
         "type": 2,
         "parentid": 1,
         "color": "primary",
-        "icon": "ios-albums",
+        "icon": "el-icon-picture",
         "image": null,
         "hidden":false
       }, {
@@ -84,7 +84,7 @@ if (debug) {
         "type": 2,
         "parentid": 1,
         "color": "primary",
-        "icon": "ios-crop",
+        "icon": "el-icon-crop",
         "image": null,
         "hidden":false
       }, {
@@ -95,7 +95,7 @@ if (debug) {
         "type": 2,
         "parentid": 3,
         "color": "success",
-        "icon": "ios-grid",
+        "icon": "el-icon-menu",
         "image": null,
         "hidden":false
       }, {
@@ -106,7 +106,7 @@ if (debug) {
         "type": 2,
         "parentid": 3,
         "color": "success",
-        "icon": "ios-easel",
+        "icon": "el-icon-data-board",
         "image": null,
         "hidden":false
       },{
@@ -117,7 +117,7 @@ if (debug) {
         "type": 1,
         "parentid": 0,
         "color": "info",
-        "icon": "ios-basket",
+        "icon": "el-icon-shopping-cart-2",
         "image": null,
         "hidden":false
       },{
@@ -128,7 +128,7 @@ if (debug) {
         "type": 2,
         "parentid": 8,
         "color": "info",
-        "icon": "ios-apps",
+        "icon": "el-icon-s-grid",
         "image": null,
         "hidden":false
       },{
@@ -139,7 +139,7 @@ if (debug) {
         "type": 2,
         "parentid": 1,
         "color": "success",
-        "icon": "ios-apps",
+        "icon": "el-icon-s-grid",
         "image": null,
         "hidden":true
       },]

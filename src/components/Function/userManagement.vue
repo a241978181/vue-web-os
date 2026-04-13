@@ -1,16 +1,15 @@
 <template>
 	<div>
-		<Modal width="900" id="modalView" :fullscreen="fullscreen" v-model="isViewBool" footer-hide
-			   :draggable="draggable" :closable="false">
+		<el-dialog width="900px" top="5vh" id="modalView" custom-class="os-dialog" :fullscreen="fullscreen" :visible.sync="isViewBool" :modal="false" v-dialogDrag="draggable" :show-close="false">
 			<!-- 头-->
-			<FuctionHeader slot="header" @mini="mini" @big="big" @small="small" @closeView="closeView"
+			<FuctionHeader slot="title" @mini="mini" @big="big" @small="small" @closeView="closeView"
 						   :fullscreen="fullscreen" :menu="menu"></FuctionHeader>
 
 			<!-- 主体 -->
 			<div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
 				<div style="width: 100%;display: flex;align-items: center;">
 					<el-tooltip class="item" effect="dark" content="刷新" placement="bottom">
-						<a> <Icon @click="refresh" style="margin-right: 5px" size="25" type="md-aperture" /></a>
+						<a> <i class="el-icon-refresh" @click="refresh" style="margin-right: 5px; font-size: 25px;"></i></a>
 					</el-tooltip>
 					<!--标题栏-->
 					<FuctionTitle @openMenu="openMenu" :permissionsList="permissionsList"
@@ -19,7 +18,7 @@
 				<component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.permissionsenglish]"
 						   :menu="permissionsItem" :dataItem="dataItem"></component>
 			</div>
-		</Modal>
+		</el-dialog>
 	</div>
 </template>
 
@@ -128,8 +127,9 @@
 	}
 </style>
 <style>
-	#modalView .ivu-modal-header {
+	#modalView .el-dialog__header {
 		background-color: #348DC1;
 		padding: 5px;
 	}
+	#modalView .el-dialog__body { padding: 10px 20px; }
 </style>
