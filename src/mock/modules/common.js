@@ -32,6 +32,7 @@ if (debug) {
         "icon": "el-icon-cpu",
         "image": null,
         "hidden":false,
+        "sort": 1,
         "defaultPage": "bigFileUpload"
       }, {
         "id": 2,
@@ -43,6 +44,7 @@ if (debug) {
         "parentid": 1,
         "icon": "el-icon-upload",
         "image": null,
+        "sort": 1,
         "hidden":false
       }, {
         "id": 3,
@@ -54,6 +56,7 @@ if (debug) {
         "parentid": 0,
         "icon": "el-icon-s-tools",
         "image": null,
+        "sort": 2,
         "hidden":false
       }, {
         "id": 4,
@@ -65,6 +68,7 @@ if (debug) {
         "parentid": 3,
         "icon": "el-icon-position",
         "image": null,
+        "sort": 1,
         "hidden":false
       }, {
         "id": 5,
@@ -76,6 +80,7 @@ if (debug) {
         "parentid": 1,
         "icon": "el-icon-picture",
         "image": null,
+        "sort": 2,
         "hidden":false
       }, {
         "id": 6,
@@ -87,6 +92,7 @@ if (debug) {
         "parentid": 1,
         "icon": "el-icon-crop",
         "image": null,
+        "sort": 3,
         "hidden":false
       }, {
         "id": 7,
@@ -98,6 +104,7 @@ if (debug) {
         "parentid": 3,
         "icon": "el-icon-menu",
         "image": null,
+        "sort": 2,
         "hidden":false
       }, {
         "id": 7,
@@ -109,6 +116,7 @@ if (debug) {
         "parentid": 3,
         "icon": "el-icon-data-board",
         "image": null,
+        "sort": 3,
         "hidden":false
       },{
         "id": 8,
@@ -120,6 +128,7 @@ if (debug) {
         "parentid": 0,
         "icon": "el-icon-shopping-cart-2",
         "image": null,
+        "sort": 3,
         "hidden":false
       },{
         "id": 9,
@@ -131,6 +140,7 @@ if (debug) {
         "parentid": 8,
         "icon": "el-icon-s-grid",
         "image": null,
+        "sort": 1,
         "hidden":false
       },{
         "id": 10,
@@ -142,6 +152,7 @@ if (debug) {
         "parentid": 1,
         "icon": "el-icon-s-grid",
         "image": null,
+        "sort": 4,
         "hidden":true
       },{
         "id": 11,
@@ -153,6 +164,7 @@ if (debug) {
         "parentid": 0,
         "icon": "el-icon-document",
         "image": null,
+        "sort": 4,
         "hidden":false,
         "defaultPage": "docOverview"
       },{
@@ -165,6 +177,7 @@ if (debug) {
         "parentid": 11,
         "icon": "el-icon-info",
         "image": null,
+        "sort": 1,
         "hidden":false
       },{
         "id": 13,
@@ -176,6 +189,7 @@ if (debug) {
         "parentid": 11,
         "icon": "el-icon-lock",
         "image": null,
+        "sort": 2,
         "hidden":false
       },{
         "id": 14,
@@ -187,6 +201,7 @@ if (debug) {
         "parentid": 11,
         "icon": "el-icon-star-on",
         "image": null,
+        "sort": 3,
         "hidden":false
       },{
         "id": 15,
@@ -198,6 +213,7 @@ if (debug) {
         "parentid": 11,
         "icon": "el-icon-guide",
         "image": null,
+        "sort": 4,
         "hidden":false
       },]
     }

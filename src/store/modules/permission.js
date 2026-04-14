@@ -17,12 +17,13 @@ const permission = {
      * @param {Number|null} parentId - 父级ID，null则不过滤
      */
     getByTypeAndParent: (state) => (type, parentId) => {
-      return state.permissionsList.filter(item => {
+      let filtered = state.permissionsList.filter(item => {
         if (parentId != null) {
           return item.type === type && item.parentid === parentId;
         }
         return item.type === type;
       });
+      return filtered.sort((a, b) => (a.sort || 0) - (b.sort || 0));
     }
   },
   mutations: {
