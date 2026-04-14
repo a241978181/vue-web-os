@@ -105,14 +105,6 @@ src/
 
 在 `src/http/index.js` 中配置 `baseURL` 指向真实后端地址，将 Mock 拦截的 `/menu`、`/login` 等接口替换为实际 API 即可。
 
-### 修改主题色
-
-编辑 `src/assets/scss/element-variables.scss`：
-
-```scss
-$--color-primary: #7367f0;  // 修改为你需要的品牌色
-```
-
 ## 📸 项目预览
 
 ##### 登录页面
