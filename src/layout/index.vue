@@ -1,6 +1,13 @@
 <template>
 	<div class="big" id="big" @contextmenu="showMenu">
-		<vue-context-menu @showWallpaper="showWallpaper" @showSettings="showSettings" :contextMenuData="contextMenuData" @showUser="showUser" @refresh="refresh" @shuaXin="shuaXin"></vue-context-menu>
+		<div v-show="menuVisible" class="custom-context-menu" :style="{left: contextMenuData.axis.x + 'px', top: contextMenuData.axis.y + 'px'}">
+			<ul>
+				<li v-for="item in contextMenuData.menulists" :key="item.fnHandler" @click.stop="handleContextMenuCommand(item.fnHandler)">
+					<i :class="item.icoName"></i>
+					<span>{{ item.btnName }}</span>
+				</li>
+			</ul>
+		</div>
 		<!-- 桌面 -->
 		<div class="layout">
 			<!-- 桌面主体 -->
@@ -55,37 +62,12 @@
 		},
 		data() {
 			return {
+				menuVisible: false,
 				// contextmenu data (菜单数据)
 				contextMenuData: {
-					// the contextmenu name(@1.4.1 updated)
 					menuName: 'demo',
-					// The coordinates of the display(菜单显示的位置)
-					axis: {
-						x: null,
-						y: null
-					},
-					// Menu options (菜单选项)
-					menulists: [{
-						fnHandler: 'showUser', // Binding events(绑定事件)
-						icoName: 'el-icon-user-solid', // icon (icon图标 )
-						btnName: '个人信息' // The name of the menu option (菜单名称)
-					}, {
-						fnHandler: 'shuaXin', // 刷新
-						icoName: 'el-icon-refresh',
-						btnName: '刷新' //
-					}, {
-						fnHandler: 'refresh', // 显示桌面
-						icoName: 'el-icon-view',
-						btnName: '显示桌面' //
-					}, {
-            fnHandler: 'showWallpaper',
-            icoName: 'el-icon-s-marketing',
-            btnName: '壁纸'
-          }, {
-            fnHandler: 'showSettings',
-            icoName: 'el-icon-setting',
-            btnName: '设置'
-          }, ]
+					axis: { x: null, y: null },
+					menulists: []
 				}
 			}
 		},
@@ -114,10 +96,43 @@
 				event.preventDefault()
 				var x = event.clientX+1;
 				var y = event.clientY+1;
+				
+				this.menuVisible = true;
+				
+				// 实时更新支持国际化
+				this.contextMenuData.menulists = [{
+					fnHandler: 'showUser',
+					icoName: 'el-icon-user-solid',
+					btnName: this.$t('m.layout.userInfo')
+				}, {
+					fnHandler: 'shuaXin',
+					icoName: 'el-icon-refresh',
+					btnName: this.$t('m.layout.refresh')
+				}, {
+					fnHandler: 'refresh',
+					icoName: 'el-icon-view',
+					btnName: this.$t('m.layout.showDesktop')
+				}, {
+					fnHandler: 'showWallpaper',
+					icoName: 'el-icon-s-marketing',
+					btnName: this.$t('m.layout.wallpaper')
+				}, {
+					fnHandler: 'showSettings',
+					icoName: 'el-icon-setting',
+					btnName: this.$t('m.layout.settings')
+				}];
+
 				// Get the current location
 				this.contextMenuData.axis = {
 					x,
 					y
+				}
+			},
+			// 路由方法分发
+			handleContextMenuCommand(fnHandler) {
+				this.menuVisible = false;
+				if (typeof this[fnHandler] === 'function') {
+					this[fnHandler]();
 				}
 			},
 			//右键--显示个人信息
@@ -134,9 +149,14 @@
       },
 			//鼠标左键点击
 			danji() {
+				this.menuVisible = false;
 				if (this.startInformationViewBool) {
 					this.$store.commit("setFalseSIVB");
 				}
+			},
+			// 关闭右键桌面弹窗
+			closeDesktopMenu() {
+				if(this.menuVisible) this.menuVisible = false;
 			},
       //修改桌面背景
       updateImae(){
@@ -151,6 +171,10 @@
 		},
 		mounted() {
 			this.updateImae();
+			document.addEventListener('click', this.closeDesktopMenu);
+		},
+		beforeDestroy() {
+			document.removeEventListener('click', this.closeDesktopMenu);
 		}
 	}
 </script>
@@ -185,5 +209,55 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.custom-context-menu {
+		position: absolute;
+		z-index: 9999;
+		background: rgba(255, 255, 255, 0.85);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: 10px;
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+		padding: 8px 0;
+		min-width: 160px;
+		animation: menuFadeIn 0.2s ease;
+	}
+
+	@keyframes menuFadeIn {
+		from { opacity: 0; transform: scale(0.95); }
+		to { opacity: 1; transform: scale(1); }
+	}
+
+	.custom-context-menu ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.custom-context-menu li {
+		padding: 10px 20px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.2s;
+		color: #333;
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.custom-context-menu li:hover {
+		background: rgba(115, 103, 240, 0.1);
+		color: #7367f0;
+	}
+	.custom-context-menu li i {
+		margin-right: 12px;
+		font-size: 16px;
+		width: 20px;
+		text-align: center;
+		color: #555;
+		transition: color 0.2s;
+	}
+	.custom-context-menu li:hover i {
+		color: #7367f0;
 	}
 </style>

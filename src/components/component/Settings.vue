@@ -1,24 +1,41 @@
 <template>
 	<div>
 		<el-dialog top="200px" width="360px" :visible.sync="settingsViewBool"
-		 v-dialogDrag="true" :modal="false" :close-on-click-modal="false" title="系统设置" id="settingsDialog">
+		 v-dialogDrag="true" :modal="false" :close-on-click-modal="false" :title="$t('m.settings.title')" id="settingsDialog">
 			<div class="settings-content">
 				<!-- 窗口行为 -->
 				<div class="settings-group">
 					<div class="settings-group-title">
 						<i class="el-icon-monitor"></i>
-						<span>窗口行为</span>
+						<span>{{ $t('m.settings.windowBehavior') }}</span>
 					</div>
 					<div class="settings-item">
 						<div class="settings-item-info">
-							<span class="settings-item-label">限制窗口移出屏幕</span>
-							<span class="settings-item-desc">开启后，拖拽窗口时不允许超出屏幕边界</span>
+							<span class="settings-item-label">{{ $t('m.settings.restrictWindowOut') }}</span>
+							<span class="settings-item-desc">{{ $t('m.settings.restrictWindowOutDesc') }}</span>
 						</div>
 						<el-switch
 							v-model="restrictWindowBounds"
 							active-color="#7367f0"
 							inactive-color="#dcdfe6">
 						</el-switch>
+					</div>
+				</div>
+				<!-- 语言设置 -->
+				<div class="settings-group">
+					<div class="settings-group-title">
+						<i class="el-icon-mic"></i>
+						<span>{{ $t('m.settings.languageSetting') }}</span>
+					</div>
+					<div class="settings-item">
+						<div class="settings-item-info">
+							<span class="settings-item-label">{{ $t('m.settings.switchLanguage') }}</span>
+							<span class="settings-item-desc">{{ $t('m.settings.switchLanguageDesc') }}</span>
+						</div>
+						<el-select v-model="currentLanguage" size="mini" style="width: 100px;">
+							<el-option label="中文" value="zh"></el-option>
+							<el-option label="English" value="en"></el-option>
+						</el-select>
 					</div>
 				</div>
 			</div>
@@ -46,6 +63,16 @@
 				},
 				set(v) {
 					this.$store.commit("settings/SET_RESTRICT_WINDOW_BOUNDS", v);
+				}
+			},
+			// 语言切换
+			currentLanguage: {
+				get() {
+					return this.$i18n.locale;
+				},
+				set(v) {
+					this.$i18n.locale = v;
+					localStorage.setItem('lang', v);
 				}
 			}
 		}

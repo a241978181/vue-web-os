@@ -4,7 +4,7 @@
     <el-button-group>
       <el-button v-if="!item.hidden" @click="$emit('openMenu',item,item.permissionsenglish)" :plain="indexButton==item.permissionsenglish?false:true" v-for="(item,index) in permissionsList" :key="index"  :type="item.color">
         <i :class="item.icon"></i>
-        {{item.permissionsname}}
+        {{ $te('m.menu.' + item.permissionsenglish) ? $t('m.menu.' + item.permissionsenglish) : item.permissionsname }}
       </el-button>
     </el-button-group>
   </div>

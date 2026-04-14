@@ -8,7 +8,7 @@
             <!-- 主体 -->
             <div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
                 <div style="width: 100%;display: flex;align-items: center;">
-                    <el-tooltip class="item" effect="dark" content="刷新" placement="bottom">
+                    <el-tooltip class="item" effect="dark" :content="$t('m.layout.refresh')" placement="bottom">
                         <a> <i class="el-icon-refresh" @click="refresh" style="margin-right: 5px; font-size: 25px;"></i></a>
                     </el-tooltip>
                     <!--标题栏-->
@@ -69,6 +69,25 @@
                     this.$store.commit("setFalseVB", this.ItemName);
                 }
             },
+        },
+        watch: {
+            isViewBool(newVal) {
+                if (newVal) {
+                    if (this.menu.defaultPage && this.permissionsList.length > 0) {
+                        const target = this.permissionsList.find(
+                            item => item.permissionsenglish === this.menu.defaultPage
+                        );
+                        if (target) {
+                            this.permissionsItem = target;
+                            this.indexButton = target.permissionsenglish;
+                        }
+                    } else {
+                        this.permissionsItem = '';
+                        this.indexButton = null;
+                    }
+                    this.dataItem = null;
+                }
+            }
         },
         methods: {
             //刷新

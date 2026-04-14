@@ -7,7 +7,7 @@
 						<div class="taskItem" v-for="task in permissionsList" :key="task.id">
 							<a style="width:95% ;" @click="open(task)">
 								<i style="color: white; font-size: 35px; margin: 1rem;" :class="task.icon"></i>
-								<span style="color: white;margin-right: 0.5rem"><b>{{task.permissionsname}}</b></span>
+								<span style="color: white;margin-right: 0.5rem"><b>{{ $te('m.menu.' + task.permissionsenglish) ? $t('m.menu.' + task.permissionsenglish) : task.permissionsname }}</b></span>
 							</a>
 						</div>
 				</div>

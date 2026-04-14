@@ -3,7 +3,7 @@
 		<div class="zhong">
 			<el-button style="font-size: 2rem; padding: 0;" @click="showView" :type="menu.color" class="buttonIcon" :icon="menu.icon"></el-button>
 			<div class="text">
-				<span><b>{{menu.permissionsname}}</b></span>
+				<span><b>{{ $te('m.menu.' + menu.permissionsenglish) ? $t('m.menu.' + menu.permissionsenglish) : menu.permissionsname }}</b></span>
 			</div>
 		</div>
 		<component  :is="allComps[menu.permissionsenglish]" :menu="menu"></component>

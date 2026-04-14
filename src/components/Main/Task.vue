@@ -1,5 +1,14 @@
 <template>
 	<div class="task">
+		<!-- 自定义任务栏应用右键菜单 -->
+		<div v-show="menuVisible" class="custom-task-menu" :style="{left: taskMenuAxis.x + 'px', bottom: '50px'}">
+			<ul>
+				<li @click.stop="closeCurrentTask">
+					<i class="el-icon-circle-close"></i>
+					<span>{{ $t('m.taskbar.closeApp') }}</span>
+				</li>
+			</ul>
+		</div>
 
 		<!-- 开始菜单 -->
 		<div style="width: 50px;height: 2.5rem;display: flex;align-items: center;justify-content: center;">
@@ -9,9 +18,9 @@
 		<div style="width: 100%;height: 2.5rem;display: flex;align-items: center;justify-content: flex-start;">
 
 			<div class="taskItem" v-for="task in taskList">
-					<a style="display: flex; align-items: center; justify-content: center; width: 100%;" @click="open(task)">
+					<a style="display: flex; align-items: center; justify-content: center; width: 100%;" @click="open(task)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
 					<i style="color: white; font-size: 20px; margin-right: 0.5rem;" :class="task.icon"></i>
-					<span style="color: white; white-space: nowrap;"><b>{{task.permissionsname}}</b></span>
+					<span style="color: white; white-space: nowrap;"><b>{{ $te('m.menu.' + task.permissionsenglish) ? $t('m.menu.' + task.permissionsenglish) : task.permissionsname }}</b></span>
 				</a>
 			</div>
 
@@ -20,10 +29,10 @@
 		<div style="width: 190px;height: 2.5rem;display: flex;align-items: center;justify-content: flex-end;">
 			<!-- 时间 -->
 			<div style="width: 95%;height: 2.5rem;display: flex;align-items: center;justify-content: flex-end">
-        <el-tooltip :content="'剩余电量：'+electricity.batteryLevel+ '%'" placement="top-end">
+        <el-tooltip :content="$t('m.taskbar.batteryRest') + electricity.batteryLevel + '%'" placement="top-end">
           <el-button style="width: 25px; color: white; font-size: 18px; padding: 0;" size="large" type="text" :icon="electricity.batteryCharging?'fa fa-plug':electricity.batteryLevel<=30?'fa fa-battery-empty':'fa fa-battery-full'"></el-button>
         </el-tooltip>
-        <el-tooltip :content="isNetwork?'WIFI已开启':'WIFI已关闭'" placement="top-end">
+        <el-tooltip :content="isNetwork ? $t('m.taskbar.wifiOn') : $t('m.taskbar.wifiOff')" placement="top-end">
           <el-button style="width: 25px; color: white; font-size: 18px; padding: 0;" size="large" type="text" :icon="isNetwork?'fa fa-wifi':'fa fa-exclamation-triangle'"></el-button>
         </el-tooltip>
         <div style="display: flex;flex-direction:column;align-items: center;width: 90px">
@@ -44,6 +53,9 @@
 		name: "Task",
 		data() {
 			return {
+				menuVisible: false,
+				taskMenuAxis: { x: 0 },
+				currentTask: null,
         //电量信息
         electricity:{
           batteryCharging:false,
@@ -74,6 +86,22 @@
 			}
 		},
 		methods: {
+			showTaskMenu(e, task) {
+				this.menuVisible = true;
+				this.taskMenuAxis.x = e.clientX;
+				this.currentTask = task;
+			},
+			closeCurrentTask() {
+				if (this.currentTask) {
+					this.$store.commit("setFalseVB", this.currentTask.permissionsenglish);
+					this.$store.commit("deleteTaskList", this.currentTask);
+					this.menuVisible = false;
+					this.currentTask = null;
+				}
+			},
+			closeMenu() {
+				this.menuVisible = false;
+			},
       //定时器
       timer(){
         let mythis=this;
@@ -136,7 +164,11 @@
 		},
 		mounted() {
       this.timer();
-    }
+			document.addEventListener('click', this.closeMenu);
+    },
+		beforeDestroy() {
+			document.removeEventListener('click', this.closeMenu);
+		}
 	}
 </script>
 
@@ -156,7 +188,9 @@
 
 	.taskItem {
 		background-color: transparent;
-		width: 6rem;
+		width: auto;
+		min-width: 6rem;
+		padding: 0 0.5rem;
 		height: 2.5rem;
 		display: flex;
 		align-items: center;
@@ -169,5 +203,48 @@
 	.taskItem:hover {
 		background-color: rgba(255, 255, 255, 0.15);
 		box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+	}
+
+	.custom-task-menu {
+		position: fixed;
+		z-index: 10000;
+		background: rgba(255, 255, 255, 0.85);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: 8px;
+		box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+		padding: 5px 0;
+		min-width: 130px;
+		animation: taskMenuFadeIn 0.2s ease;
+	}
+
+	@keyframes taskMenuFadeIn {
+		from { opacity: 0; transform: translateY(10px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.custom-task-menu ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.custom-task-menu li {
+		padding: 10px 15px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.2s;
+		color: #333;
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.custom-task-menu li:hover {
+		background: rgba(245, 108, 108, 0.1);
+		color: #f56c6c;
+	}
+	.custom-task-menu li i {
+		margin-right: 8px;
+		font-size: 16px;
 	}
 </style>

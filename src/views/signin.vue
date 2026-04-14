@@ -1,24 +1,34 @@
 <template>
   <div class="bg">
+
     <div class="login-wrap animated fadeIn">
       <img src="../assets/img/login.png" class="left"/>
       <div class="right">
-        <h3>Vue-Web-OS</h3>
-        <p>一款云桌面平台的基础模板</p>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 5px; position:relative;">
+          <h3 style="margin: 0; display: inline-block;">Vue-Web-OS</h3>
+          <el-dropdown @command="handleSetLanguage" trigger="click" style="position: absolute; right: 0;">
+            <i class="fa fa-language" style="font-size: 20px; cursor: pointer; color: #7367f0; transition: color 0.3s;" title="Switch Language"></i>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="zh" :disabled="$i18n.locale === 'zh'">中文</el-dropdown-item>
+              <el-dropdown-item command="en" :disabled="$i18n.locale === 'en'">English</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <p>{{ $t('m.login.introduction') }}</p>
         <el-form ref="form" :model="form" :rules="rules" label-width="0px" size="small">
           <el-form-item prop="name">
-            <el-input placeholder="请输入账号" v-model="form.name" clearable></el-input>
+            <el-input :placeholder="$t('m.login.name_holder')" v-model="form.name" clearable></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input
-                placeholder="请输入密码"
+                :placeholder="$t('m.login.password_holder')"
                 v-model="form.password"
                 type="password"
                 clearable
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :loading="loading" type="primary" size="small" @click="Login('form')">登陆</el-button>
+            <el-button :loading="loading" type="primary" size="small" @click="Login('form')">{{ $t('m.login.button') }}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -37,12 +47,16 @@ export default {
         name: localStorage.userName || "admin",
         password: localStorage.passwordInfo || "654321"
       },
-      isMemery: false,
-      rules: {
+      isMemery: false
+    };
+  },
+  computed: {
+    rules() {
+      return {
         name: [
           {
             required: true,
-            message: "用户名不能为空",
+            message: this.$t("m.login.name_tip"),
             trigger: "blur"
             // validator: checkone
           }
@@ -50,14 +64,18 @@ export default {
         password: [
           {
             required: true,
-            message: "密码不能为空",
+            message: this.$t("m.login.password_tip"),
             trigger: "blur"
           }
         ]
       }
-    };
+    }
   },
   methods: {
+    handleSetLanguage(lang) {
+      this.$i18n.locale = lang;
+      localStorage.setItem('lang', lang);
+    },
     Login(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
