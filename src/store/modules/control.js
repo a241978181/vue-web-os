@@ -6,6 +6,8 @@ const control = {
 		personalInformationViewBool: false,
 		//壁纸
 		wallpaperViewBool:false,
+		//系统设置
+		settingsViewBool:false,
 		//开始菜单
 		startInformationViewBool:false,
 		//任务栏任务对象

@@ -1,6 +1,6 @@
 <template>
 	<div class="big" id="big" @contextmenu="showMenu">
-		<vue-context-menu @showWallpaper="showWallpaper" :contextMenuData="contextMenuData" @showUser="showUser" @refresh="refresh" @shuaXin="shuaXin"></vue-context-menu>
+		<vue-context-menu @showWallpaper="showWallpaper" @showSettings="showSettings" :contextMenuData="contextMenuData" @showUser="showUser" @refresh="refresh" @shuaXin="shuaXin"></vue-context-menu>
 		<!-- 桌面 -->
 		<div class="layout">
 			<!-- 桌面主体 -->
@@ -16,6 +16,8 @@
 					<Notes></Notes>
           <!-- 壁纸 -->
           <Wallpaper @updateImae="updateImae"></Wallpaper>
+          <!-- 系统设置 -->
+          <Settings></Settings>
 				</div>
 			</div>
 			<div class="layout-down">
@@ -38,6 +40,7 @@
 	import Main from "@/components/Main/Main";
 	import Notes from "@/components/component/Notes";
   import Wallpaper from "@/components/component/wallpaper";
+  import Settings from "@/components/component/Settings";
 	import Task from "@/components/Main/Task";
 	import Start from "@/components/Main/Start";
 	export default {
@@ -48,6 +51,7 @@
 			Task,
 			Start,
       Wallpaper,
+      Settings,
 		},
 		data() {
 			return {
@@ -74,9 +78,13 @@
 						icoName: 'el-icon-view',
 						btnName: '显示桌面' //
 					}, {
-            fnHandler: 'showWallpaper', // 显示桌面
+            fnHandler: 'showWallpaper',
             icoName: 'el-icon-s-marketing',
-            btnName: '壁纸' //
+            btnName: '壁纸'
+          }, {
+            fnHandler: 'showSettings',
+            icoName: 'el-icon-setting',
+            btnName: '设置'
           }, ]
 				}
 			}
@@ -119,6 +127,10 @@
       //右键--显示壁纸选项
       showWallpaper(){
         this.$store.commit("setTrueVB","wallpaperViewBool");
+      },
+      //右键--显示系统设置
+      showSettings(){
+        this.$store.commit("setTrueVB","settingsViewBool");
       },
 			//鼠标左键点击
 			danji() {

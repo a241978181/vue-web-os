@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '@/store'
 
 /*
  *  使用方法
@@ -20,7 +21,9 @@ Vue.directive('dialogDrag', {
         const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null);
 
         dialogHeaderEl.onmousedown = (e) => {
-            if (el.__dialogDraggable__ === false) return;
+            if (el.__dialogDraggable__ === false) {
+                return;
+            }
             // 鼠标按下，计算当前元素距离可视区的距离
             const disX = e.clientX - dialogHeaderEl.offsetLeft;
             const disY = e.clientY - dialogHeaderEl.offsetTop;
@@ -52,14 +55,55 @@ Vue.directive('dialogDrag', {
                 dragDom.style.top = `${styT}px`;
             }
 
+            // 计算 CSS 坐标系与视口坐标系之间的偏移量
+            // 因为 el-dialog 使用 position:relative + margin:auto 居中，
+            // CSS left=0 并不等于视口左边缘，两者之间存在偏移
+            const baseRect = dragDom.getBoundingClientRect();
+            const baseCSSLeft = parseFloat(dragDom.style.left) || 0;
+            const baseCSSTop = parseFloat(dragDom.style.top) || 0;
+            const baseOffsetX = baseRect.left - baseCSSLeft;
+            const baseOffsetY = baseRect.top - baseCSSTop;
+
             document.onmousemove = function (e) {
                 // 通过事件委托，计算移动的距离 
-                const l = e.clientX - disX;
-                const t = e.clientY - disY;
+                let l = e.clientX - disX;
+                let t = e.clientY - disY;
+
+                // 计算最终 CSS left/top 值
+                let finalLeft = l + styL;
+                let finalTop = t + styT;
+
+                // 如果开启了边界限制，将窗口限制在可视区域内
+                if (store.state.settings.restrictWindowBounds) {
+                    const viewWidth = document.documentElement.clientWidth;
+                    const viewHeight = document.documentElement.clientHeight;
+                    const dialogWidth = dragDom.offsetWidth;
+                    const dialogHeight = dragDom.offsetHeight;
+
+                    // 将 CSS 坐标转换为视口坐标后进行边界判断，再转回 CSS 坐标
+                    // 视口坐标 = CSS坐标 + baseOffset
+                    const minLeft = -baseOffsetX;                           // 视口 left=0
+                    const minTop = -baseOffsetY;                            // 视口 top=0
+                    const maxLeft = viewWidth - dialogWidth - baseOffsetX;  // 视口 right=viewWidth
+                    const maxTop = viewHeight - dialogHeight - baseOffsetY; // 视口 bottom=viewHeight
+
+                    if (finalLeft < minLeft) {
+                        finalLeft = minLeft;
+                    }
+                    if (finalTop < minTop) {
+                        finalTop = minTop;
+                    }
+                    if (finalLeft > maxLeft) {
+                        finalLeft = maxLeft;
+                    }
+                    if (finalTop > maxTop) {
+                        finalTop = maxTop;
+                    }
+                }
 
                 // 移动当前元素  
-                dragDom.style.left = `${l + styL}px`;
-                dragDom.style.top = `${t + styT}px`;
+                dragDom.style.left = `${finalLeft}px`;
+                dragDom.style.top = `${finalTop}px`;
 
                 // 将此时的位置传出去
                 // binding.value({x:e.pageX,y:e.pageY})
