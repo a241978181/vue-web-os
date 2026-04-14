@@ -126,6 +126,21 @@
 					btnName: this.$t('m.layout.settings')
 				}];
 
+				const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+				if (isFullscreen) {
+					this.contextMenuData.menulists.push({
+						fnHandler: 'toggleFullscreen',
+						icoName: 'el-icon-crop',
+						btnName: this.$t('m.layout.exitFullscreen')
+					});
+				} else {
+					this.contextMenuData.menulists.push({
+						fnHandler: 'toggleFullscreen',
+						icoName: 'el-icon-full-screen',
+						btnName: this.$t('m.layout.fullscreen')
+					});
+				}
+
 				// Get the current location
 				this.contextMenuData.axis = {
 					x,
@@ -161,6 +176,22 @@
 				this.menuVisible = false;
 				if (typeof this[fnHandler] === 'function') {
 					this[fnHandler]();
+				}
+			},
+			// 切换全屏显示
+			toggleFullscreen() {
+				const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+				if (isFullscreen) {
+					if (document.exitFullscreen) { document.exitFullscreen(); }
+					else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
+					else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
+					else if (document.msExitFullscreen) { document.msExitFullscreen(); }
+				} else {
+					const el = document.documentElement;
+					if (el.requestFullscreen) { el.requestFullscreen(); }
+					else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); }
+					else if (el.mozRequestFullScreen) { el.mozRequestFullScreen(); }
+					else if (el.msRequestFullscreen) { el.msRequestFullscreen(); }
 				}
 			},
 			//右键--显示个人信息

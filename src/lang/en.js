@@ -18,7 +18,9 @@ export const m = {
     refresh: 'Refresh',
     showDesktop: 'Show Desktop',
     wallpaper: 'Wallpaper',
-    settings: 'Settings'
+    settings: 'Settings',
+    fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit Fullscreen'
   },
   settings: {
     title: 'System Settings',

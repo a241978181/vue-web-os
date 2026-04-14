@@ -18,7 +18,9 @@ export const m = {
     refresh: '刷新',
     showDesktop: '显示桌面',
     wallpaper: '壁纸',
-    settings: '设置'
+    settings: '设置',
+    fullscreen: '全屏',
+    exitFullscreen: '取消全屏'
   },
   settings: {
     title: '系统设置',
