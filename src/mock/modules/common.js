@@ -24,7 +24,8 @@ if (debug) {
       menu: [{
         "id": 1,
         "permissionsname": "技术解决111",
-        "permissionsenglish": "cloudDisk111",
+        "code": "cloudDisk",
+        "permissionsnameen": "Technical Solution111",
         "state": true,
         "type": 1,
         "parentid": 0,
@@ -35,7 +36,8 @@ if (debug) {
       }, {
         "id": 2,
         "permissionsname": "弹出框",
-        "permissionsenglish": "bigFileUpload",
+        "code": "bigFileUpload",
+        "permissionsnameen": "Dialog",
         "state": true,
         "type": 2,
         "parentid": 1,
@@ -45,7 +47,8 @@ if (debug) {
       }, {
         "id": 3,
         "permissionsname": "系统介绍",
-        "permissionsenglish": "userManagement",
+        "code": "userManagement",
+        "permissionsnameen": "System Intro",
         "state": true,
         "type": 1,
         "parentid": 0,
@@ -55,7 +58,8 @@ if (debug) {
       }, {
         "id": 4,
         "permissionsname": "安装与启动",
-        "permissionsenglish": "personnelList",
+        "code": "personnelList",
+        "permissionsnameen": "Install & Start",
         "state": true,
         "type": 2,
         "parentid": 3,
@@ -65,7 +69,8 @@ if (debug) {
       }, {
         "id": 5,
         "permissionsname": "按钮",
-        "permissionsenglish": "documentCenter",
+        "code": "documentCenter",
+        "permissionsnameen": "Buttons",
         "state": true,
         "type": 2,
         "parentid": 1,
@@ -75,7 +80,8 @@ if (debug) {
       }, {
         "id": 6,
         "permissionsname": "页面跳转",
-        "permissionsenglish": "pageJump",
+        "code": "pageJump",
+        "permissionsnameen": "Page Jump",
         "state": true,
         "type": 2,
         "parentid": 1,
@@ -85,7 +91,8 @@ if (debug) {
       }, {
         "id": 7,
         "permissionsname": "新增模块",
-        "permissionsenglish": "addModule",
+        "code": "addModule",
+        "permissionsnameen": "Add Module",
         "state": true,
         "type": 2,
         "parentid": 3,
@@ -95,7 +102,8 @@ if (debug) {
       }, {
         "id": 7,
         "permissionsname": "新增页面",
-        "permissionsenglish": "addPage",
+        "code": "addPage",
+        "permissionsnameen": "Add Page",
         "state": true,
         "type": 2,
         "parentid": 3,
@@ -105,7 +113,8 @@ if (debug) {
       },{
         "id": 8,
         "permissionsname": "插件展示",
-        "permissionsenglish": "plugShow",
+        "code": "plugShow",
+        "permissionsnameen": "Plugins",
         "state": true,
         "type": 1,
         "parentid": 0,
@@ -115,7 +124,8 @@ if (debug) {
       },{
         "id": 9,
         "permissionsname": "拖拽列表",
-        "permissionsenglish": "slidingList",
+        "code": "slidingList",
+        "permissionsnameen": "Sliding List",
         "state": true,
         "type": 2,
         "parentid": 8,
@@ -125,7 +135,8 @@ if (debug) {
       },{
         "id": 10,
         "permissionsname": "隐藏路由",
-        "permissionsenglish": "hiddenRouting",
+        "code": "hiddenRouting",
+        "permissionsnameen": "Hidden Routing",
         "state": true,
         "type": 2,
         "parentid": 1,
@@ -135,7 +146,8 @@ if (debug) {
       },{
         "id": 11,
         "permissionsname": "介绍文档",
-        "permissionsenglish": "docCenter",
+        "code": "docCenter",
+        "permissionsnameen": "Documentation",
         "state": true,
         "type": 1,
         "parentid": 0,
@@ -146,7 +158,8 @@ if (debug) {
       },{
         "id": 12,
         "permissionsname": "项目总览",
-        "permissionsenglish": "docOverview",
+        "code": "docOverview",
+        "permissionsnameen": "Overview",
         "state": true,
         "type": 2,
         "parentid": 11,
@@ -156,7 +169,8 @@ if (debug) {
       },{
         "id": 13,
         "permissionsname": "权限体系",
-        "permissionsenglish": "docPermissions",
+        "code": "docPermissions",
+        "permissionsnameen": "Permissions",
         "state": true,
         "type": 2,
         "parentid": 11,
@@ -166,7 +180,8 @@ if (debug) {
       },{
         "id": 14,
         "permissionsname": "核心功能",
-        "permissionsenglish": "docFeatures",
+        "code": "docFeatures",
+        "permissionsnameen": "Features",
         "state": true,
         "type": 2,
         "parentid": 11,
@@ -176,7 +191,8 @@ if (debug) {
       },{
         "id": 15,
         "permissionsname": "开发指南",
-        "permissionsenglish": "docGuide",
+        "code": "docGuide",
+        "permissionsnameen": "Dev Guide",
         "state": true,
         "type": 2,
         "parentid": 11,

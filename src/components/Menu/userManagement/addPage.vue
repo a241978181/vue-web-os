@@ -14,7 +14,7 @@
 
         <el-card shadow="never" class="step-card">
             <div slot="header"><b>2. 目录与文件准备</b></div>
-            <p>在 <code>/src/components/Menu/</code> 下创建与应用 <code>permissionsenglish</code> 同名的文件夹。</p>
+            <p>在 <code>/src/components/Menu/</code> 下创建与应用 <code>code</code> 同名的文件夹。</p>
             <p>在该文件夹内创建子页面的 <code>.vue</code> 文件，名称需与权限中的 key 一致。</p>
         </el-card>
 

@@ -15,20 +15,20 @@
       <ul>
         <li><code>type</code> 必须为 <b>1</b>（代表应用级）。</li>
         <li><code>parentid</code> 必须为 <b>0</b>。</li>
-        <li><code>permissionsenglish</code> 建议使用驼峰命名（如 <code>myApp</code>），并请记住这个值。</li>
+        <li><code>code</code> 建议使用驼峰命名（如 <code>myApp</code>），并请记住这个值。</li>
       </ul>
     </el-card>
 
     <el-card shadow="never" class="step-card">
       <div slot="header"><b>第二步：注册视图开关</b></div>
-      <p>在 <code>/src/store/modules/control.js</code> 的 <code>state</code> 中，添加对应的布尔值开关，键名即为上一步的 <code>permissionsenglish</code> 值。</p>
+      <p>在 <code>/src/store/modules/control.js</code> 的 <code>state</code> 中，添加对应的布尔值开关，键名即为上一步的 <code>code</code> 值。</p>
       <div class="code-block">myApp: false</div>
     </el-card>
 
     <el-card shadow="never" class="step-card">
       <div slot="header"><b>第三步：创建窗口组件</b></div>
       <p>在 <code>/src/components/Function/</code> 目录下创建对应的 <code>.vue</code> 文件（可复制 <code>docCenter.vue</code> 结构）。</p>
-      <p>确保组件内部的 <code>ItemName</code> 数据属性与权限 key 保持一致。</p>
+      <p>窗口组件会通过 <code>menu.code</code> 自动关联显隐开关，无需额外配置。</p>
     </el-card>
   </div>
 </template>

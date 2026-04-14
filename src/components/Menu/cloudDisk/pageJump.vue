@@ -27,7 +27,7 @@ export default {
     methods: {
       jump(){
         const target = {
-          permissionsenglish: 'documentCenter',
+          code: 'documentCenter',
           permissionsname: '按钮'
         };
         const data = { name: '这是跳转携带的参数' };

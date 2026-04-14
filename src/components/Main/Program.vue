@@ -5,10 +5,10 @@
 				<i :class="menu.icon"></i>
 			</div>
 			<div class="text">
-				<span><b>{{ $te('m.menu.' + menu.permissionsenglish) ? $t('m.menu.' + menu.permissionsenglish) : menu.permissionsname }}</b></span>
+				<span><b>{{ $i18n.locale === 'en' ? (menu.permissionsnameen || menu.permissionsname) : menu.permissionsname }}</b></span>
 			</div>
 		</div>
-		<component :is="allComps[menu.permissionsenglish]" :menu="menu"></component>
+		<component :is="allComps[menu.code]" :menu="menu"></component>
 	</div>
 </template>
 
@@ -44,9 +44,9 @@
 			showView(){
 				this.componentBool=true;
 				if (this.isTaskList(this.menu)) {
-					this.$store.commit("setTrueVB",this.menu.permissionsenglish);
+					this.$store.commit("setTrueVB",this.menu.code);
 				} else{
-					this.$store.commit("setTrueVB",this.menu.permissionsenglish);
+					this.$store.commit("setTrueVB",this.menu.code);
 					this.$store.commit("addTaskList",this.menu);
 				}
 			},

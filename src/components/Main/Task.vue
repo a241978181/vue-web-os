@@ -19,7 +19,7 @@
 			<div class="taskItem" v-for="task in taskList" :key="task.id">
 				<a @click="open(task)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
 					<i class="icon-btn" :class="task.icon"></i>
-					<span class="task-text"><b>{{ $te('m.menu.' + task.permissionsenglish) ? $t('m.menu.' + task.permissionsenglish) : task.permissionsname }}</b></span>
+					<span class="task-text"><b>{{ $i18n.locale === 'en' ? (task.permissionsnameen || task.permissionsname) : task.permissionsname }}</b></span>
 				</a>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
 			},
 			closeCurrentTask() {
 				if (this.currentTask) {
-					this.$store.commit("setFalseVB", this.currentTask.permissionsenglish);
+					this.$store.commit("setFalseVB", this.currentTask.code);
 					this.$store.commit("deleteTaskList", this.currentTask);
 					this.menuVisible = false;
 					this.currentTask = null;
@@ -159,10 +159,10 @@
 			},
 			//打开或关闭某一任务
 			open(menu) {
-				if (this.$store.state.control[menu.permissionsenglish]) {
-					this.$store.commit("setFalseVB", menu.permissionsenglish);
+				if (this.$store.state.control[menu.code]) {
+					this.$store.commit("setFalseVB", menu.code);
 				} else {
-					this.$store.commit("setTrueVB", menu.permissionsenglish);
+					this.$store.commit("setTrueVB", menu.code);
 				}
 			},
 			//打开或关闭开始菜单

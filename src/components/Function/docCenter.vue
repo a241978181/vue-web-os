@@ -16,7 +16,7 @@
 								  :indexButton="indexButton"></FuctionTitle>
 				</div>
 				<div class="doc-container">
-					<component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.permissionsenglish]"
+					<component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.code]"
 							   :menu="permissionsItem" :dataItem="dataItem"></component>
 				</div>
 			</div>
@@ -41,7 +41,6 @@
 		},
 		data() {
 			return {
-				ItemName: 'docCenter',
 				allComps: allComps,
 				permissionsItem: '',
 				fullscreen: false,
@@ -56,10 +55,10 @@
 			},
 			isViewBool: {
 				get() {
-					return this.$store.state.control[this.ItemName];
+					return this.$store.state.control[this.menu.code];
 				},
 				set(v) {
-					this.$store.commit("setFalseVB", this.ItemName);
+					this.$store.commit("setFalseVB", this.menu.code);
 				}
 			},
 		},
@@ -68,11 +67,11 @@
 				if (newVal) {
 					if (this.menu.defaultPage && this.permissionsList.length > 0) {
 						const target = this.permissionsList.find(
-							item => item.permissionsenglish === this.menu.defaultPage
+							item => item.code === this.menu.defaultPage
 						);
 						if (target) {
 							this.permissionsItem = target;
-							this.indexButton = target.permissionsenglish;
+							this.indexButton = target.code;
 						}
 					} else {
 						this.permissionsItem = '';
@@ -92,19 +91,19 @@
 				},0);
 			},
 			openMenu2(values) {
-				this.indexButton = values[0].permissionsenglish;
+				this.indexButton = values[0].code;
 				this.permissionsItem = values[0];
 				if (values[1]){
 					this.dataItem=values[1];
 				}
 			},
 			openMenu(item, index) {
-				this.indexButton = item.permissionsenglish;
+				this.indexButton = item.code;
 				this.permissionsItem = item;
 				this.dataItem=null;
 			},
 			closeView() {
-				this.$store.commit("setFalseVB", this.ItemName);
+				this.$store.commit("setFalseVB", this.menu.code);
 				this.$store.commit("deleteTaskList", this.menu);
 			},
 			small() {
@@ -116,17 +115,17 @@
 				this.draggable = false
 			},
 			mini() {
-				this.$store.commit("setFalseVB", this.ItemName);
+				this.$store.commit("setFalseVB", this.menu.code);
 			},
 		},
 		mounted() {
 			if (this.menu.defaultPage && this.permissionsList.length > 0) {
 				const target = this.permissionsList.find(
-					item => item.permissionsenglish === this.menu.defaultPage
+					item => item.code === this.menu.defaultPage
 				);
 				if (target) {
 					this.permissionsItem = target;
-					this.indexButton = target.permissionsenglish;
+					this.indexButton = target.code;
 				}
 			}
 		}

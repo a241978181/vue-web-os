@@ -6,7 +6,7 @@
 				<div class="taskItem" v-for="task in permissionsList" :key="task.id">
 					<a @click="open(task)">
 						<i :class="task.icon"></i>
-						<span>{{ $te('m.menu.' + task.permissionsenglish) ? $t('m.menu.' + task.permissionsenglish) : task.permissionsname }}</span>
+						<span>{{ $i18n.locale === 'en' ? (task.permissionsnameen || task.permissionsname) : task.permissionsname }}</span>
 					</a>
 				</div>
 			</div>
@@ -60,10 +60,10 @@ import {getPermissionsList} from '@/utils/permissions.js'
 			//打开某一任务
 			open(menu) {
 				if (this.isTaskList(menu)) {
-					this.$store.commit("setTrueVB",menu.permissionsenglish);
+					this.$store.commit("setTrueVB",menu.code);
 					this.$store.commit("setFalseSIVB");
 				} else {
-          this.$store.commit("setTrueVB",menu.permissionsenglish);
+          this.$store.commit("setTrueVB",menu.code);
 					this.$store.commit("addTaskList", menu);
 					this.$store.commit("setFalseSIVB");
 				}

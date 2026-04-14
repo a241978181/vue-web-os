@@ -15,7 +15,7 @@
                     <FuctionTitle @openMenu="openMenu" :permissionsList="permissionsList"
                                   :indexButton="indexButton"></FuctionTitle>
                 </div>
-                <component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.permissionsenglish]"
+                <component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.code]"
                            :menu="permissionsItem" :dataItem="dataItem"></component>
             </div>
         </el-dialog>
@@ -39,8 +39,6 @@
         },
         data() {
             return {
-                //该属性为权限属性，需要修改为自己的权限英文名称，一般和当前页面name对应
-                ItemName: 'cloudDisk',
                 // 组件集合
                 allComps: allComps,
                 //当前组件
@@ -63,10 +61,10 @@
             //判断是否展示该面板
             isViewBool: {
                 get() {
-                    return this.$store.state.control[this.ItemName];
+                    return this.$store.state.control[this.menu.code];
                 },
                 set(v) {
-                    this.$store.commit("setFalseVB", this.ItemName);
+                    this.$store.commit("setFalseVB", this.menu.code);
                 }
             },
         },
@@ -75,11 +73,11 @@
                 if (newVal) {
                     if (this.menu.defaultPage && this.permissionsList.length > 0) {
                         const target = this.permissionsList.find(
-                            item => item.permissionsenglish === this.menu.defaultPage
+                            item => item.code === this.menu.defaultPage
                         );
                         if (target) {
                             this.permissionsItem = target;
-                            this.indexButton = target.permissionsenglish;
+                            this.indexButton = target.code;
                         }
                     } else {
                         this.permissionsItem = '';
@@ -101,7 +99,7 @@
             },
             //子组件调用打开菜单
             openMenu2(values) {
-                this.indexButton = values[0].permissionsenglish;
+                this.indexButton = values[0].code;
                 this.permissionsItem = values[0];
                 if (values[1]){
                     this.dataItem=values[1];
@@ -110,13 +108,13 @@
             },
             //打开菜单
             openMenu(item, index) {
-                this.indexButton = item.permissionsenglish;
+                this.indexButton = item.code;
                 this.permissionsItem = item;
                 this.dataItem=null;
             },
             //关闭对话框
             closeView() {
-                this.$store.commit("setFalseVB", this.ItemName);
+                this.$store.commit("setFalseVB", this.menu.code);
                 this.$store.commit("deleteTaskList", this.menu);
             },
             //缩小对话框
@@ -131,18 +129,18 @@
             },
             //最小化
             mini() {
-                this.$store.commit("setFalseVB", this.ItemName);
+                this.$store.commit("setFalseVB", this.menu.code);
             },
         },
         mounted() {
             // 如果配置了默认页面，首次打开时自动选中
             if (this.menu.defaultPage && this.permissionsList.length > 0) {
                 const target = this.permissionsList.find(
-                    item => item.permissionsenglish === this.menu.defaultPage
+                    item => item.code === this.menu.defaultPage
                 );
                 if (target) {
                     this.permissionsItem = target;
-                    this.indexButton = target.permissionsenglish;
+                    this.indexButton = target.code;
                 }
             }
         }

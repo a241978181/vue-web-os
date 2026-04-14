@@ -2,7 +2,7 @@
   <div @dblclick="toggleFullscreen" class="fuction-header-container" :class="{'theme-dark-header': isDarkTheme}">
   <div class="header-left">
     <i :class="menu.icon" class="header-icon"></i>
-    <span class="header-title"><b>{{ $te('m.menu.' + menu.permissionsenglish) ? $t('m.menu.' + menu.permissionsenglish) : menu.permissionsname }}</b></span>
+    <span class="header-title"><b>{{ $i18n.locale === 'en' ? (menu.permissionsnameen || menu.permissionsname) : menu.permissionsname }}</b></span>
   </div>
   <div class="header-right">
     <el-button type="text" class="header-action-btn" @click="$emit('mini')" icon="el-icon-minus"></el-button>

@@ -43,24 +43,6 @@ export const m = {
     phone: 'Phone',
     noFeature: 'Feature Not Available!'
   },
-  menu: {
-    cloudDisk: 'Technical Solution',
-    bigFileUpload: 'Dialog',
-    userManagement: 'System Intro',
-    personnelList: 'Install & Start',
-    documentCenter: 'Buttons',
-    pageJump: 'Page Jump',
-    addModule: 'Add Module',
-    addPage: 'Add Page',
-    plugShow: 'Plugins',
-    slidingList: 'Sliding List',
-    hiddenRouting: 'Hidden Routing',
-    docCenter: 'Documentation',
-    docOverview: 'Overview',
-    docPermissions: 'Permissions',
-    docFeatures: 'Features',
-    docGuide: 'Dev Guide'
-  },
   taskbar: {
     batteryRest: 'Battery: ',
     wifiOn: 'WIFI On',

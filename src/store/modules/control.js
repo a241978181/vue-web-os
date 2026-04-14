@@ -1,4 +1,5 @@
 import axios from 'axios' //如果有action
+import Vue from 'vue'
 
 const control = {
 	state: {
@@ -12,16 +13,6 @@ const control = {
 		startInformationViewBool:false,
 		//任务栏任务对象
 		taskList: [],
-		//------------------------------------------面板展示键--------------------------------------
-		//功能介绍面板展示键
-		cloudDisk:false,
-		//系统介绍面板展示键
-		userManagement:false,
-		//插件展示面板展示键
-		plugShow:false,
-		//介绍文档面板展示键
-		docCenter:false,
-		//新增模块时的其他面板展示键......
 	},
 	getters: {
 
@@ -39,7 +30,7 @@ const control = {
 		}
 	},
 
-	//显示页面
+	//显示桌面
 	refresh(state){
 		for(let key in state){
 			if(!(key=='taskList')){
@@ -82,10 +73,10 @@ const control = {
 			state.startInformationViewBool = false
 		},
 		setTrueVB(state,key){
-			state[key]=true;
+			Vue.set(state, key, true);
 		},
 		setFalseVB(state,key){
-			state[key]=false;
+			Vue.set(state, key, false);
 		}
 
 	},

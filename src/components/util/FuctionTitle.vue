@@ -6,11 +6,11 @@
         :key="index"
         v-if="!item.hidden"
         class="custom-tab-item"
-        :class="{ 'is-active': indexButton == item.permissionsenglish }"
-        @click="$emit('openMenu',item,item.permissionsenglish)"
+        :class="{ 'is-active': indexButton == item.code }"
+        @click="$emit('openMenu',item,item.code)"
       >
         <i :class="item.icon"></i>
-        <span>{{ $te('m.menu.' + item.permissionsenglish) ? $t('m.menu.' + item.permissionsenglish) : item.permissionsname }}</span>
+        <span>{{ $i18n.locale === 'en' ? (item.permissionsnameen || item.permissionsname) : item.permissionsname }}</span>
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@
 				<p><b>type: 1</b> - 代表「应用级」模块。它会出现在桌面上，点击会弹出一个独立的窗口容器。</p>
 				<p><b>type: 2</b> - 代表「功能级」模块。它是应用的子页面或菜单按钮，出现在应用窗口的标题栏下方。</p>
 				<p><b>parentid</b> - 指向父级模块的 ID。type 为 2 时必填。若是 type 为 1，则 parentid 通常为 0。</p>
-				<p><b>permissionsenglish</b> - 核心键名。必须与 <code>control.js</code> 中的显隐开关名以及 <code>index.js</code> 中的组件注册名一致。</p>
+				<p><b>code</b> - 核心键名。必须与 <code>control.js</code> 中的显隐开关名以及 <code>index.js</code> 中的组件注册名一致。</p>
 				<p><b>defaultPage</b> - (NEW) 在应用级模块（type:1）上配置，用于指定打开应用时默认显示的子页面 key。</p>
 			</div>
 		</el-alert>
@@ -17,7 +17,7 @@
 		<pre class="code-block"><code>{
   "id": 11,
   "permissionsname": "介绍文档",
-  "permissionsenglish": "docCenter", // 对应应用窗口显隐开关
+  "code": "docCenter", // 对应应用窗口显隐开关
   "type": 1,
   "defaultPage": "docOverview",   // 默认打开的子页面
   ...
@@ -25,7 +25,7 @@
 {
   "id": 12,
   "permissionsname": "项目总览",
-  "permissionsenglish": "docOverview", // 对应子页面组件名
+  "code": "docOverview", // 对应子页面组件名
   "type": 2,
   "parentid": 11                  // 归属于 ID 为 11 的应用
 }</code></pre>
@@ -55,7 +55,7 @@
 		<ol>
 			<li><b>找到数据入口</b>：在 <code>src/mock/index.js</code> 中注释掉 <code>import "./modules/common"</code>。</li>
 			<li><b>配置 API 地址</b>：在 <code>src/http/index.js</code>（或 <code>.env</code>）中修改 <code>baseURL</code> 为您的后端服务地址。</li>
-			<li><b>字段约定</b>：确保后端返回的 JSON 结构中包含 <code>permissionsenglish</code>、<code>type</code> 和 <code>parentid</code> 字段，系统将自动渲染。</li>
+			<li><b>字段约定</b>：确保后端返回的 JSON 结构中包含 <code>code</code>、<code>type</code> 和 <code>parentid</code> 字段，系统将自动渲染。</li>
 		</ol>
 	</div>
 </template>
