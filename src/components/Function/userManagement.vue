@@ -116,6 +116,15 @@
 			},
 		},
 		mounted() {
+			if (this.menu.defaultPage && this.permissionsList.length > 0) {
+				const target = this.permissionsList.find(
+					item => item.permissionsenglish === this.menu.defaultPage
+				);
+				if (target) {
+					this.permissionsItem = target;
+					this.indexButton = target.permissionsenglish;
+				}
+			}
 		}
 	}
 </script>

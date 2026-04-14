@@ -29,9 +29,10 @@ if (debug) {
         "type": 1,
         "parentid": 0,
         "color": "primary",
-        "icon": "el-icon-folder",
+        "icon": "el-icon-cpu",
         "image": null,
-        "hidden":false
+        "hidden":false,
+        "defaultPage": "bigFileUpload"
       }, {
         "id": 2,
         "permissionsname": "弹出框",
@@ -51,7 +52,7 @@ if (debug) {
         "type": 1,
         "parentid": 0,
         "color": "success",
-        "icon": "el-icon-user",
+        "icon": "el-icon-s-tools",
         "image": null,
         "hidden":false
       }, {

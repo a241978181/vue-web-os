@@ -116,6 +116,16 @@
             },
         },
         mounted() {
+            // 如果配置了默认页面，首次打开时自动选中
+            if (this.menu.defaultPage && this.permissionsList.length > 0) {
+                const target = this.permissionsList.find(
+                    item => item.permissionsenglish === this.menu.defaultPage
+                );
+                if (target) {
+                    this.permissionsItem = target;
+                    this.indexButton = target.permissionsenglish;
+                }
+            }
         }
     }
 </script>
