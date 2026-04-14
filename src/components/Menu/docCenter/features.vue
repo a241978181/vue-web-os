@@ -44,35 +44,11 @@
 			</el-col>
 			<el-col :span="8">
 				<el-card shadow="hover">
-					<div slot="header"><i class="el-icon-thumb"></i> <b>国际化与原生全屏双兼容</b></div>
-					<p>桌面右键提供智能化的<strong>原生全屏 / 退出全屏</strong>菜单控制。能够针对语言设置以及游览器全屏状态实现无缝自适应文案展现。</p>
+					<div slot="header"><i class="el-icon-thumb"></i> <b>系统级国际化文案驱动</b></div>
+					<p>桌面右键及系统环境完美兼容多语言热切换。针对系统级应用及窗口页签，彻底剥离本地语言包硬编码设定，直接由后端接口的数据字段（<code>permissionsname</code>/<code>nameen</code>）按需渲染双语。</p>
 				</el-card>
 			</el-col>
 		</el-row>
-
-		<el-divider content-position="left">近期重大优化</el-divider>
-		<el-timeline>
-			<el-timeline-item timestamp="2026-04-14" placement="top" color="#7367f0">
-				<el-card>
-					<h4>UI 主题渲染引擎与视觉美化（全覆盖）</h4>
-					<p>1. 完成了整个桌面级的毛玻璃重构，任务栏支持纯白（强对比度）与极致暗黑模式。<br>
-					   2. 解决了窗口右侧滚动条溢出的 Bug，实施了 <code>100vh + overflow:hidden;</code> 全局阻断。<br>
-					   3. 剥离了业务中心组件与最外侧窗口主题底色的耦合，实现了内部白、外部酷黑的设计级反差跨界！</p>
-				</el-card>
-			</el-timeline-item>
-			<el-timeline-item timestamp="2026-04-14" placement="top" color="#409EFF">
-				<el-card>
-					<h4>边界碰撞检测算法优化</h4>
-					<p>修复了 Element UI 对话框居中定位导致的拖拽坐标偏移问题。通过 <code>getBoundingClientRect()</code> 实现精确到像素级的边界锚定。</p>
-				</el-card>
-			</el-timeline-item>
-			<el-timeline-item timestamp="2026-04-14" placement="top">
-				<el-card>
-					<h4>任务栏交互增强</h4>
-					<p>支持任务栏图标的<strong>点击切换（Toggle）</strong>逻辑，实现了“点击弹出 - 再点隐藏”的闭环体验，极大地提升了多任务处理效率。</p>
-				</el-card>
-			</el-timeline-item>
-		</el-timeline>
 	</div>
 </template>
 
