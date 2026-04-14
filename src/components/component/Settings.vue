@@ -139,6 +139,8 @@
 		color: #909399;
 		margin-top: 4px;
 		line-height: 1.4;
+		word-break: normal;
+		overflow-wrap: break-word;
 	}
 </style>
 

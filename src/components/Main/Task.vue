@@ -90,6 +90,19 @@
 				this.menuVisible = true;
 				this.taskMenuAxis.x = e.clientX;
 				this.currentTask = task;
+				this.$nextTick(() => {
+					const menu = document.querySelector('.custom-task-menu');
+					if (menu) {
+						let newX = e.clientX;
+						const menuWidth = menu.offsetWidth;
+						const max_width = document.documentElement.clientWidth || window.innerWidth;
+						
+						if (newX + menuWidth > max_width) {
+							newX = max_width - menuWidth - 5;
+						}
+						this.taskMenuAxis.x = newX;
+					}
+				});
 			},
 			closeCurrentTask() {
 				if (this.currentTask) {

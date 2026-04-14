@@ -127,6 +127,30 @@
 					x,
 					y
 				}
+				this.$nextTick(() => {
+					const menu = document.querySelector('.custom-context-menu');
+					if (menu) {
+						let newX = x;
+						let newY = y;
+						const menuWidth = menu.offsetWidth;
+						const menuHeight = menu.offsetHeight;
+						const max_width = document.documentElement.clientWidth || window.innerWidth;
+						const max_height = document.documentElement.clientHeight || window.innerHeight;
+						
+						if (newX + menuWidth > max_width) {
+							newX = max_width - menuWidth - 5;
+						}
+						
+						if (newY + menuHeight > max_height) {
+							newY = max_height - menuHeight - 5; // Reserve 5px margin
+						}
+						
+						this.contextMenuData.axis = {
+							x: newX,
+							y: newY
+						};
+					}
+				});
 			},
 			// 路由方法分发
 			handleContextMenuCommand(fnHandler) {
