@@ -26,6 +26,10 @@ const settings = {
     restrictWindowBounds: savedSettings.restrictWindowBounds !== undefined
       ? savedSettings.restrictWindowBounds
       : false,
+    // 是否开启深色模式（默认不开启）
+    isDarkTheme: savedSettings.isDarkTheme !== undefined
+      ? savedSettings.isDarkTheme
+      : false,
   },
   mutations: {
     SET_RESTRICT_WINDOW_BOUNDS(state, value) {
@@ -33,6 +37,13 @@ const settings = {
       // 持久化
       const all = loadSettings()
       all.restrictWindowBounds = value
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
+    },
+    SET_DARK_THEME(state, value) {
+      state.isDarkTheme = value
+      // 持久化
+      const all = loadSettings()
+      all.isDarkTheme = value
       localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
     },
   }

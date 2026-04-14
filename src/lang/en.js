@@ -25,6 +25,9 @@ export const m = {
     windowBehavior: 'Window Behavior',
     restrictWindowOut: 'Restrict Window Out of Screen',
     restrictWindowOutDesc: 'When enabled, windows cannot be dragged beyond screen bounds',
+    appearanceSub: 'Appearance',
+    darkTheme: 'Dark Mode',
+    darkThemeDesc: 'Enable dark theme for the system',
     languageSetting: 'Language',
     switchLanguage: 'Interface Language',
     switchLanguageDesc: 'Choose your preferred display language'

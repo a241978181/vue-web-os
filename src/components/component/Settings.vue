@@ -21,6 +21,24 @@
 						</el-switch>
 					</div>
 				</div>
+				<!-- 外观与主题 -->
+				<div class="settings-group">
+					<div class="settings-group-title">
+						<i class="el-icon-magic-stick"></i>
+						<span>{{ $t('m.settings.appearanceSub') }}</span>
+					</div>
+					<div class="settings-item">
+						<div class="settings-item-info">
+							<span class="settings-item-label">{{ $t('m.settings.darkTheme') }}</span>
+							<span class="settings-item-desc">{{ $t('m.settings.darkThemeDesc') }}</span>
+						</div>
+						<el-switch
+							v-model="isDarkTheme"
+							active-color="#7367f0"
+							inactive-color="#dcdfe6">
+						</el-switch>
+					</div>
+				</div>
 				<!-- 语言设置 -->
 				<div class="settings-group">
 					<div class="settings-group-title">
@@ -63,6 +81,15 @@
 				},
 				set(v) {
 					this.$store.commit("settings/SET_RESTRICT_WINDOW_BOUNDS", v);
+				}
+			},
+			// 是否深色模式
+			isDarkTheme: {
+				get() {
+					return this.$store.state.settings.isDarkTheme;
+				},
+				set(v) {
+					this.$store.commit("settings/SET_DARK_THEME", v);
 				}
 			},
 			// 语言切换

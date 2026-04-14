@@ -23,12 +23,11 @@ if (debug) {
     data: {
       menu: [{
         "id": 1,
-        "permissionsname": "技术解决",
-        "permissionsenglish": "cloudDisk",
+        "permissionsname": "技术解决111",
+        "permissionsenglish": "cloudDisk111",
         "state": true,
         "type": 1,
         "parentid": 0,
-        "color": "primary",
         "icon": "el-icon-cpu",
         "image": null,
         "hidden":false,
@@ -40,7 +39,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 1,
-        "color": "primary",
         "icon": "el-icon-upload",
         "image": null,
         "hidden":false
@@ -51,7 +49,6 @@ if (debug) {
         "state": true,
         "type": 1,
         "parentid": 0,
-        "color": "success",
         "icon": "el-icon-s-tools",
         "image": null,
         "hidden":false
@@ -62,7 +59,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 3,
-        "color": "success",
         "icon": "el-icon-position",
         "image": null,
         "hidden":false
@@ -73,7 +69,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 1,
-        "color": "primary",
         "icon": "el-icon-picture",
         "image": null,
         "hidden":false
@@ -84,7 +79,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 1,
-        "color": "primary",
         "icon": "el-icon-crop",
         "image": null,
         "hidden":false
@@ -95,7 +89,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 3,
-        "color": "success",
         "icon": "el-icon-menu",
         "image": null,
         "hidden":false
@@ -106,7 +99,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 3,
-        "color": "success",
         "icon": "el-icon-data-board",
         "image": null,
         "hidden":false
@@ -117,7 +109,6 @@ if (debug) {
         "state": true,
         "type": 1,
         "parentid": 0,
-        "color": "info",
         "icon": "el-icon-shopping-cart-2",
         "image": null,
         "hidden":false
@@ -128,7 +119,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 8,
-        "color": "info",
         "icon": "el-icon-s-grid",
         "image": null,
         "hidden":false
@@ -139,7 +129,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 1,
-        "color": "success",
         "icon": "el-icon-s-grid",
         "image": null,
         "hidden":true
@@ -150,7 +139,6 @@ if (debug) {
         "state": true,
         "type": 1,
         "parentid": 0,
-        "color": "warning",
         "icon": "el-icon-document",
         "image": null,
         "hidden":false,
@@ -162,7 +150,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 11,
-        "color": "warning",
         "icon": "el-icon-info",
         "image": null,
         "hidden":false
@@ -173,7 +160,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 11,
-        "color": "warning",
         "icon": "el-icon-lock",
         "image": null,
         "hidden":false
@@ -184,7 +170,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 11,
-        "color": "warning",
         "icon": "el-icon-star-on",
         "image": null,
         "hidden":false
@@ -195,7 +180,6 @@ if (debug) {
         "state": true,
         "type": 2,
         "parentid": 11,
-        "color": "warning",
         "icon": "el-icon-guide",
         "image": null,
         "hidden":false

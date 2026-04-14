@@ -1,5 +1,5 @@
 <template>
-	<div class="task">
+	<div class="task" :class="{'theme-dark-task': isDarkTheme}">
 		<!-- 自定义任务栏应用右键菜单 -->
 		<div v-show="menuVisible" class="custom-task-menu" :style="{left: taskMenuAxis.x + 'px', bottom: '50px'}">
 			<ul>
@@ -11,39 +11,35 @@
 		</div>
 
 		<!-- 开始菜单 -->
-		<div style="width: 50px;height: 2.5rem;display: flex;align-items: center;justify-content: center;">
-			<el-button @click="openStart()" size="large" type="text" icon="fa fa-windows" style="color: white; font-size: 20px; padding: 0;"></el-button>
+		<div class="start-btn-container">
+			<el-button @click="openStart()" size="large" type="text" icon="fa fa-windows" class="icon-btn start-icon"></el-button>
 		</div>
 		<!-- 任务主体 -->
-		<div style="width: 100%;height: 2.5rem;display: flex;align-items: center;justify-content: flex-start;">
-
-			<div class="taskItem" v-for="task in taskList">
-					<a style="display: flex; align-items: center; justify-content: center; width: 100%;" @click="open(task)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
-					<i style="color: white; font-size: 20px; margin-right: 0.5rem;" :class="task.icon"></i>
-					<span style="color: white; white-space: nowrap;"><b>{{ $te('m.menu.' + task.permissionsenglish) ? $t('m.menu.' + task.permissionsenglish) : task.permissionsname }}</b></span>
+		<div class="task-main">
+			<div class="taskItem" v-for="task in taskList" :key="task.id">
+				<a @click="open(task)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
+					<i class="icon-btn" :class="task.icon"></i>
+					<span class="task-text"><b>{{ $te('m.menu.' + task.permissionsenglish) ? $t('m.menu.' + task.permissionsenglish) : task.permissionsname }}</b></span>
 				</a>
 			</div>
-
 		</div>
 		<!-- 时间与显示桌面 -->
-		<div style="width: 190px;height: 2.5rem;display: flex;align-items: center;justify-content: flex-end;">
+		<div class="right-panel">
 			<!-- 时间 -->
-			<div style="width: 95%;height: 2.5rem;display: flex;align-items: center;justify-content: flex-end">
+			<div class="indicators">
         <el-tooltip :content="$t('m.taskbar.batteryRest') + electricity.batteryLevel + '%'" placement="top-end">
-          <el-button style="width: 25px; color: white; font-size: 18px; padding: 0;" size="large" type="text" :icon="electricity.batteryCharging?'fa fa-plug':electricity.batteryLevel<=30?'fa fa-battery-empty':'fa fa-battery-full'"></el-button>
+          <el-button class="icon-btn xs-icon" size="large" type="text" :icon="electricity.batteryCharging?'fa fa-plug':electricity.batteryLevel<=30?'fa fa-battery-empty':'fa fa-battery-full'"></el-button>
         </el-tooltip>
         <el-tooltip :content="isNetwork ? $t('m.taskbar.wifiOn') : $t('m.taskbar.wifiOff')" placement="top-end">
-          <el-button style="width: 25px; color: white; font-size: 18px; padding: 0;" size="large" type="text" :icon="isNetwork?'fa fa-wifi':'fa fa-exclamation-triangle'"></el-button>
+          <el-button class="icon-btn xs-icon" size="large" type="text" :icon="isNetwork?'fa fa-wifi':'fa fa-exclamation-triangle'"></el-button>
         </el-tooltip>
-        <div style="display: flex;flex-direction:column;align-items: center;width: 90px">
-          <span bodyonselectstart="returnfalse" style="color: white;font-size: 10px" oncopy="event.returnValue=false;" ondragstart="window.event.returnValue=false" oncontextmenu="window.event.returnValue=false" onselectstart="event.returnValue=false">{{timeItem.date}}</span>
-          <span bodyonselectstart="returnfalse" style="color: white;font-size: 10px" oncopy="event.returnValue=false;" ondragstart="window.event.returnValue=false" oncontextmenu="window.event.returnValue=false" onselectstart="event.returnValue=false">{{timeItem.time}}</span>
+        <div class="time-box">
+          <span class="time-text">{{timeItem.date}}</span>
+          <span class="time-text">{{timeItem.time}}</span>
         </div>
 			</div>
 			<!-- 显示桌面 -->
-			<div @click="refresh()" style="width: 5%;height: 2.5rem;border-left: whitesmoke solid 1px;">
-
-			</div>
+			<div @click="refresh()" class="show-desktop-btn"></div>
 		</div>
 	</div>
 </template>
@@ -83,6 +79,10 @@
 				get() {
 					return this.$store.state.control.startInformationViewBool;
 				},
+			},
+			// 是否深色模式
+			isDarkTheme() {
+				return this.$store.state.settings.isDarkTheme;
 			}
 		},
 		methods: {
@@ -187,54 +187,183 @@
 
 <style scoped="scoped">
 	.task {
-		height: 2.5rem;
+		height: 2.8rem;
 		width: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background: rgba(20, 20, 24, 0.92);
-		backdrop-filter: blur(15px);
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		/* 浅色重色调 - 高饱和白色毛玻璃 */
+		background: rgba(255, 255, 255, 0.85);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border-top: 1px solid rgba(255, 255, 255, 0.6);
+		box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 		position: relative;
 		z-index: 3000;
+		transition: all 0.3s ease;
 	}
 
+	.task.theme-dark-task {
+		/* 深色重色调 - 沉浸黑色毛玻璃 */
+		background: rgba(15, 15, 20, 0.95);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.5);
+	}
+
+	/* 布局容器 */
+	.start-btn-container {
+		width: 50px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.task-main {
+		flex: 1;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		overflow: hidden;
+	}
+	.right-panel {
+		width: 190px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	.indicators {
+		flex: 1;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	.show-desktop-btn {
+		width: 10px;
+		height: 100%;
+		border-left: 1px solid rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	.show-desktop-btn:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+	.theme-dark-task .show-desktop-btn {
+		border-left: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	.theme-dark-task .show-desktop-btn:hover {
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	/* 任务项 */
 	.taskItem {
 		background-color: transparent;
 		width: auto;
 		min-width: 6rem;
-		padding: 0 0.5rem;
-		height: 2.5rem;
+		padding: 0 0.8rem;
+		height: 2.2rem;
 		display: flex;
 		align-items: center;
-		margin-left: 2px;
-		transition: background-color 0.3s;
-		border-radius: 4px;
+		margin-left: 4px;
+		transition: all 0.2s;
+		border-radius: 6px;
 		cursor: pointer;
 	}
+	.taskItem a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		text-decoration: none;
+	}
 
+	/* 任务项悬停 (浅色) */
 	.taskItem:hover {
+		background-color: rgba(0, 0, 0, 0.06);
+		box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+	}
+	/* 任务项悬停 (深色) */
+	.theme-dark-task .taskItem:hover {
 		background-color: rgba(255, 255, 255, 0.15);
 		box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
 	}
 
+	/* 字体与图标颜色调配 */
+	.icon-btn {
+		color: #1a1a1a;
+		font-size: 20px;
+		margin-right: 0.5rem;
+		transition: color 0.3s;
+	}
+	.start-icon {
+		font-size: 22px;
+		margin: 0;
+	}
+	.xs-icon {
+		width: 25px;
+		font-size: 16px;
+		margin-right: 0;
+		padding: 0;
+	}
+	.task-text {
+		color: #1a1a1a;
+		white-space: nowrap;
+		font-size: 13px;
+		font-weight: 500;
+		transition: color 0.3s;
+	}
+	
+	.theme-dark-task .icon-btn,
+	.theme-dark-task .task-text {
+		color: #ffffff;
+	}
+
+	/* 右侧时间区 */
+	.time-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 80px;
+		cursor: default;
+		user-select: none;
+	}
+	.time-text {
+		color: #1a1a1a;
+		font-size: 11px;
+		line-height: 1.2;
+		font-weight: 500;
+	}
+	.theme-dark-task .time-text {
+		color: #ffffff;
+	}
+
+	/* 右键菜单 */
 	.custom-task-menu {
 		position: fixed;
 		z-index: 10000;
-		background: rgba(255, 255, 255, 0.85);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		border: 1px solid rgba(255, 255, 255, 0.3);
+		/* 始终跟随模式，浅色基调 */
+		background: rgba(255, 255, 255, 0.9);
+		backdrop-filter: blur(25px);
+		-webkit-backdrop-filter: blur(25px);
+		border: 1px solid rgba(0, 0, 0, 0.05);
 		border-radius: 8px;
-		box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+		box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 		padding: 5px 0;
-		min-width: 130px;
-		animation: taskMenuFadeIn 0.2s ease;
+		min-width: 140px;
+		animation: taskMenuFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.theme-dark-task .custom-task-menu {
+		background: rgba(35, 35, 45, 0.9);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
 	}
 
 	@keyframes taskMenuFadeIn {
-		from { opacity: 0; transform: translateY(10px); }
-		to { opacity: 1; transform: translateY(0); }
+		from { opacity: 0; transform: translateY(10px) scale(0.95); }
+		to { opacity: 1; transform: translateY(0) scale(1); }
 	}
 
 	.custom-task-menu ul {
@@ -248,16 +377,24 @@
 		align-items: center;
 		cursor: pointer;
 		transition: all 0.2s;
-		color: #333;
+		color: #303133;
 		font-size: 14px;
 		font-weight: 500;
 	}
+	.theme-dark-task .custom-task-menu li {
+		color: #e4e7ed;
+	}
+
 	.custom-task-menu li:hover {
 		background: rgba(245, 108, 108, 0.1);
 		color: #f56c6c;
 	}
+	.theme-dark-task .custom-task-menu li:hover {
+		background: rgba(245, 108, 108, 0.2);
+	}
+
 	.custom-task-menu li i {
-		margin-right: 8px;
+		margin-right: 10px;
 		font-size: 16px;
 	}
 </style>

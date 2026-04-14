@@ -1,5 +1,5 @@
 <template>
-	<div class="big" id="big" @contextmenu="showMenu">
+	<div class="big" id="big" :class="{'theme-dark': isDarkTheme}" @contextmenu="showMenu">
 		<div v-show="menuVisible" class="custom-context-menu" :style="{left: contextMenuData.axis.x + 'px', top: contextMenuData.axis.y + 'px'}">
 			<ul>
 				<li v-for="item in contextMenuData.menulists" :key="item.fnHandler" @click.stop="handleContextMenuCommand(item.fnHandler)">
@@ -72,6 +72,10 @@
 			}
 		},
 		computed: {
+			// 是否深色模式
+			isDarkTheme() {
+				return this.$store.state.settings.isDarkTheme;
+			},
 			//判断是否展示该面板
 			startInformationViewBool: {
 				get() {
@@ -282,6 +286,25 @@
 		transition: color 0.2s;
 	}
 	.custom-context-menu li:hover i {
+		color: #7367f0;
+	}
+
+	/* 深色模式右键菜单 */
+	.theme-dark .custom-context-menu {
+		background: rgba(45, 45, 55, 0.85);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	.theme-dark .custom-context-menu li {
+		color: #e4e7ed;
+	}
+	.theme-dark .custom-context-menu li i {
+		color: #a0a5b3;
+	}
+	.theme-dark .custom-context-menu li:hover {
+		background: rgba(115, 103, 240, 0.2);
+		color: #7367f0;
+	}
+	.theme-dark .custom-context-menu li:hover i {
 		color: #7367f0;
 	}
 </style>

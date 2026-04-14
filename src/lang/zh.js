@@ -25,6 +25,9 @@ export const m = {
     windowBehavior: '窗口行为',
     restrictWindowOut: '限制窗口移出屏幕',
     restrictWindowOutDesc: '开启后，拖拽窗口时不允许超出屏幕边界',
+    appearanceSub: '外观与主题',
+    darkTheme: '深色模式',
+    darkThemeDesc: '开启全局深色高斯模糊风格',
     languageSetting: '语言设置',
     switchLanguage: '界面语言',
     switchLanguageDesc: '选择您喜欢的显示语言'

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'theme-dark': isDarkTheme}">
     <router-view></router-view>
     <!-- 如果不同路由渲染同一组件，会导致数据不更新，这时候可以巧妙的加一个不同的Key -->
     <!-- <router-view :key="$route.fullpath"></router-view> -->
@@ -8,6 +8,11 @@
 <script>
 export default {
   name: "app",
+  computed: {
+    isDarkTheme() {
+      return this.$store.state.settings.isDarkTheme;
+    }
+  },
   // 在SPA初始化时，从 localStorage 恢复权限数据到 Vuex
   created() {
     this.$store.dispatch('permission/restoreFromStorage');
@@ -46,9 +51,9 @@ body {
 }
 .el-dialog {
   pointer-events: auto;
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.95) !important;
   max-height: 88vh;
@@ -56,9 +61,17 @@ body {
   flex-direction: column;
 }
 
+/* 深色模式仅针对外层装饰，不感染业务内容区 */
+.theme-dark .el-dialog {
+  box-shadow: 0 15px 50px rgba(0,0,0,0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 .el-dialog__body {
   flex: 1;
   overflow-y: auto;
+  color: inherit;
+  padding: 15px 20px !important;
 }
 
 /* 全屏弹窗不覆盖底部任务栏（2.5rem） */
@@ -69,29 +82,64 @@ body {
 
 /* 美化弹窗标题栏样式 */
 .el-dialog__header {
-  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%) !important;
-  padding: 10px 15px !important;
+  background: linear-gradient(135deg, #7367f0 0%, #8e84fa 100%) !important;
+  border-bottom: none !important;
+  box-shadow: 0 4px 15px rgba(115, 103, 240, 0.2);
+  padding: 14px 20px !important;
+  position: relative;
+  overflow: hidden;
+}
+/* 给浅色标题栏加一点内发光和星光点缀效果 */
+.el-dialog__header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==');
+  opacity: 0.5;
+  pointer-events: none;
+}
+.theme-dark .el-dialog__header {
+  background: rgba(28, 28, 35, 0.98) !important;
+  border-bottom: 2px solid #7367f0 !important;
+  box-shadow: none;
+}
+.theme-dark .el-dialog__header::before {
+  display: none;
 }
 
 .el-dialog__title {
   color: #ffffff !important;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.theme-dark .el-dialog__title {
+  color: #ffffff !important;
+  text-shadow: none;
 }
 
 /* 弹窗关闭按钮修复 */
 .el-dialog__headerbtn {
-  top: 12px !important;
-  right: 15px !important;
+  top: 16px !important;
+  right: 20px !important;
 }
 .el-dialog__headerbtn .el-dialog__close {
-  color: #eeeeee !important;
-  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 18px;
   transition: all 0.3s;
 }
 .el-dialog__headerbtn:hover .el-dialog__close {
-  color: #409EFF !important;
+  color: #ffffff !important;
   transform: scale(1.2);
+  text-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+.theme-dark .el-dialog__headerbtn .el-dialog__close {
+  color: #a0a5b3 !important;
+}
+.theme-dark .el-dialog__headerbtn:hover .el-dialog__close {
+  color: #ff4d4f !important;
+  text-shadow: none;
 }
 
 .el-menu-item [class^="el-icon-"] {
