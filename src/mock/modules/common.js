@@ -143,6 +143,62 @@ if (debug) {
         "icon": "el-icon-s-grid",
         "image": null,
         "hidden":true
+      },{
+        "id": 11,
+        "permissionsname": "介绍文档",
+        "permissionsenglish": "docCenter",
+        "state": true,
+        "type": 1,
+        "parentid": 0,
+        "color": "warning",
+        "icon": "el-icon-document",
+        "image": null,
+        "hidden":false,
+        "defaultPage": "docOverview"
+      },{
+        "id": 12,
+        "permissionsname": "项目总览",
+        "permissionsenglish": "docOverview",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "color": "warning",
+        "icon": "el-icon-info",
+        "image": null,
+        "hidden":false
+      },{
+        "id": 13,
+        "permissionsname": "权限体系",
+        "permissionsenglish": "docPermissions",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "color": "warning",
+        "icon": "el-icon-lock",
+        "image": null,
+        "hidden":false
+      },{
+        "id": 14,
+        "permissionsname": "核心功能",
+        "permissionsenglish": "docFeatures",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "color": "warning",
+        "icon": "el-icon-star-on",
+        "image": null,
+        "hidden":false
+      },{
+        "id": 15,
+        "permissionsname": "开发指南",
+        "permissionsenglish": "docGuide",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "color": "warning",
+        "icon": "el-icon-guide",
+        "image": null,
+        "hidden":false
       },]
     }
   });

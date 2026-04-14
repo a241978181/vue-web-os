@@ -1,0 +1,129 @@
+<template>
+	<div>
+		<el-dialog width="1000px" top="5vh" id="modalView" custom-class="os-dialog" :fullscreen="fullscreen" :visible.sync="isViewBool" :modal="false" :close-on-click-modal="false" v-dialogDrag="draggable" :show-close="false">
+			<!-- 头-->
+			<FuctionHeader slot="title" @mini="mini" @big="big" @small="small" @closeView="closeView"
+						   :fullscreen="fullscreen" :menu="menu"></FuctionHeader>
+
+			<!-- 主体 -->
+			<div style="width: 100%;display: flex;flex-direction: column;align-items: center; min-height: 600px;">
+				<div style="width: 100%;display: flex;align-items: center;">
+					<el-tooltip class="item" effect="dark" content="刷新" placement="bottom">
+						<a> <i class="el-icon-refresh" @click="refresh" style="margin-right: 15px; font-size: 25px;"></i></a>
+					</el-tooltip>
+					<!--标题栏-->
+					<FuctionTitle @openMenu="openMenu" :permissionsList="permissionsList"
+								  :indexButton="indexButton"></FuctionTitle>
+				</div>
+				<div class="doc-container">
+					<component @routerTo="openMenu2(arguments)" :is="allComps[permissionsItem.permissionsenglish]"
+							   :menu="permissionsItem" :dataItem="dataItem"></component>
+				</div>
+			</div>
+		</el-dialog>
+	</div>
+</template>
+
+<script>
+	import allComps from '@/components/Menu/docCenter'
+	import {getPermissionsList} from '@/utils/permissions.js'
+	import FuctionHeader from "@/components/util/FuctionHeader";
+	import FuctionTitle from "@/components/util/FuctionTitle";
+
+	export default {
+		name: "docCenter",
+		props: {
+			menu: '',
+		},
+		components: {
+			FuctionHeader,
+			FuctionTitle
+		},
+		data() {
+			return {
+				ItemName: 'docCenter',
+				allComps: allComps,
+				permissionsItem: '',
+				fullscreen: false,
+				draggable: true,
+				indexButton: null,
+				dataItem:null
+			}
+		},
+		computed: {
+			permissionsList() {
+				return getPermissionsList(2, this.menu.id);
+			},
+			isViewBool: {
+				get() {
+					return this.$store.state.control[this.ItemName];
+				},
+				set(v) {
+					this.$store.commit("setFalseVB", this.ItemName);
+				}
+			},
+		},
+		methods: {
+			refresh(){
+				let oldIndex=this.indexButton;
+				let oldPermissionsItem=this.permissionsItem;
+				this.openMenu({},-1)
+				this.timer = setTimeout(()=>{
+					this.openMenu(oldPermissionsItem,oldIndex)
+				},0);
+			},
+			openMenu2(values) {
+				this.indexButton = values[0].permissionsenglish;
+				this.permissionsItem = values[0];
+				if (values[1]){
+					this.dataItem=values[1];
+				}
+			},
+			openMenu(item, index) {
+				this.indexButton = item.permissionsenglish;
+				this.permissionsItem = item;
+				this.dataItem=null;
+			},
+			closeView() {
+				this.$store.commit("setFalseVB", this.ItemName);
+				this.$store.commit("deleteTaskList", this.menu);
+			},
+			small() {
+				this.fullscreen = false
+				this.draggable = true
+			},
+			big() {
+				this.fullscreen = true
+				this.draggable = false
+			},
+			mini() {
+				this.$store.commit("setFalseVB", this.ItemName);
+			},
+		},
+		mounted() {
+			if (this.menu.defaultPage && this.permissionsList.length > 0) {
+				const target = this.permissionsList.find(
+					item => item.permissionsenglish === this.menu.defaultPage
+				);
+				if (target) {
+					this.permissionsItem = target;
+					this.indexButton = target.permissionsenglish;
+				}
+			}
+		}
+	}
+</script>
+
+<style scoped="scoped">
+	.doc-container {
+		width: 100%;
+		flex: 1;
+		margin-top: 15px;
+		background: #fff;
+		border-radius: 8px;
+		padding: 20px;
+		box-sizing: border-box;
+		overflow-y: auto;
+		max-height: 70vh;
+	}
+</style>

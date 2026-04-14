@@ -19,6 +19,8 @@ const control = {
 		userManagement:false,
 		//插件展示面板展示键
 		plugShow:false,
+		//介绍文档面板展示键
+		docCenter:false,
 		//新增模块时的其他面板展示键......
 	},
 	getters: {
