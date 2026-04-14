@@ -53,6 +53,11 @@ body {
   background: rgba(255, 255, 255, 0.95) !important;
 }
 
+/* 全屏弹窗不覆盖底部任务栏（2.5rem） */
+.el-dialog.is-fullscreen {
+  height: calc(100% - 2.5rem) !important;
+}
+
 /* 美化弹窗标题栏样式 */
 .el-dialog__header {
   background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%) !important;

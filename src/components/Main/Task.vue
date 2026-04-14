@@ -118,7 +118,11 @@
 			},
 			//打开或关闭某一任务
 			open(menu) {
-				this.$store.commit("setTrueVB",menu.permissionsenglish);
+				if (this.$store.state.control[menu.permissionsenglish]) {
+					this.$store.commit("setFalseVB", menu.permissionsenglish);
+				} else {
+					this.$store.commit("setTrueVB", menu.permissionsenglish);
+				}
 			},
 			//打开或关闭开始菜单
 			openStart(){
@@ -143,9 +147,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background: rgba(20, 20, 24, 0.65);
+		background: rgba(20, 20, 24, 0.92);
 		backdrop-filter: blur(15px);
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		position: relative;
+		z-index: 3000;
 	}
 
 	.taskItem {
@@ -157,6 +163,7 @@
 		margin-left: 2px;
 		transition: background-color 0.3s;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 
 	.taskItem:hover {

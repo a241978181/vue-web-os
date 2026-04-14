@@ -77,15 +77,18 @@ Vue.directive('dialogDrag', {
                 if (store.state.settings.restrictWindowBounds) {
                     const viewWidth = document.documentElement.clientWidth;
                     const viewHeight = document.documentElement.clientHeight;
+                    // 底部需要预留任务栏高度
+                    const taskbarEl = document.querySelector('.task');
+                    const taskbarHeight = taskbarEl ? taskbarEl.offsetHeight : 0;
                     const dialogWidth = dragDom.offsetWidth;
                     const dialogHeight = dragDom.offsetHeight;
 
                     // 将 CSS 坐标转换为视口坐标后进行边界判断，再转回 CSS 坐标
                     // 视口坐标 = CSS坐标 + baseOffset
-                    const minLeft = -baseOffsetX;                           // 视口 left=0
-                    const minTop = -baseOffsetY;                            // 视口 top=0
-                    const maxLeft = viewWidth - dialogWidth - baseOffsetX;  // 视口 right=viewWidth
-                    const maxTop = viewHeight - dialogHeight - baseOffsetY; // 视口 bottom=viewHeight
+                    const minLeft = -baseOffsetX;                                        // 视口 left=0
+                    const minTop = -baseOffsetY;                                         // 视口 top=0
+                    const maxLeft = viewWidth - dialogWidth - baseOffsetX;               // 视口 right=viewWidth
+                    const maxTop = viewHeight - dialogHeight - taskbarHeight - baseOffsetY; // 任务栏顶部为下界
 
                     if (finalLeft < minLeft) {
                         finalLeft = minLeft;
