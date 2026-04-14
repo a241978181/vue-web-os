@@ -23,9 +23,9 @@ if (debug) {
     data: {
       menu: [{
         "id": 1,
-        "permissionsname": "技术解决111",
+        "permissionsname": "技术解决",
         "code": "cloudDisk",
-        "permissionsnameen": "Technical Solution111",
+        "permissionsnameen": "Technical Solution",
         "state": true,
         "type": 1,
         "parentid": 0,

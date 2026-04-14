@@ -277,6 +277,7 @@
 		justify-content: center;
 		width: 100%;
 		text-decoration: none;
+		overflow: hidden;
 	}
 
 	/* 任务项悬停 (浅色) */
@@ -313,6 +314,8 @@
 		font-size: 13px;
 		font-weight: 500;
 		transition: color 0.3s;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	
 	.theme-dark-task .icon-btn,

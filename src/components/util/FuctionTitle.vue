@@ -102,6 +102,15 @@ export default {
   color: #ffffff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
+
+.custom-tab-item span {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}
 .custom-tab-item.is-active i {
   opacity: 1;
 }

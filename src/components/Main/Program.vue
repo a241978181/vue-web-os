@@ -79,7 +79,9 @@
 		align-items: center;
 		flex-direction: column;
 		height: 7rem;
-		width: 5rem;
+		width: 100%;
+		padding: 0 4px;
+		box-sizing: border-box;
 	}
 
 	.glass-icon-btn {
@@ -98,6 +100,7 @@
 		font-size: 2.2rem;
 		cursor: pointer;
 		transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+		flex-shrink: 0;
 	}
 	.theme-dark-btn .glass-icon-btn {
 		background: rgba(0, 0, 0, 0.45);
@@ -118,14 +121,15 @@
 	}
 
 	.text {
-		width: auto;
-		padding: 4px 8px;
+		width: 100%;
+		padding: 2px 4px;
 		border-radius: 6px;
 		margin-top: 0.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		transition: all 0.3s;
+		box-sizing: border-box;
 	}
 	.theme-dark-btn .text {
 		/* 无填充 */
@@ -143,8 +147,15 @@
 		font-size: 0.78rem;
 		text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.6);
 		letter-spacing: 0.5px;
-		white-space: nowrap;
 		transition: all 0.3s;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-align: center;
+		line-height: 1.2;
+		word-break: break-all;
 	}
 	/* 浅色模式悬停 */
 	.ProgramButton:hover .text span {

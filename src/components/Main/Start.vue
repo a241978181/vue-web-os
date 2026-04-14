@@ -147,6 +147,7 @@ import {getPermissionsList} from '@/utils/permissions.js'
 		cursor: pointer;
 		transition: all 0.25s ease;
 		text-decoration: none;
+		overflow: hidden;
 	}
 
 	/* 浅色 hover */
@@ -185,6 +186,9 @@ import {getPermissionsList} from '@/utils/permissions.js'
 		font-size: 14px;
 		font-weight: 500;
 		letter-spacing: 0.5px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.theme-dark-view .taskItem span {
 		color: #ffffff;
