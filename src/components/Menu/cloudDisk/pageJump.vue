@@ -1,59 +1,45 @@
 <template>
-	<div id="view">
-		<h3>页面跳转介绍</h3>
-		<br/>
-		<br/>
-		<span>本项目的页面跳转无法使用路由进行跳转，下面按钮为演示跳转的可行方法</span>
-		<br/>
-		<br/>
-		<el-button @click="goto()" type="primary">点击我跳转到【按钮】标签页面下</el-button>
-		<el-button @click="goto3()" type="primary">点击我跳转到【按钮】标签页面下并携带参数</el-button>
-		<el-button @click="goto2()" type="primary">点击我跳转到【隐藏页面】标签页面下</el-button>
-	</div>
+  <div class="doc-content">
+    <h1>🚀 页面跳转与组件通信</h1>
+    <p>在 Web OS 中，不同应用窗口或同一应用的不同子页面之间可以进行灵活的跳转与参数传递。</p>
+
+    <el-card shadow="never" class="step-card">
+      <div slot="header"><b>如何进行页面跳转？</b></div>
+      <p>子页面通过触发 <code>$emit('routerTo', item, data)</code> 即可实现平滑切换。其中 <code>item</code> 为权限对象，<code>data</code> 为可选参数。</p>
+      <div class="code-block">this.$emit('routerTo', targetMenuItem, { id: 100 });</div>
+    </el-card>
+
+    <el-card shadow="never" class="step-card">
+      <div slot="header"><b>交互演示（保留项）</b></div>
+      <p>点击下方按钮，系统将自动跳转到「按钮介绍」页面，并弹出您携带的测试参数：</p>
+      <el-button type="success" icon="el-icon-position" @click="jump">立即点击测试跳转</el-button>
+    </el-card>
+  </div>
 </template>
 
 <script>
-	export default{
-		name:"pageJump",
-		props:{
-			menu: '',
-		},
-		data(){
-			return{
-
-			}
-		},
-		methods:{
-			//页面跳转
-			goto(){
-				// documentCenter为跳转页面的英文名称，必须是同级目录中的页面
-				this.$emit("routerTo",{permissionsenglish:"documentCenter"});
-			},
-			//页面跳转
-			goto3(){
-				// documentCenter为跳转页面的英文名称，必须是同级目录中的页面
-				// {name:'参数'} 为携带的参数
-				this.$emit("routerTo",{permissionsenglish:"documentCenter"},{name:'我是一个参数'});
-			},
-			//页面跳转
-			goto2(){
-				//documentCenter为跳转页面的英文名称，必须是同级目录中的
-				this.$emit("routerTo",{permissionsenglish:"hiddenRouting"});
-			}
-
-		},
-		mounted() {
-
-		}
-	}
+export default {
+    name: "pageJump",
+    props: {
+      menu: '',
+      permissionsList:''
+    },
+    methods: {
+      jump(){
+        const target = {
+          permissionsenglish: 'documentCenter',
+          permissionsname: '按钮'
+        };
+        const data = { name: '这是跳转携带的参数' };
+        this.$emit('routerTo', target, data);
+      }
+    }
+}
 </script>
 
 <style scoped="scoped">
-	#view {
-		width: 100%;
-		height: 100%;
-		padding: 0px;
-		margin: 0px;
-		margin-top: 0.9375rem;
-	}
+.doc-content { padding: 10px; }
+.doc-content h1 { color: #2c3e50; font-size: 1.5rem; }
+.step-card { margin-bottom: 20px; }
+.code-block { background: #f4f4f5; padding: 10px; border-radius: 4px; font-family: monospace; color: #67C23A; }
 </style>

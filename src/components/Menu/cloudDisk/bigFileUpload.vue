@@ -1,35 +1,37 @@
 <template>
-	<div id="view">
-    <h3>弹出框介绍</h3>
-    <br/>
-    <span>
-      众所周知，iview的model无法实现双重弹出框，因为我们每一个模块页面都是一个model，所以在想实现弹出框的话需要使用elementui中的el-dialog
-    </span>
-    <br/>
-    <br/>
-    <span>
-      值得注意的是，使用时需要添加上 <b>:modal="false"</b>,否则遮罩层将全部遮住。点击下方按钮进行测试。
-    </span>
-    <br/>
+	<div class="doc-content">
+    <h1>💬 弹出框 (Dialog) 交互</h1>
+    <p>在基于窗口的 Web OS 系统中，子页面的弹出框处理需要特别注意层级关系。</p>
 
-    <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+    <el-alert title="核心要点：:modal='false'" type="error" :closable="false" show-icon style="margin: 15px 0;">
+      <template slot="title">
+        <b>必须设置 :modal="false"</b>
+      </template>
+      由于每个应用窗口本身就是一个 Dialog 或类似容器，若子弹窗开启了遮罩层（modal），它会覆盖整个桌面甚至任务栏，导致用户无法操作其他窗口。
+    </el-alert>
+
+    <el-card shadow="never" class="step-card">
+      <div slot="header"><b>交互演示（建议加分项）</b></div>
+      <p>点击下方按钮，观察在没有背景遮罩的情况下，弹窗如何与应用窗口完美融合：</p>
+      <el-button type="primary" icon="el-icon-chat-line-round" @click="dialogVisible = true">打开测试对话框</el-button>
+    </el-card>
 
     <el-dialog
-        title="提示"
+        title="测试对话框"
         :visible.sync="dialogVisible"
-        width="60%"
-        :modal="false">
-      <div style="background-color: #e2fbff;width: 100%;height: 25rem;display:flex;align-items: center;justify-content: center;">
-		  <h1>这里是一个弹出框</h1>
-	  </div>
+        width="50%"
+        :modal="false"
+        append-to-body>
+      <div class="test-dialog-content">
+		    <i class="el-icon-magic-stick"></i>
+        <h2>这是一个子弹出框</h2>
+        <p>注意到背景依然是可以操作且透明的吗？这就是 :modal="false" 的效果。</p>
+	    </div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
+        <el-button @click="dialogVisible = false" size="small">关闭</el-button>
+        <el-button type="primary" @click="dialogVisible = false" size="small">确定</el-button>
+      </span>
     </el-dialog>
-
-
-
 	</div>
 </template>
 
@@ -43,51 +45,24 @@
 			return {
         dialogVisible: false
       }
-		},
-		methods: {
-
-		},
-		mounted() {
 		}
 	}
 </script>
 
 <style scoped>
-	#view {
-		width: 100%;
-		height: 100%;
-		padding: 0px;
-		margin: 0px;
-		margin-top: 0.9375rem;
-	}
-</style>
-<style scoped>
-	h1,
-	h2 {
-		font-weight: normal;
-	}
-
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
-
-	li {
-		display: inline-block;
-	}
-
-	.uploader-list>ul>li {
-		width: 100%;
-		color: red;
-		margin-bottom: 0;
-	}
-
-	a {
-		color: #42b983;
-	}
-
-	.fileupload {
-		width: 50%;
-		margin-left: 25%;
-	}
+.doc-content { padding: 10px; }
+.doc-content h1 { color: #2c3e50; font-size: 1.5rem; }
+.step-card { margin: 20px 0; }
+.test-dialog-content {
+  background: linear-gradient(135deg, #e2fbff 0%, #ffffff 100%);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.test-dialog-content i { font-size: 3rem; color: #409EFF; margin-bottom: 10px; }
+.test-dialog-content h2 { margin: 0; color: #333; }
+.test-dialog-content p { color: #666; font-size: 14px; }
 </style>

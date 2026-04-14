@@ -1,62 +1,49 @@
 <template>
-    <div id="view">
-        <br/>
-        <br/>
-        <h3>新增页面</h3>
-        <br/>
-        <p><b>页面</b>是指当前【系统介绍】模块中的【安装与启动】、【新增模块】、【新增页面】页面。</p>
-        <br/>
-        <p><b>1.新增权限</b></p>
-        <p>
-            在[/src/mock/modules/common.js]中，向【获取权限元素组】中加入一个权限，权限的【parentid】字段应为<b style="color: red">当前模块的【id】</b>。
-            比如本项目中【系统介绍】模块的id为3，需要在系统模块下创建页面就把【parentid】设置为3.
-        </p>
-        <p>
-            并且请记住权限的英文名称也就是【permissionsenglish】的值。
-        </p>
-        <br/>
-        <p><b>2.创建模块包</b></p>
-        <p>在[/src/components/Menu/]中，创建一个目录，名称为<b style="color: red">当前模块的【permissionsenglish】</b>。
-            比如本项目中：我需要在模块【系统介绍】下，新增一个页面，那么创建的这个目录名称就为【userManagement】。
-        </p>
-        <br/>
-        <p><b>3.创建页面</b></p>
-        <p>在[/src/components/Menu/<b style="color: red">当前模块的【permissionsenglish】</b>]中，创建一个vue页面，名称为新增权限的【permissionsenglish】字段值。
-        </p>
-        <br/>
-        <p><b>4.复制index.js文件</b></p>
-        <p>在[/src/components/Function/template/]中，复制一个【index.js】的文件放到[/src/components/Menu/你创建的文件夹/]下,也就是第二步骤中创建的模块包。
-        </p>
-        <br/>
-        <p><b>5.修改模块导入</b></p>
-        <p>在[/src/components/Function/]中，找到<b style="color: red">包含当前页面的模块</b>，修改如下图的引入组件路径。</p>
-        <br/><br/>
-        <img src="https://s3.ax1x.com/2020/12/28/roKKVf.jpg"/>
+    <div class="doc-content">
+        <h1>📑 新增子页面</h1>
+        <p>子页面是指应用窗口内部的功能页（如当前您正在看的这一页）。</p>
+
+        <el-alert title="核心逻辑" type="success" :closable="false" show-icon style="margin: 15px 0;">
+            子页面的 <b>parentid</b> 必须指向其所属应用的 <b>id</b>。
+        </el-alert>
+
+        <el-card shadow="never" class="step-card">
+            <div slot="header"><b>1. 权限配置</b></div>
+            <p>在 <code>common.js</code> 中新增 <code>type: 2</code> 的对象。例如“系统介绍”的 ID 是 3，则新页面的 <code>parentid</code> 设为 3。</p>
+        </el-card>
+
+        <el-card shadow="never" class="step-card">
+            <div slot="header"><b>2. 目录与文件准备</b></div>
+            <p>在 <code>/src/components/Menu/</code> 下创建与应用 <code>permissionsenglish</code> 同名的文件夹。</p>
+            <p>在该文件夹内创建子页面的 <code>.vue</code> 文件，名称需与权限中的 key 一致。</p>
+        </el-card>
+
+        <el-card shadow="never" class="step-card">
+            <div slot="header"><b>3. 注册导出</b></div>
+            <p>确保在该文件夹的 <code>index.js</code> 中导入并导出了该组件。之后在主应用组件中修改引入路径（见下图）：</p>
+            <br/>
+            <el-image :src="demoImg" :preview-src-list="[demoImg]" style="border: 1px solid #eee; border-radius: 4px;"></el-image>
+        </el-card>
     </div>
 </template>
 
 <script>
     export default {
-        name: "documentCenter",
+        name: "addPage",
         props: {
             menu: '',
         },
         data() {
-            return {}
-        },
-        methods: {},
-        mounted() {
-
+            return {
+                demoImg: 'https://s3.ax1x.com/2020/12/28/roKKVf.jpg'
+            }
         }
     }
 </script>
 
 <style scoped="scoped">
-    #view {
-        width: 100%;
-        height: 100%;
-        padding: 0px;
-        margin: 0px;
-        margin-top: 0.9375rem;
-    }
+.doc-content { padding: 10px; }
+.doc-content h1 { color: #2c3e50; font-size: 1.5rem; }
+.step-card { margin-bottom: 20px; }
+.doc-content p { color: #666; font-size: 14px; line-height: 1.5; }
 </style>

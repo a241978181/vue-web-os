@@ -1,22 +1,35 @@
 <template>
-  <div id="view">
-    <br/>
-    <br/>
-    <h3>新增模块</h3>
-    <br/>
-    <p><b>模块</b>是指桌面上的【技术解决】与【系统介绍】</p>
-    <br/>
-    <p><b>1.新增权限</b></p>
-    <p>
-      在[/src/mock/modules/common.js]中，向【获取权限元素组】中加入一个权限，权限的【parentid】字段应为<b style="color: red">0</b>。<b>并且请记住权限的英文名称也就是【permissionsenglish】的值。</b>
-    </p>
-    <br/>
-    <p><b>2.注册模块</b></p>
-    <p>在[/src/store/modules/control.js]中，向【state】中加入你的【面板展示键】<span>面板展示键为你权限中的英文名称，默认值为【false】</span></p>
-    <br/>
-    <p><b>3.创建模块</b></p>
-    <p>在[/src/components/Function/template/]中，复制一个【template.vue】的模板文件放到[/src/components/Function/]下。将其名称修改为权限中的英文名称,
-      也就是【permissionsenglish】字段的值，之后将该页面中[data--return]中的【ItemName】变量属性修改成为你权限中的英文名称。</p>
+  <div class="doc-content">
+    <h1>🆕 新增桌面模块</h1>
+    <p>模块是指桌面上独立运行的 App 容器（如“技术解决”）。新增一个模块需要以下三个核心步骤：</p>
+
+    <el-steps :active="3" finish-status="success" simple style="margin: 20px 0;">
+      <el-step title="配置权限" icon="el-icon-edit"></el-step>
+      <el-step title="注册状态" icon="el-icon-switch-button"></el-step>
+      <el-step title="创建组件" icon="el-icon-document"></el-step>
+    </el-steps>
+
+    <el-card shadow="never" class="step-card">
+      <div slot="header"><b>第一步：新增权限项</b></div>
+      <p>在 <code>/src/mock/modules/common.js</code> 文件的 <code>menu</code> 数组中添加一个新对象：</p>
+      <ul>
+        <li><code>type</code> 必须为 <b>1</b>（代表应用级）。</li>
+        <li><code>parentid</code> 必须为 <b>0</b>。</li>
+        <li><code>permissionsenglish</code> 建议使用驼峰命名（如 <code>myApp</code>），并请记住这个值。</li>
+      </ul>
+    </el-card>
+
+    <el-card shadow="never" class="step-card">
+      <div slot="header"><b>第二步：注册视图开关</b></div>
+      <p>在 <code>/src/store/modules/control.js</code> 的 <code>state</code> 中，添加对应的布尔值开关，键名即为上一步的 <code>permissionsenglish</code> 值。</p>
+      <div class="code-block">myApp: false</div>
+    </el-card>
+
+    <el-card shadow="never" class="step-card">
+      <div slot="header"><b>第三步：创建窗口组件</b></div>
+      <p>在 <code>/src/components/Function/</code> 目录下创建对应的 <code>.vue</code> 文件（可复制 <code>docCenter.vue</code> 结构）。</p>
+      <p>确保组件内部的 <code>ItemName</code> 数据属性与权限 key 保持一致。</p>
+    </el-card>
   </div>
 </template>
 
@@ -25,29 +38,13 @@ export default {
   name: "addModule",
   props: {
     menu: '',
-  },
-  data() {
-    return {
-      srcList: [
-        'https://s1.ax1x.com/2020/09/08/wQyaXn.jpg',
-        'https://s1.ax1x.com/2020/09/08/wQyU6s.jpg',
-        'https://s1.ax1x.com/2020/09/08/wQyNlj.jpg',
-      ]
-    }
-  },
-  methods: {},
-  mounted() {
-
   }
 }
 </script>
 
 <style scoped="scoped">
-#view {
-  width: 100%;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  margin-top: 0.9375rem;
-}
+.doc-content { padding: 10px; }
+.doc-content h1 { color: #2c3e50; font-size: 1.5rem; }
+.step-card { margin-bottom: 20px; border: 1px solid #ebeef5; }
+.code-block { background: #f4f4f5; padding: 10px; border-radius: 4px; font-family: monospace; color: #409EFF; }
 </style>
