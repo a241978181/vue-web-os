@@ -51,13 +51,15 @@
                 draggable: false,
                 //当前菜单按钮
                 indexButton: null,
-                //菜单
-                permissionsList: getPermissionsList(2, this.menu.id),
                 //页面跳转时的数据
                 dataItem:null
             }
         },
         computed: {
+            // 菜单（响应式）
+            permissionsList() {
+                return getPermissionsList(2, this.menu.id);
+            },
             //判断是否展示该面板
             isViewBool: {
                 get() {
@@ -127,9 +129,6 @@
     }
 </style>
 <style>
-    #modalView .el-dialog__header {
-        background-color: #348DC1;
-        padding: 5px;
-    }
+    #modalView .el-dialog__body { padding: 10px 20px; }
     #modalView .el-dialog__body { padding: 10px 20px; }
 </style>

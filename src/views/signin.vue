@@ -27,8 +27,6 @@
 </template>
 <script>
 import Vue from "vue";
-import router from "../router/index";
-import generateRoutes from "../router/parser";
 
 export default {
   name: "signin",
@@ -61,32 +59,40 @@ export default {
   },
   methods: {
     Login(formName) {
-      this.loading=true;
       this.$refs[formName].validate(valid => {
         if (valid) {
+          this.loading = true;
           this.$http.post("login", {
                 username: this.form.name,
                 password: this.form.password
               }).then(res => {
-                let userInfo = JSON.stringify(res)
-                localStorage.userInfo = userInfo;
+                // 存储 token
                 localStorage.token = res.token;
+                // 用户信息存入 localStorage + Vuex
+                localStorage.userInfo = JSON.stringify(res);
+                this.$store.commit('permission/SET_USER_INFO', res);
                 this.getMenu();
+              }).catch(() => {
+                this.loading = false;
               });
         } else {
           return false;
         }
       });
-      this.loading=false;
     },
     //权限模式下
     getMenu() {
-		this.$http.post("getMenu", {}).then(res => {
-				let permissionsList =res.menu ;
-				let JsonPermissionsList = JSON.stringify(permissionsList)
-				localStorage.setItem("permissionsList", JsonPermissionsList);
-				this.$router.push("/layout");
-		    });
+      this.$http.post("getMenu", {}).then(res => {
+        let permissionsList = res.menu;
+        // 持久化到 localStorage（刷新恢复用）
+        localStorage.setItem("permissionsList", JSON.stringify(permissionsList));
+        // 存入 Vuex
+        this.$store.commit('permission/SET_PERMISSIONS', permissionsList);
+        this.loading = false;
+        this.$router.push("/layout");
+      }).catch(() => {
+        this.loading = false;
+      });
     }
 
   },

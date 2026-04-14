@@ -26,13 +26,11 @@
 import {getPermissionsList} from '@/utils/permissions.js'
 	export default {
 		name: "Start",
-		data() {
-			return {
-				//功能列表
-        permissionsList: getPermissionsList(1,null),
-			}
-		},
 		computed: {
+			// 功能列表（响应式）
+			permissionsList() {
+				return getPermissionsList(1, null);
+			},
 			//判断是否展示该面板
 			startInformationViewBool: {
 				get() {
@@ -54,9 +52,7 @@ import {getPermissionsList} from '@/utils/permissions.js'
 			//退出系统
 			out() {
 				this.$store.commit("outComputer");
-				localStorage.removeItem("userInfo");
-				localStorage.removeItem("permissionsList");
-				localStorage.removeItem("token");
+				this.$store.dispatch('permission/logout');
 				this.$router.push("/signin");
 			},
 			//打开某一任务

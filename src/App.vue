@@ -6,17 +6,11 @@
   </div>
 </template>
 <script>
-import router from "./router/index";
-import generateRoutes from "./router/parser";
 export default {
   name: "app",
-  // 在SPA初始化时，立刻从本地存储中拿到原始数据，解析后注入到路由实例中【吐血】
+  // 在SPA初始化时，从 localStorage 恢复权限数据到 Vuex
   created() {
-    if (localStorage.menu) {
-      const menu = JSON.parse(localStorage.menu);
-      const _routes = generateRoutes(menu);
-      router.addRoutes(_routes);
-    }
+    this.$store.dispatch('permission/restoreFromStorage');
   }
 };
 </script>
@@ -52,6 +46,38 @@ body {
 }
 .el-dialog {
   pointer-events: auto;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 美化弹窗标题栏样式 */
+.el-dialog__header {
+  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%) !important;
+  padding: 10px 15px !important;
+}
+
+.el-dialog__title {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* 弹窗关闭按钮修复 */
+.el-dialog__headerbtn {
+  top: 12px !important;
+  right: 15px !important;
+}
+.el-dialog__headerbtn .el-dialog__close {
+  color: #eeeeee !important;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+.el-dialog__headerbtn:hover .el-dialog__close {
+  color: #409EFF !important;
+  transform: scale(1.2);
 }
 
 .el-menu-item [class^="el-icon-"] {

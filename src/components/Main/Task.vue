@@ -143,19 +143,24 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background-color: #000000;
+		background: rgba(20, 20, 24, 0.65);
+		backdrop-filter: blur(15px);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.taskItem {
-		background-color: #000000;
+		background-color: transparent;
 		width: 6rem;
 		height: 2.5rem;
 		display: flex;
 		align-items: center;
-		margin-left: 1px;
+		margin-left: 2px;
+		transition: background-color 0.3s;
+		border-radius: 4px;
 	}
 
-	.taskItem :hover {
-		background-color: #444;
+	.taskItem:hover {
+		background-color: rgba(255, 255, 255, 0.15);
+		box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
 	}
 </style>

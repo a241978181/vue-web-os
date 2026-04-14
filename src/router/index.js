@@ -2,20 +2,17 @@ import Vue from "vue";
 import Router from "vue-router";
 Vue.use(Router);
 
-
 // 登录
 const Signin = () => import("@/views/signin")
 const Notfound = () => import("@/views/404")
-// // 默认页面
-//  const Dashboard = () =>  import ("@/views/dashboard")
 // APP页面
 const Layout = () => import("@/layout")
 
+// 不需要鉴权的白名单路由
+const whiteList = ['/signin', '/401', '/404']
+
 const router = new Router({
 	mode: 'hash',
-	scrollBehavior: () => {
-		history.pushState(null, null, document.URL)
-	},
 	routes: [{
 			path: '/',
 			redirect: '/signin',
@@ -29,15 +26,6 @@ const router = new Router({
 			},
 			component: Signin
 		},
-		// // 默认页面
-		// {
-		//   path: "/dashboard",
-		//   name: "Dashboard",
-		//   meta: {
-		//     title: "dashboard"
-		//   },
-		//   component: Dashboard
-		// },
 		//layout页面
 		{
 			path: "/layout",
@@ -59,19 +47,28 @@ const router = new Router({
 	]
 });
 
-// 当一个导航触发时，全局的 before 钩子按照创建顺序调用。钩子是异步解析执行，此时导航在所有钩子 resolve 完之前一直处于等待中。
+// 路由守卫：统一鉴权 + 自动修改页面标题
 router.beforeEach((to, from, next) => {
 	// 自动化修改页面标签的 title
-	document.title = to.meta.title;
-	next()
-	// 如果已经登录，并且要去登录页，就不让TA去登录页，重定向到首页【目前有点问题】
-	// if (to.path === "/signin" && localStorage.token) {
-	//   next("/notes");
-	// } else {
-	//   next();
-	// }
+	if (to.meta && to.meta.title) {
+		document.title = to.meta.title;
+	}
+	// 鉴权判断
+	if (localStorage.getItem('token')) {
+		// 已登录，如果要去登录页则重定向到首页
+		if (to.path === '/signin') {
+			next('/layout')
+		} else {
+			next()
+		}
+	} else {
+		// 未登录，白名单路由直接放行，否则跳转登录页
+		if (whiteList.includes(to.path)) {
+			next()
+		} else {
+			next('/signin')
+		}
+	}
 });
-router.afterEach((to, from) => {
-	history.pushState(null, null, location.protocol + '//' + location.host + '/#' + to.path)
-})
+
 export default router;

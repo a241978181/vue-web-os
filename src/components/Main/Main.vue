@@ -12,10 +12,10 @@
 		components: {
 			Program,
 		},
-		data() {
-			return {
-				//功能列表
-        permissionsList: getPermissionsList(1,null),
+		computed: {
+			// 功能列表（响应式，Vuex 数据变化时自动更新）
+			permissionsList() {
+				return getPermissionsList(1, null);
 			}
 		},
 		methods: {

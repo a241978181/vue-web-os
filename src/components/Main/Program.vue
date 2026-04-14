@@ -87,18 +87,27 @@
 	}
 
 	.text {
-		width: 4rem;
-		height: 1rem;
-		border-radius: 2rem;
-		background-color: #304C5F;
-		margin-top: 0.2rem;
+		width: auto;
+		padding: 0.3rem 0.6rem;
+		border-radius: 4px;
+		background-color: rgba(0, 0, 0, 0.4);
+		backdrop-filter: blur(4px);
+		box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+		margin-top: 0.3rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		transition: all 0.3s;
+	}
+
+	.ProgramButton:hover .text {
+		background-color: rgba(0, 0, 0, 0.6);
 	}
 
 	.text span {
 		color: white;
 		font-size: 0.7rem;
+		text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+		white-space: nowrap;
 	}
 </style>

@@ -76,7 +76,4 @@
   margin-right: 20px;
 }
 
-#notes .el-dialog__header {
-  background-color: #348DC1;
-}
 </style>
