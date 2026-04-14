@@ -1,4 +1,4 @@
-# Vue-Web-OS v3.0.0
+# Vue-Web-OS v3.0.1
 
 一个基于 **Vue 2.6 + Element UI 2.13.2** 的仿 Windows 10 云桌面系统。项目已完成权限模块、登录验证模块、Axios 请求模块、内置介绍文档、国际化（i18n）等常用功能模块，可用于开发中大型 Web 应用。已在实际项目中应用于云盘系统与企业级 OA 系统。
 
@@ -116,13 +116,13 @@ $--color-primary: #7367f0;  // 修改为你需要的品牌色
 ## 📸 项目预览
 
 ##### 登录页面
-![vue-web-os](https://s1.ax1x.com/2020/09/10/wGtyWj.jpg "vue-web-os")
+![vue-web-os](http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260414/152502/9d066915167841e4828034014529cd82.png "vue-web-os")
 ##### 桌面（新版毛玻璃主题）
-![vue-web-os](https://s1.ax1x.com/2020/10/27/BQdqpQ.jpg "vue-web-os")
+![vue-web-os](http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260414/152549/571fbc55fa2b4110a442f85d87a88eae.png "vue-web-os")
 ##### 开始菜单与鼠标右键（含全屏唤起）
-![vue-web-os](https://s1.ax1x.com/2020/10/27/BQwZ0x.jpg "vue-web-os")
+![vue-web-os](http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260414/152620/6850e84648e44d979db61b2c591d01d0.png "vue-web-os")
 ##### 多窗口与内嵌功能交互展示
-![vue-web-os](https://s3.ax1x.com/2020/12/28/rTwMEF.jpg "vue-web-os")
+![vue-web-os](http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260414/152648/ea21bac653bc4b7e836000f7b56e2225.png "vue-web-os")
 
 ## 📦 技术栈
 
@@ -139,7 +139,7 @@ $--color-primary: #7367f0;  // 修改为你需要的品牌色
 
 ## 📋 版本更新记录
 
-### v3.1.0 (新发布)
+### v3.0.1 (新发布)
 - **极致 UI 重构**：整体 UI 全面过渡到高阶 Glassmorphism (毛玻璃) 设计语言，赋予任务栏、开始菜单、弹窗和桌面应用现代化的立体光影感。
 - **深浅双色主题引擎**：原生集成了系统级别的『深色模式 / 浅色模式』，实现了桌面环境与内层业务组件外观的分层独立渲染策略。
 - **全屏架构与国际化融合**：在桌面级别的右键菜单中直接集成底层系统全屏 API，完美处理中英双语识别与自动切换。

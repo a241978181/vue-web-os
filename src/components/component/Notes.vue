@@ -3,9 +3,9 @@
 		<el-dialog top="20px" width="380px" :visible.sync="isPersonalInformationViewBool"
 		 v-dialogDrag="true" :modal="false" :close-on-click-modal="false" :title="$t('m.notes.title')" id="notes">
 			<div style="width: 100%;height: 8rem;display: flex;align-items: center;">
-				<div style="width: 30%;height: 100%;display: flex;flex-direction: column;align-items: center;border-right: #E4E7ED solid 1px; background: #fafafa;">
-					<el-avatar style="margin-top: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" :src="userInfo.avatarUrl" icon="el-icon-user-solid" :size="75"></el-avatar>
-					<el-button style="margin: 1rem 0px; padding: 8px 12px;" @click="updateInfo()" size="small" type="primary" plain round>{{ $t('m.notes.modifyInfo') }}</el-button>
+				<div style="width: 30%;height: 100%;display: flex;flex-direction: column;align-items: center;justify-content: center;border-right: #E4E7ED solid 1px; background: #fafafa;">
+					<el-avatar class="notes-avatar" shape="circle" :src="userInfo.avatarUrl" icon="el-icon-user-solid" :size="70" fit="cover"></el-avatar>
+					<el-button style="margin-top: 0.6rem; padding: 8px 12px;" @click="updateInfo()" size="small" type="primary" plain round>{{ $t('m.notes.modifyInfo') }}</el-button>
 				</div>
 				<div style="width: 30%;height: 100%;display: flex;flex-direction: column;align-items: center; background: #ffffff;">
 					<div class="tableItem">
@@ -74,6 +74,15 @@
 </script>
 
 <style scoped="scoped">
+	.notes-avatar {
+		box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		flex-shrink: 0;
+	}
+	.notes-avatar >>> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 	.tableItem {
 		width: 100%;
 		height: 25%;

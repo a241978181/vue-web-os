@@ -12,7 +12,7 @@ if (debug) {
 	  department:'开发部',
 	  position:'全栈开发',
 	  phone:18888888888,
-	  avatarUrl:'https://s2.ax1x.com/2020/02/16/3ShASK.jpg'
+	  avatarUrl:'http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260414/152909/5434ce3382da4605a698b931c85b9e63.jpg'
     }
   });
 
