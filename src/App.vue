@@ -51,11 +51,20 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.95) !important;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.el-dialog__body {
+  flex: 1;
+  overflow-y: auto;
 }
 
 /* 全屏弹窗不覆盖底部任务栏（2.5rem） */
 .el-dialog.is-fullscreen {
   height: calc(100% - 2.5rem) !important;
+  max-height: none !important;
 }
 
 /* 美化弹窗标题栏样式 */
