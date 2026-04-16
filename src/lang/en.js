@@ -47,6 +47,9 @@ export const m = {
     batteryRest: 'Battery: ',
     wifiOn: 'WIFI On',
     wifiOff: 'WIFI Off',
-    closeApp: 'Close App'
+    closeApp: 'Close App',
+    searchTitle: 'Search Apps',
+    searchPlaceholder: 'Search built-in apps',
+    searchEmpty: 'No matching apps found'
   }
 }
