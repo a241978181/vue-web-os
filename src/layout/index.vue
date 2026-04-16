@@ -221,7 +221,7 @@
       updateImae(){
 			  let desktopBackground=localStorage.getItem("desktopBackground");
 			  if (desktopBackground==null){
-          desktopBackground='https://s1.ax1x.com/2020/09/11/wtunxK.jpg';
+          desktopBackground='http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260416/102218/3e3e64a3393642dfa5d08b45a219a91f.jpg';
         }
         let big=document.getElementById('big');
         big.style.cssText="background: url("+desktopBackground+") 0 0 no-repeat;" +
@@ -241,7 +241,7 @@
 	.big {
 		display: flex;
 		height: 100%;
-		background: url(https://s1.ax1x.com/2020/09/11/wtunxK.jpg) 0 0 no-repeat;
+		background: url(http://lhjf-pr.oss-cn-zhangjiakou.aliyuncs.com/img/20260416/102218/3e3e64a3393642dfa5d08b45a219a91f.jpg) 0 0 no-repeat;
 		background-size: 100% 100%;
 		padding: 0;
 		margin: 0;
