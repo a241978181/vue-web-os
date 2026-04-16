@@ -1,7 +1,6 @@
 import Vue from 'vue'
+import PopupManager from 'element-ui/lib/utils/popup/popup-manager'
 import store from '@/store'
-
-let topDialogZIndex = 4000
 
 function bringDialogToFront(el) {
     const wrapper = el.classList && el.classList.contains('el-dialog__wrapper')
@@ -12,8 +11,7 @@ function bringDialogToFront(el) {
         return
     }
 
-    topDialogZIndex += 1
-    wrapper.style.zIndex = topDialogZIndex
+    wrapper.style.zIndex = PopupManager.nextZIndex()
 }
 
 Vue.directive('dialogDrag', {
