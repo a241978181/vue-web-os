@@ -10,17 +10,17 @@
 		</div>
 
 		<div class="start-btn-container">
-			<el-button @click="openStart()" size="large" type="text" icon="fa fa-windows" class="icon-btn start-icon"></el-button>
+			<el-button @click="openStart($event)" size="large" type="text" icon="fa fa-windows" class="icon-btn start-icon"></el-button>
 		</div>
 		<div class="search-btn-container">
 			<el-tooltip :content="$t('m.taskbar.searchTitle')" placement="top">
-				<el-button @click.stop="toggleSearchPanel()" size="large" type="text" icon="el-icon-search" class="icon-btn search-icon"></el-button>
+				<el-button @click.stop="toggleSearchPanel($event)" size="large" type="text" icon="el-icon-search" class="icon-btn search-icon"></el-button>
 			</el-tooltip>
 		</div>
 
 		<div class="task-main">
 			<div class="taskItem" v-for="task in taskList" :key="task.id">
-				<a @click="open(task)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
+				<a :data-app-code="task.code" @click="open(task, $event)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
 					<i class="icon-btn" :class="task.icon"></i>
 					<span class="task-text"><b>{{ getAppName(task) }}</b></span>
 				</a>
@@ -174,6 +174,13 @@ export default {
 		},
 		closeCurrentTask() {
 			if (this.currentTask) {
+				// 关闭动画原点设置为任务栏底部中央
+				const taskBar = this.$el;
+				if (taskBar) {
+					const rect = taskBar.getBoundingClientRect();
+					document.documentElement.style.setProperty('--anim-origin-x', (rect.left + rect.width / 2) + 'px');
+					document.documentElement.style.setProperty('--anim-origin-y', rect.top + 'px');
+				}
 				this.$store.commit("setFalseVB", this.currentTask.code);
 				this.$store.commit("deleteTaskList", this.currentTask);
 				this.menuVisible = false;
@@ -183,7 +190,12 @@ export default {
 		closeMenu() {
 			this.menuVisible = false;
 		},
-		toggleSearchPanel() {
+		toggleSearchPanel(event) {
+			if (event && event.currentTarget) {
+				const rect = event.currentTarget.getBoundingClientRect();
+				document.documentElement.style.setProperty('--anim-origin-x', (rect.left + rect.width / 2) + 'px');
+				document.documentElement.style.setProperty('--anim-origin-y', (rect.top + rect.height / 2) + 'px');
+			}
 			if (this.searchPanelVisible) {
 				this.closeSearchPanel();
 				return;
@@ -203,6 +215,11 @@ export default {
 			this.searchKeyword = '';
 		},
 		openSearchApp(app) {
+			// 搜索打开应用：动画原点设为屏幕中心
+			const cx = window.innerWidth / 2;
+			const cy = window.innerHeight / 2;
+			document.documentElement.style.setProperty('--anim-origin-x', cx + 'px');
+			document.documentElement.style.setProperty('--anim-origin-y', cy + 'px');
 			if (!this.isTaskList(app)) {
 				this.$store.commit("addTaskList", app);
 			}
@@ -248,14 +265,25 @@ export default {
 		refresh() {
 			this.$store.commit("refresh");
 		},
-		open(menu) {
+		open(menu, event) {
+			// 设置动画原点为任务栏项的位置
+			if (event && event.currentTarget) {
+				const rect = event.currentTarget.getBoundingClientRect();
+				document.documentElement.style.setProperty('--anim-origin-x', (rect.left + rect.width / 2) + 'px');
+				document.documentElement.style.setProperty('--anim-origin-y', rect.top + 'px');
+			}
 			if (this.$store.state.control[menu.code]) {
 				this.$store.commit("setFalseVB", menu.code);
 			} else {
 				this.$store.commit("setTrueVB", menu.code);
 			}
 		},
-		openStart() {
+		openStart(event) {
+			if (event && event.currentTarget) {
+				const rect = event.currentTarget.getBoundingClientRect();
+				document.documentElement.style.setProperty('--anim-origin-x', (rect.left + rect.width / 2) + 'px');
+				document.documentElement.style.setProperty('--anim-origin-y', (rect.top + rect.height / 2) + 'px');
+			}
 			if (this.searchPanelVisible) {
 				this.closeSearchPanel();
 			}

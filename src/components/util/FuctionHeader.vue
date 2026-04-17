@@ -5,10 +5,10 @@
     <span class="header-title"><b>{{ $i18n.locale === 'en' ? (menu.permissionsnameen || menu.permissionsname) : menu.permissionsname }}</b></span>
   </div>
   <div class="header-right">
-    <el-button type="text" class="header-action-btn" @click="$emit('mini')" icon="el-icon-minus"></el-button>
+    <el-button type="text" class="header-action-btn" @click="handleMini" icon="el-icon-minus"></el-button>
     <el-button type="text" class="header-action-btn" v-show="!fullscreen" @click="$emit('big')" icon="el-icon-full-screen"></el-button>
     <el-button type="text" class="header-action-btn" v-show="fullscreen" @click="$emit('small')" icon="el-icon-copy-document"></el-button>
-    <el-button type="text" class="header-action-btn close-btn" @click="$emit('closeView')" icon="el-icon-close"></el-button>
+    <el-button type="text" class="header-action-btn close-btn" @click="handleClose" icon="el-icon-close"></el-button>
   </div>
   </div>
 </template>
@@ -28,6 +28,33 @@ export default {
     }
   },
   methods: {
+    // 设置关闭/最小化动画原点为任务栏对应图标
+    setCloseAnimOrigin() {
+      // 1. 尝试找到当前应用在任务栏上的图标
+      if (this.menu && this.menu.code) {
+        const iconEl = document.querySelector(`a[data-app-code="${this.menu.code}"]`);
+        if (iconEl) {
+          const rect = iconEl.getBoundingClientRect();
+          document.documentElement.style.setProperty('--anim-origin-x', (rect.left + rect.width / 2) + 'px');
+          document.documentElement.style.setProperty('--anim-origin-y', (rect.top + rect.height / 2) + 'px');
+          return;
+        }
+      }
+      
+      // 2. 兜底方案：如果应用不在任务栏上，收回到屏幕底部正中央
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      document.documentElement.style.setProperty('--anim-origin-x', (vw / 2) + 'px');
+      document.documentElement.style.setProperty('--anim-origin-y', vh + 'px');
+    },
+    handleMini() {
+      this.setCloseAnimOrigin();
+      this.$emit('mini');
+    },
+    handleClose() {
+      this.setCloseAnimOrigin();
+      this.$emit('closeView');
+    },
     toggleFullscreen() {
       if (this.fullscreen) {
         this.$emit('small');

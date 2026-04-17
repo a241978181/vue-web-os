@@ -1,7 +1,7 @@
 <template>
 	<div class="ProgramButton" :class="{'theme-dark-btn': isDarkTheme}">
 		<div class="zhong">
-			<div class="glass-icon-btn" @click="showView">
+			<div class="glass-icon-btn" @click="showView($event)">
 				<i :class="menu.icon"></i>
 			</div>
 			<div class="text">
@@ -41,7 +41,15 @@
 		},
 		methods: {
 			// 应用启动
-			showView(){
+			showView(event){
+				// 获取图标的物理位置，设置窗口打开动画的起点
+				const iconEl = event.currentTarget;
+				const rect = iconEl.getBoundingClientRect();
+				const originX = rect.left + rect.width / 2;
+				const originY = rect.top + rect.height / 2;
+				document.documentElement.style.setProperty('--anim-origin-x', originX + 'px');
+				document.documentElement.style.setProperty('--anim-origin-y', originY + 'px');
+
 				this.componentBool=true;
 				if (this.isTaskList(this.menu)) {
 					this.$store.commit("setTrueVB",this.menu.code);

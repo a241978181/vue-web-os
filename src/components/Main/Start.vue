@@ -4,7 +4,7 @@
 			<!-- 列表区 -->
 			<div class="taskBar">
 				<div class="taskItem" v-for="task in permissionsList" :key="task.id">
-					<a @click="open(task)">
+					<a @click="open(task, $event)">
 						<i :class="task.icon"></i>
 						<span>{{ $i18n.locale === 'en' ? (task.permissionsnameen || task.permissionsname) : task.permissionsname }}</span>
 					</a>
@@ -58,7 +58,13 @@ import {getPermissionsList} from '@/utils/permissions.js'
 				this.$router.push("/signin");
 			},
 			//打开某一任务
-			open(menu) {
+			open(menu, event) {
+				// 设置动画原点为开始菜单项的位置
+				if (event && event.currentTarget) {
+					const rect = event.currentTarget.getBoundingClientRect();
+					document.documentElement.style.setProperty('--anim-origin-x', (rect.left + rect.width / 2) + 'px');
+					document.documentElement.style.setProperty('--anim-origin-y', (rect.top + rect.height / 2) + 'px');
+				}
 				if (this.isTaskList(menu)) {
 					this.$store.commit("setTrueVB",menu.code);
 					this.$store.commit("setFalseSIVB");

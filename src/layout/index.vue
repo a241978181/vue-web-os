@@ -174,6 +174,11 @@
 			// 路由方法分发
 			handleContextMenuCommand(fnHandler) {
 				this.menuVisible = false;
+				// 设置动画原点为右键菜单的位置
+				if (this.contextMenuData.axis.x != null) {
+					document.documentElement.style.setProperty('--anim-origin-x', this.contextMenuData.axis.x + 'px');
+					document.documentElement.style.setProperty('--anim-origin-y', this.contextMenuData.axis.y + 'px');
+				}
 				if (typeof this[fnHandler] === 'function') {
 					this[fnHandler]();
 				}

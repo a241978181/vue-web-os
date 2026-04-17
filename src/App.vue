@@ -169,4 +169,81 @@ body {
 .el-button--primary:hover {
   box-shadow: 0 8px 25px -8px #7367f0;
 }
+
+/* ============================================================
+   窗口 Zoom In / Zoom Out 过渡动画
+   覆盖 Element UI 默认的 dialog-fade 过渡
+   ============================================================ */
+
+/* 打开动画：从图标位置 Zoom In 展开 */
+.dialog-fade-enter-active {
+  animation: none !important;
+  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.dialog-fade-enter-active .el-dialog {
+  animation: os-window-zoom-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: var(--anim-origin-x, 50%) var(--anim-origin-y, 50%);
+}
+
+/* 关闭动画：Zoom Out 缩小消失 */
+.dialog-fade-leave-active {
+  animation: none !important;
+  transition: opacity 0.32s cubic-bezier(0.4, 0, 1, 1) !important;
+}
+.dialog-fade-leave-active .el-dialog {
+  animation: os-window-zoom-out 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+  transform-origin: var(--anim-origin-x, 50%) var(--anim-origin-y, 100%);
+}
+
+/* 入场起始状态 */
+.dialog-fade-enter {
+  opacity: 0 !important;
+}
+.dialog-fade-enter-to {
+  opacity: 1 !important;
+}
+
+/* 离场结束状态 */
+.dialog-fade-leave {
+  opacity: 1 !important;
+}
+.dialog-fade-leave-to {
+  opacity: 0 !important;
+}
+
+/* Zoom In 关键帧：从小到大，伴随模糊→清晰 */
+@keyframes os-window-zoom-in {
+  0% {
+    transform: scale(0.15);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Zoom Out 关键帧：从大到小，伴随清晰→模糊 */
+@keyframes os-window-zoom-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+  60% {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(0.12);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
 </style>
