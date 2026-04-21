@@ -215,7 +215,19 @@ if (debug) {
         "image": null,
         "sort": 4,
         "hidden":false
-      },]
+      },{
+        "id": 16,
+        "permissionsname": "动画特效",
+        "code": "docAnimation",
+        "permissionsnameen": "Animation",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "icon": "el-icon-magic-stick",
+        "image": null,
+        "sort": 5,
+        "hidden":false
+      }]
     }
   });
 

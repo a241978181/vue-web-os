@@ -8,7 +8,9 @@
 				<span><b>{{ $i18n.locale === 'en' ? (menu.permissionsnameen || menu.permissionsname) : menu.permissionsname }}</b></span>
 			</div>
 		</div>
-		<component :is="allComps[menu.code]" :menu="menu"></component>
+		<keep-alive :include="cachedAppNames">
+			<component v-if="componentAlive" :is="allComps[menu.code]" :menu="menu"></component>
+		</keep-alive>
 	</div>
 </template>
 
@@ -26,6 +28,14 @@
 					return this.$store.state.control.taskList;
 				},
 			},
+			// 从 Vuex 获取缓存列表，用于 keep-alive 的 include
+			cachedAppNames() {
+				return this.$store.getters.cachedAppNames;
+			},
+			// 判断当前应用是否在任务栏中
+			isInTaskList() {
+				return this.cachedAppNames.indexOf(this.menu.code) !== -1;
+			},
 			// 是否深色模式
 			isDarkTheme() {
 				return this.$store.state.settings.isDarkTheme;
@@ -37,6 +47,38 @@
 				allComps: allComps,
 				//是否展示该页面对应组件
 				componentBool:false,
+				// 控制组件生命周期（解耦 v-if 与 taskList，保证动画）
+				componentAlive: false,
+				// 延迟销毁定时器
+				destroyTimer: null,
+			}
+		},
+		watch: {
+			// 监听任务栏状态变化，控制组件创建/销毁时机以保证动画
+			isInTaskList(val) {
+				if (val) {
+					// 打开应用：清除可能存在的销毁定时器
+					if (this.destroyTimer) {
+						clearTimeout(this.destroyTimer);
+						this.destroyTimer = null;
+					}
+					// 先创建组件（此时 dialog visible=false）
+					this.componentAlive = true;
+					// 如果 VB 已经被提前设置为 true，需要重置以触发 dialog 入场动画
+					var code = this.menu.code;
+					if (this.$store.state.control[code]) {
+						this.$store.commit("setFalseVB", code);
+						this.$nextTick(function() {
+							this.$store.commit("setTrueVB", code);
+						});
+					}
+				} else {
+					// 关闭应用：延迟销毁组件，等 dialog 退场动画播完（动画时长 320ms）
+					this.destroyTimer = setTimeout(function() {
+						this.componentAlive = false;
+						this.destroyTimer = null;
+					}.bind(this), 350);
+				}
 			}
 		},
 		methods: {
@@ -66,6 +108,11 @@
 					}
 				}
 				return false;
+			}
+		},
+		beforeDestroy() {
+			if (this.destroyTimer) {
+				clearTimeout(this.destroyTimer);
 			}
 		}
 	}

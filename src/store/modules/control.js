@@ -15,7 +15,10 @@ const control = {
 		taskList: [],
 	},
 	getters: {
-
+		// 当前在任务栏中的应用 code 列表，用于 keep-alive 的 include
+		cachedAppNames(state) {
+			return state.taskList.map(t => t.code);
+		}
 	},
 	mutations: {
 
