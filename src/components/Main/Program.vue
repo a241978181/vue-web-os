@@ -1,5 +1,5 @@
 <template>
-	<div class="ProgramButton" :class="{'theme-dark-btn': isDarkTheme}">
+	<div class="ProgramButton" :class="[{'theme-dark-btn': isDarkTheme}, 'icon-size-' + iconSize]">
 		<div class="zhong">
 			<div class="glass-icon-btn" @click="showView($event)">
 				<i :class="menu.icon"></i>
@@ -39,6 +39,10 @@
 			// 是否深色模式
 			isDarkTheme() {
 				return this.$store.state.settings.isDarkTheme;
+			},
+			// 图标大小
+			iconSize() {
+				return this.$store.state.settings.desktopIconSize;
 			}
 		},
 		data() {
@@ -73,11 +77,11 @@
 						});
 					}
 				} else {
-					// 关闭应用：延迟销毁组件，等 dialog 退场动画播完（动画时长 320ms）
+					// 关闭应用：延迟销毁组件，等 dialog 退场动画播完（动画时长 270ms）
 					this.destroyTimer = setTimeout(function() {
 						this.componentAlive = false;
 						this.destroyTimer = null;
-					}.bind(this), 350);
+					}.bind(this), 300);
 				}
 			}
 		},
@@ -127,6 +131,7 @@
 		align-items: center;
 		justify-content: center;
 		margin: 5px;
+		transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
 	}
 
 	.zhong {
@@ -137,6 +142,7 @@
 		width: 100%;
 		padding: 0 4px;
 		box-sizing: border-box;
+		transition: height 0.3s ease;
 	}
 
 	.glass-icon-btn {
@@ -228,5 +234,53 @@
 		color: #ffffff;
 		text-shadow: 0 1px 6px rgba(255,255,255,0.4), 0 0 4px rgba(0,0,0,0.8);
 		transform: scale(1.05);
+	}
+
+	/* ============================
+	   图标尺寸切换 - 中等图标
+	   ============================ */
+	.icon-size-medium.ProgramButton {
+		width: 5.5rem;
+		height: 6rem;
+		margin: 4px;
+	}
+	.icon-size-medium .zhong {
+		height: 5.5rem;
+	}
+	.icon-size-medium .glass-icon-btn {
+		width: 2.8rem;
+		height: 2.8rem;
+		border-radius: 10px;
+		font-size: 1.6rem;
+	}
+	.icon-size-medium .text {
+		margin-top: 0.35rem;
+	}
+	.icon-size-medium .text span {
+		font-size: 0.7rem;
+	}
+
+	/* ============================
+	   图标尺寸切换 - 小图标
+	   ============================ */
+	.icon-size-small.ProgramButton {
+		width: 4.2rem;
+		height: 4.8rem;
+		margin: 3px;
+	}
+	.icon-size-small .zhong {
+		height: 4.3rem;
+	}
+	.icon-size-small .glass-icon-btn {
+		width: 2rem;
+		height: 2rem;
+		border-radius: 8px;
+		font-size: 1.2rem;
+	}
+	.icon-size-small .text {
+		margin-top: 0.25rem;
+	}
+	.icon-size-small .text span {
+		font-size: 0.62rem;
 	}
 </style>

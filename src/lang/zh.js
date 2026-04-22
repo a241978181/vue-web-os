@@ -20,7 +20,11 @@ export const m = {
     wallpaper: '\u58c1\u7eb8',
     settings: '\u8bbe\u7f6e',
     fullscreen: '\u5168\u5c4f',
-    exitFullscreen: '\u53d6\u6d88\u5168\u5c4f'
+    exitFullscreen: '\u53d6\u6d88\u5168\u5c4f',
+    view: '\u67e5\u770b',
+    largeIcons: '\u5927\u56fe\u6807',
+    mediumIcons: '\u4e2d\u7b49\u56fe\u6807',
+    smallIcons: '\u5c0f\u56fe\u6807'
   },
   settings: {
     title: '\u7cfb\u7edf\u8bbe\u7f6e',

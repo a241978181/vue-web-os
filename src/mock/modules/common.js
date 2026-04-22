@@ -227,6 +227,30 @@ if (debug) {
         "image": null,
         "sort": 5,
         "hidden":false
+      },{
+        "id": 17,
+        "permissionsname": "右键菜单",
+        "code": "docContextMenu",
+        "permissionsnameen": "Context Menu",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "icon": "el-icon-mouse",
+        "image": null,
+        "sort": 6,
+        "hidden":false
+      },{
+        "id": 18,
+        "permissionsname": "菜单优化",
+        "code": "docTabScroll",
+        "permissionsnameen": "Tab Scroll",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "icon": "el-icon-s-operation",
+        "image": null,
+        "sort": 7,
+        "hidden":false
       }]
     }
   });

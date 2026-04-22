@@ -16,16 +16,16 @@
 					<p>支持窗口最大化切换。全屏时，高度会自动减去底部任务栏（calc(100% - 2.5rem)），保证布局完美融合。</p>
 				</el-card>
 			</el-col>
-			<el-col :span="6">
+			<el-col :span="8">
 				<el-card shadow="hover">
 					<div slot="header"><i class="el-icon-mouse"></i> <b>右键快捷菜单</b></div>
-					<p>桌面空白处点击右键，提供「更换壁纸」、「系统设置」等快捷入口。这是系统的灵魂点之一。</p>
+					<p>桌面空白处点击右键，可弹出仿 Windows 风格的上下文菜单。包含查看图标大小、刷新、壁纸、系统设置等常用操作入口。</p>
 				</el-card>
 			</el-col>
-			<el-col :span="6">
+			<el-col :span="8">
 				<el-card shadow="hover">
-					<div slot="header"><i class="el-icon-menu"></i> <b>开始菜单</b></div>
-					<p>仿 Windows 开始菜单逻辑，所有 type:1 的应用会自动聚合在此，且具备响应式搜索与分类。</p>
+					<div slot="header"><i class="el-icon-s-operation"></i> <b>智能菜单栏</b></div>
+					<p>应用窗口内的菜单标签栏支持溢出滚动和智能箭头导航，配合按需渲染，确保大量菜单页面下依然流畅高效。</p>
 				</el-card>
 			</el-col>
 		</el-row>

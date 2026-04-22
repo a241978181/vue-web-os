@@ -30,6 +30,8 @@ const settings = {
     isDarkTheme: savedSettings.isDarkTheme !== undefined
       ? savedSettings.isDarkTheme
       : false,
+    // 桌面图标大小（large / medium / small，默认 large）
+    desktopIconSize: savedSettings.desktopIconSize || 'large',
   },
   mutations: {
     SET_RESTRICT_WINDOW_BOUNDS(state, value) {
@@ -44,6 +46,13 @@ const settings = {
       // 持久化
       const all = loadSettings()
       all.isDarkTheme = value
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
+    },
+    SET_DESKTOP_ICON_SIZE(state, value) {
+      state.desktopIconSize = value
+      // 持久化
+      const all = loadSettings()
+      all.desktopIconSize = value
       localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
     },
   }

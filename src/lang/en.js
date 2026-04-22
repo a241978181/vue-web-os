@@ -20,7 +20,11 @@ export const m = {
     wallpaper: 'Wallpaper',
     settings: 'Settings',
     fullscreen: 'Fullscreen',
-    exitFullscreen: 'Exit Fullscreen'
+    exitFullscreen: 'Exit Fullscreen',
+    view: 'View',
+    largeIcons: 'Large Icons',
+    mediumIcons: 'Medium Icons',
+    smallIcons: 'Small Icons'
   },
   settings: {
     title: 'System Settings',

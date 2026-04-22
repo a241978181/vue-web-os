@@ -2,6 +2,29 @@
 	<div class="big" id="big" :class="{'theme-dark': isDarkTheme}" @contextmenu="showMenu">
 		<div v-show="menuVisible" class="custom-context-menu" :style="{left: contextMenuData.axis.x + 'px', top: contextMenuData.axis.y + 'px'}">
 			<ul>
+				<!-- 查看子菜单 -->
+				<li class="has-submenu" @mouseenter="viewSubmenuVisible = true" @mouseleave="viewSubmenuVisible = false">
+					<i class="el-icon-menu"></i>
+					<span>{{ $t('m.layout.view') }}</span>
+					<i class="submenu-arrow el-icon-arrow-right"></i>
+					<div v-show="viewSubmenuVisible" class="context-submenu">
+						<ul>
+							<li @click.stop="setIconSize('large')" :class="{'is-active': currentIconSize === 'large'}">
+								<i class="check-icon" :class="currentIconSize === 'large' ? 'el-icon-check' : ''"></i>
+								<span>{{ $t('m.layout.largeIcons') }}</span>
+							</li>
+							<li @click.stop="setIconSize('medium')" :class="{'is-active': currentIconSize === 'medium'}">
+								<i class="check-icon" :class="currentIconSize === 'medium' ? 'el-icon-check' : ''"></i>
+								<span>{{ $t('m.layout.mediumIcons') }}</span>
+							</li>
+							<li @click.stop="setIconSize('small')" :class="{'is-active': currentIconSize === 'small'}">
+								<i class="check-icon" :class="currentIconSize === 'small' ? 'el-icon-check' : ''"></i>
+								<span>{{ $t('m.layout.smallIcons') }}</span>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="menu-divider"></li>
 				<li v-for="item in contextMenuData.menulists" :key="item.fnHandler" @click.stop="handleContextMenuCommand(item.fnHandler)">
 					<i :class="item.icoName"></i>
 					<span>{{ item.btnName }}</span>
@@ -63,6 +86,7 @@
 		data() {
 			return {
 				menuVisible: false,
+				viewSubmenuVisible: false,
 				// contextmenu data (菜单数据)
 				contextMenuData: {
 					menuName: 'demo',
@@ -75,6 +99,10 @@
 			// 是否深色模式
 			isDarkTheme() {
 				return this.$store.state.settings.isDarkTheme;
+			},
+			// 当前图标大小
+			currentIconSize() {
+				return this.$store.state.settings.desktopIconSize;
 			},
 			//判断是否展示该面板
 			startInformationViewBool: {
@@ -105,13 +133,13 @@
 				
 				// 实时更新支持国际化
 				this.contextMenuData.menulists = [{
-					fnHandler: 'showUser',
-					icoName: 'el-icon-user-solid',
-					btnName: this.$t('m.layout.userInfo')
-				}, {
 					fnHandler: 'shuaXin',
 					icoName: 'el-icon-refresh',
 					btnName: this.$t('m.layout.refresh')
+				}, {
+					fnHandler: 'showUser',
+					icoName: 'el-icon-user-solid',
+					btnName: this.$t('m.layout.userInfo')
 				}, {
 					fnHandler: 'refresh',
 					icoName: 'el-icon-view',
@@ -220,7 +248,16 @@
 			},
 			// 关闭右键桌面弹窗
 			closeDesktopMenu() {
-				if(this.menuVisible) this.menuVisible = false;
+				if(this.menuVisible) {
+					this.menuVisible = false;
+					this.viewSubmenuVisible = false;
+				}
+			},
+			// 设置图标大小
+			setIconSize(size) {
+				this.$store.commit('settings/SET_DESKTOP_ICON_SIZE', size);
+				this.menuVisible = false;
+				this.viewSubmenuVisible = false;
 			},
       //修改桌面背景
       updateImae(){
@@ -342,5 +379,95 @@
 	}
 	.theme-dark .custom-context-menu li:hover i {
 		color: #7367f0;
+	}
+
+	/* 菜单分割线 */
+	.menu-divider {
+		height: 1px !important;
+		padding: 0 !important;
+		margin: 4px 10px !important;
+		background: rgba(0, 0, 0, 0.08) !important;
+		cursor: default !important;
+		pointer-events: none;
+	}
+	.theme-dark .menu-divider {
+		background: rgba(255, 255, 255, 0.1) !important;
+	}
+
+	/* 子菜单父级 */
+	.has-submenu {
+		position: relative;
+	}
+	.has-submenu .submenu-arrow {
+		margin-left: auto;
+		margin-right: 0;
+		font-size: 12px;
+		width: auto;
+	}
+
+	/* 子菜单面板 */
+	.context-submenu {
+		position: absolute;
+		left: 100%;
+		top: -8px;
+		margin-left: 2px;
+		background: rgba(255, 255, 255, 0.85);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: 10px;
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+		padding: 8px 0;
+		min-width: 150px;
+		animation: menuFadeIn 0.15s ease;
+	}
+	.theme-dark .context-submenu {
+		background: rgba(45, 45, 55, 0.85);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.context-submenu ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.context-submenu li {
+		padding: 8px 16px 8px 10px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.2s;
+		color: #333;
+		font-size: 13px;
+		font-weight: 500;
+	}
+	.context-submenu li:hover {
+		background: rgba(115, 103, 240, 0.1);
+		color: #7367f0;
+	}
+	.theme-dark .context-submenu li {
+		color: #e4e7ed;
+	}
+	.theme-dark .context-submenu li:hover {
+		background: rgba(115, 103, 240, 0.2);
+		color: #7367f0;
+	}
+
+	/* 勾选图标占位 */
+	.context-submenu .check-icon {
+		width: 18px;
+		min-width: 18px;
+		font-size: 13px;
+		margin-right: 6px;
+		text-align: center;
+		color: #7367f0;
+		transition: color 0.2s;
+	}
+	.context-submenu li.is-active {
+		color: #7367f0;
+		font-weight: 600;
+	}
+	.theme-dark .context-submenu li.is-active {
+		color: #8b83f5;
 	}
 </style>

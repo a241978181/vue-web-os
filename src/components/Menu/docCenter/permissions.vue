@@ -39,12 +39,6 @@
 		<el-row :gutter="20" style="margin-top: 20px;">
 			<el-col :span="12">
 				<el-card shadow="hover">
-					<div slot="header"><i class="el-icon-mouse"></i> <b>右键快捷菜单</b></div>
-					<p>桌面空白处点击右键，可开启「更换壁纸」、「系统设置」等。<b>鼠标右键</b>是 Web OS 交互的灵魂。</p>
-				</el-card>
-			</el-col>
-			<el-col :span="12">
-				<el-card shadow="hover">
 					<div slot="header"><i class="el-icon-menu"></i> <b>开始菜单</b></div>
 					<p>左下角 Windows 图标呼出。所有 type:1 的应用都会自动按照分类排列在开始菜单中。</p>
 				</el-card>

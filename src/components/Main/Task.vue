@@ -19,8 +19,8 @@
 		</div>
 
 		<div class="task-main">
-			<div class="taskItem" v-for="task in taskList" :key="task.id">
-				<a :data-app-code="task.code" @click="open(task, $event)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
+			<div class="taskItem" v-for="task in taskList" :key="task.id" @click="open(task, $event)" @contextmenu.prevent.stop="showTaskMenu($event, task)">
+				<a :data-app-code="task.code">
 					<i class="icon-btn" :class="task.icon"></i>
 					<span class="task-text"><b>{{ getAppName(task) }}</b></span>
 				</a>
@@ -354,6 +354,8 @@ export default {
 	overflow: hidden;
 	position: relative;
 	top: -1px;
+	gap: 4px;
+	padding-left: 4px;
 }
 
 .right-panel {
@@ -402,7 +404,6 @@ export default {
 	height: 2.2rem;
 	display: flex;
 	align-items: center;
-	margin-left: 4px;
 	transition: all 0.2s;
 	border-radius: 6px;
 	cursor: pointer;
@@ -413,8 +414,10 @@ export default {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	height: 100%;
 	text-decoration: none;
 	overflow: hidden;
+	pointer-events: none;
 }
 
 .taskItem:hover {

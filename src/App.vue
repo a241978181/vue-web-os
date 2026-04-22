@@ -178,20 +178,20 @@ body {
 /* 打开动画：从图标位置 Zoom In 展开 */
 .dialog-fade-enter-active {
   animation: none !important;
-  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.36s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 .dialog-fade-enter-active .el-dialog {
-  animation: os-window-zoom-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: os-window-zoom-in 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
   transform-origin: var(--anim-origin-x, 50%) var(--anim-origin-y, 50%);
 }
 
 /* 关闭动画：Zoom Out 缩小消失 */
 .dialog-fade-leave-active {
   animation: none !important;
-  transition: opacity 0.32s cubic-bezier(0.4, 0, 1, 1) !important;
+  transition: opacity 0.27s cubic-bezier(0.4, 0, 1, 1) !important;
 }
 .dialog-fade-leave-active .el-dialog {
-  animation: os-window-zoom-out 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+  animation: os-window-zoom-out 0.27s cubic-bezier(0.4, 0, 1, 1) both;
   transform-origin: var(--anim-origin-x, 50%) var(--anim-origin-y, 100%);
 }
 
