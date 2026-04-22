@@ -137,8 +137,15 @@ export default {
       if (self.$refs.scrollContainer) {
         self.$refs.scrollContainer.addEventListener('scroll', self.checkArrows);
       }
+      // 使用 ResizeObserver 监听容器自身尺寸变化（窗口拖拽缩放、浏览器缩放等）
+      if (typeof ResizeObserver !== 'undefined' && self.$refs.scrollContainer) {
+        self._resizeObserver = new ResizeObserver(function() {
+          self.checkArrows();
+        });
+        self._resizeObserver.observe(self.$refs.scrollContainer);
+      }
     });
-    // 监听窗口尺寸变化
+    // 兜底：监听浏览器窗口尺寸变化
     this._resizeHandler = function() {
       self.checkArrows();
     };
@@ -153,6 +160,10 @@ export default {
     if (this.$refs.scrollContainer) {
       this.$refs.scrollContainer.removeEventListener('scroll', this.checkArrows);
     }
+    if (this._resizeObserver) {
+      this._resizeObserver.disconnect();
+      this._resizeObserver = null;
+    }
     if (this._resizeHandler) {
       window.removeEventListener('resize', this._resizeHandler);
     }
@@ -162,7 +173,9 @@ export default {
 
 <style scoped>
 .BTL {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -173,8 +186,9 @@ export default {
 .scroll-tabs-wrapper {
   display: flex;
   align-items: center;
-  max-width: 100%;
+  width: 100%;
   min-width: 0;
+  overflow: hidden;
   position: relative;
 }
 

@@ -36,7 +36,9 @@ export const m = {
     darkThemeDesc: 'Enable dark theme for the system',
     languageSetting: 'Language',
     switchLanguage: 'Interface Language',
-    switchLanguageDesc: 'Choose your preferred display language'
+    switchLanguageDesc: 'Choose your preferred display language',
+    enableWindowResize: 'Window Resize',
+    enableWindowResizeDesc: 'When enabled, drag window edges to resize'
   },
   notes: {
     title: 'Personal Info',

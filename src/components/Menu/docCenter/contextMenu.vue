@@ -8,7 +8,7 @@
 			<el-col :span="8">
 				<el-card shadow="hover" class="func-card">
 					<div slot="header"><i class="el-icon-menu"></i> <b>查看</b></div>
-					<p>支持切换桌面图标大小（大图标、中等图标、小图标），二级菜单联动。当前选中的尺寸会以 <strong>✓ 对勾</strong> 标记高亮。</p>
+					<p>支持切换桌面图标大小（大图标、中等图标、小图标），并可开关<strong>窗口拖拽缩放</strong>功能。当前选中的选项会以 <strong>✓ 对勾</strong> 标记高亮。</p>
 				</el-card>
 			</el-col>
 			<el-col :span="8">

@@ -13,6 +13,8 @@ import VueContextMenu from 'vue-contextmenu'
 Vue.use(VueContextMenu)
 // 注释view-design，引入dialogDrag
 import '@/utils/dialogDrag.js';
+// 引入窗口拖拽缩放指令
+import '@/utils/dialogResize.js';
 // 引入全局工具函数
 import * as utils from "./utils";
 // 引入全局过滤器

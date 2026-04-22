@@ -19,8 +19,19 @@
 							active-color="#7367f0"
 							inactive-color="#dcdfe6">
 						</el-switch>
-					</div>
 				</div>
+				<div class="settings-item">
+					<div class="settings-item-info">
+						<span class="settings-item-label">{{ $t('m.settings.enableWindowResize') }}</span>
+						<span class="settings-item-desc">{{ $t('m.settings.enableWindowResizeDesc') }}</span>
+					</div>
+					<el-switch
+						v-model="enableWindowResize"
+						active-color="#7367f0"
+						inactive-color="#dcdfe6">
+					</el-switch>
+				</div>
+			</div>
 				<!-- 外观与主题 -->
 				<div class="settings-group">
 					<div class="settings-group-title">
@@ -81,6 +92,15 @@
 				},
 				set(v) {
 					this.$store.commit("settings/SET_RESTRICT_WINDOW_BOUNDS", v);
+				}
+			},
+			// 是否启用窗口缩放
+			enableWindowResize: {
+				get() {
+					return this.$store.state.settings.enableWindowResize;
+				},
+				set(v) {
+					this.$store.commit("settings/SET_ENABLE_WINDOW_RESIZE", v);
 				}
 			},
 			// 是否深色模式

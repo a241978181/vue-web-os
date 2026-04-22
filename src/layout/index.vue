@@ -21,6 +21,11 @@
 								<i class="check-icon" :class="currentIconSize === 'small' ? 'el-icon-check' : ''"></i>
 								<span>{{ $t('m.layout.smallIcons') }}</span>
 							</li>
+							<li class="menu-divider"></li>
+							<li @click.stop="toggleWindowResize" :class="{'is-active': enableWindowResize}">
+								<i class="check-icon" :class="enableWindowResize ? 'el-icon-check' : ''"></i>
+								<span>{{ $t('m.settings.enableWindowResize') }}</span>
+							</li>
 						</ul>
 					</div>
 				</li>
@@ -103,6 +108,10 @@
 			// 当前图标大小
 			currentIconSize() {
 				return this.$store.state.settings.desktopIconSize;
+			},
+			// 是否启用窗口缩放
+			enableWindowResize() {
+				return this.$store.state.settings.enableWindowResize;
 			},
 			//判断是否展示该面板
 			startInformationViewBool: {
@@ -258,6 +267,10 @@
 				this.$store.commit('settings/SET_DESKTOP_ICON_SIZE', size);
 				this.menuVisible = false;
 				this.viewSubmenuVisible = false;
+			},
+			// 切换窗口缩放开关
+			toggleWindowResize() {
+				this.$store.commit('settings/SET_ENABLE_WINDOW_RESIZE', !this.enableWindowResize);
 			},
       //修改桌面背景
       updateImae(){

@@ -36,7 +36,9 @@ export const m = {
     darkThemeDesc: '\u5f00\u542f\u5168\u5c40\u6df1\u8272\u9ad8\u65af\u6a21\u7cca\u98ce\u683c',
     languageSetting: '\u8bed\u8a00\u8bbe\u7f6e',
     switchLanguage: '\u754c\u9762\u8bed\u8a00',
-    switchLanguageDesc: '\u9009\u62e9\u60a8\u559c\u6b22\u7684\u663e\u793a\u8bed\u8a00'
+    switchLanguageDesc: '\u9009\u62e9\u60a8\u559c\u6b22\u7684\u663e\u793a\u8bed\u8a00',
+    enableWindowResize: '\u7a97\u53e3\u62d6\u62fd\u7f29\u653e',
+    enableWindowResizeDesc: '\u5f00\u542f\u540e\uff0c\u53ef\u62d6\u62fd\u7a97\u53e3\u8fb9\u7f18\u8c03\u6574\u5927\u5c0f'
   },
   notes: {
     title: '\u4e2a\u4eba\u4fe1\u606f',

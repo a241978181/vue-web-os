@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-dialog width="1000px" top="5vh" id="modalView" custom-class="os-dialog" :fullscreen="fullscreen" :visible.sync="isViewBool" :modal="false" :close-on-click-modal="false" v-dialogDrag="draggable" :show-close="false">
+		<el-dialog :width="customWidth" top="5vh" id="modalView" custom-class="os-dialog" :fullscreen="fullscreen" :visible.sync="isViewBool" :modal="false" :close-on-click-modal="false" v-dialogDrag="draggable" v-dialogResize="resizeOptions" :show-close="false">
 			<!-- 头-->
 			<FuctionHeader slot="title" @mini="mini" @big="big" @small="small" @closeView="closeView"
 						   :fullscreen="fullscreen" :menu="menu"></FuctionHeader>
@@ -46,12 +46,28 @@
 				fullscreen: false,
 				draggable: true,
 				indexButton: null,
-				dataItem:null
+				dataItem:null,
+				//自定义窗口宽度
+				customWidth: '1000px',
+				//自定义窗口高度
+				customHeight: null
 			}
 		},
 		computed: {
 			permissionsList() {
 				return getPermissionsList(2, this.menu.id);
+			},
+			// 是否启用窗口缩放
+			enableWindowResize() {
+				return this.$store.state.settings.enableWindowResize;
+			},
+			// 缩放指令选项
+			resizeOptions() {
+				return {
+					minWidth: 600,
+					minHeight: 400,
+					appCode: this.menu.code
+				};
 			},
 			isViewBool: {
 				get() {
@@ -109,6 +125,11 @@
 			small() {
 				this.fullscreen = false
 				this.draggable = true
+				// 恢复记忆的窗口尺寸
+				var saved = this.$store.state.settings.windowSizes[this.menu.code];
+				if (saved) {
+					this.customWidth = saved.width + 'px';
+				}
 			},
 			big() {
 				this.fullscreen = true

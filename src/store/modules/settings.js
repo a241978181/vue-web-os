@@ -32,6 +32,12 @@ const settings = {
       : false,
     // 桌面图标大小（large / medium / small，默认 large）
     desktopIconSize: savedSettings.desktopIconSize || 'large',
+    // 是否开启窗口拖拽缩放（默认开启）
+    enableWindowResize: savedSettings.enableWindowResize !== undefined
+      ? savedSettings.enableWindowResize
+      : true,
+    // 窗口尺寸记忆，以 appCode 为 key 存储 { width, height }
+    windowSizes: savedSettings.windowSizes || {},
   },
   mutations: {
     SET_RESTRICT_WINDOW_BOUNDS(state, value) {
@@ -53,6 +59,20 @@ const settings = {
       // 持久化
       const all = loadSettings()
       all.desktopIconSize = value
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
+    },
+    SET_ENABLE_WINDOW_RESIZE(state, value) {
+      state.enableWindowResize = value
+      // 持久化
+      const all = loadSettings()
+      all.enableWindowResize = value
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
+    },
+    SET_WINDOW_SIZE(state, { appCode, width, height }) {
+      state.windowSizes = { ...state.windowSizes, [appCode]: { width, height } }
+      // 持久化
+      const all = loadSettings()
+      all.windowSizes = state.windowSizes
       localStorage.setItem(STORAGE_KEY, JSON.stringify(all))
     },
   }

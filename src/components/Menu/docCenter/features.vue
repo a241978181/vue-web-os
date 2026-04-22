@@ -49,6 +49,14 @@
 				</el-card>
 			</el-col>
 		</el-row>
+		<el-row :gutter="20" style="margin-top: 15px;">
+			<el-col :span="8">
+				<el-card shadow="hover">
+					<div slot="header"><i class="el-icon-c-scale-to-original"></i> <b>窗口拖拽缩放</b></div>
+					<p>主应用窗口支持拖拽边缘自由调整大小，提供 <strong>8 个方向</strong>（上下左右 + 四角）的缩放手柄。并支持<strong>尺寸记忆</strong>功能，下次打开窗口时自动恢复上次自定义的大小。可通过桌面右键菜单或系统设置随时开关。</p>
+				</el-card>
+			</el-col>
+		</el-row>
 	</div>
 </template>
 
