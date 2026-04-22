@@ -75,8 +75,11 @@ body {
   padding: 15px 20px !important;
 }
 
-/* 全屏弹窗不覆盖底部任务栏（2.5rem） */
+/* 全屏弹窗不覆盖底部任务栏（2.5rem），并免疫内联宽高/坐标干扰 */
 .el-dialog.is-fullscreen {
+  width: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
   height: calc(100% - 2.5rem) !important;
   max-height: none !important;
 }

@@ -162,21 +162,29 @@ Vue.directive('dialogResize', {
       updateHandlesVisibility(el)
 
       // 使用 MutationObserver 监听 fullscreen class 变化
-      var observer = new MutationObserver(function() {
+      var observer = new MutationObserver(function(mutations) {
+        var wasFullscreen = false;
+        mutations.forEach(function(m) {
+          if (m.attributeName === 'class' && m.oldValue && m.oldValue.indexOf('is-fullscreen') !== -1) {
+             wasFullscreen = true;
+          }
+        });
+
+        var isFullscreen = dragDom.classList.contains('is-fullscreen')
+        
+        // 如果从全屏切换回非全屏（点击还原按钮），恢复记忆尺寸
+        if (wasFullscreen && !isFullscreen && options.appCode) {
+           var saved = store.state.settings.windowSizes[options.appCode]
+           if (saved) {
+             dragDom.style.width = saved.width + 'px'
+             dragDom.style.height = saved.height + 'px'
+           }
+        }
+        
         updateHandlesVisibility(el)
       })
-      observer.observe(dragDom, { attributes: true, attributeFilter: ['class'] })
+      observer.observe(dragDom, { attributes: true, attributeFilter: ['class'], attributeOldValue: true })
       el.__resizeObserver__ = observer
-
-      // 恢复记忆的窗口尺寸
-      if (options.appCode) {
-        var savedSizes = store.state.settings.windowSizes
-        var saved = savedSizes[options.appCode]
-        if (saved) {
-          dragDom.style.width = saved.width + 'px'
-          dragDom.style.height = saved.height + 'px'
-        }
-      }
     })
   },
   update: function(el, binding) {

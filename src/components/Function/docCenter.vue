@@ -43,8 +43,8 @@
 			return {
 				allComps: allComps,
 				permissionsItem: '',
-				fullscreen: false,
-				draggable: true,
+				fullscreen: true,
+				draggable: false,
 				indexButton: null,
 				dataItem:null,
 				//自定义窗口宽度
