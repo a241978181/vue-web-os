@@ -24,7 +24,8 @@ export const m = {
     view: '\u67e5\u770b',
     largeIcons: '\u5927\u56fe\u6807',
     mediumIcons: '\u4e2d\u7b49\u56fe\u6807',
-    smallIcons: '\u5c0f\u56fe\u6807'
+    smallIcons: '\u5c0f\u56fe\u6807',
+    simulateNotification: '\u6a21\u62df\u65b0\u901a\u77e5'
   },
   settings: {
     title: '\u7cfb\u7edf\u8bbe\u7f6e',
@@ -57,5 +58,12 @@ export const m = {
     searchTitle: '\u641c\u7d22\u5e94\u7528',
     searchPlaceholder: '\u641c\u7d22\u7cfb\u7edf\u5185\u7f6e\u5e94\u7528',
     searchEmpty: '\u672a\u627e\u5230\u5339\u914d\u7684\u5e94\u7528'
+  },
+  notification: {
+    title: '\u901a\u77e5\u4e2d\u5fc3',
+    markAllRead: '\u5168\u90e8\u5df2\u8bfb',
+    clearAll: '\u6e05\u7a7a\u5168\u90e8',
+    empty: '\u6682\u65e0\u901a\u77e5',
+    delete: '\u5220\u9664'
   }
 }

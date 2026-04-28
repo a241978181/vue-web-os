@@ -29,6 +29,12 @@
 
 		<div class="right-panel">
 			<div class="indicators">
+				<el-tooltip :content="$t('m.notification.title')" placement="top-end">
+					<div class="notify-bell-wrap" @click.stop="toggleNotificationCenter">
+						<el-button class="icon-btn xs-icon" size="large" type="text" icon="fa fa-bell"></el-button>
+						<span v-if="notifyUnreadCount > 0" class="notify-badge">{{ notifyUnreadCount > 99 ? '99+' : notifyUnreadCount }}</span>
+					</div>
+				</el-tooltip>
 				<el-tooltip :content="$t('m.taskbar.batteryRest') + electricity.batteryLevel + '%'" placement="top-end">
 					<el-button class="icon-btn xs-icon" size="large" type="text" :icon="electricity.batteryCharging ? 'fa fa-plug' : electricity.batteryLevel <= 30 ? 'fa fa-battery-empty' : 'fa fa-battery-full'"></el-button>
 				</el-tooltip>
@@ -42,6 +48,7 @@
 			</div>
 			<div @click="refresh()" class="show-desktop-btn"></div>
 		</div>
+		<NotificationCenter :visible.sync="notificationVisible" />
 
 		<el-dialog
 			top="18vh"
@@ -89,15 +96,18 @@
 
 <script>
 import { getPermissionsList } from '@/utils/permissions.js'
+import NotificationCenter from '@/components/component/NotificationCenter'
 
 export default {
 	name: "Task",
+	components: { NotificationCenter },
 	data() {
 		return {
 			menuVisible: false,
 			taskMenuAxis: { x: 0 },
 			currentTask: null,
 			searchPanelVisible: false,
+			notificationVisible: false,
 			searchKeyword: '',
 			electricity: {
 				batteryCharging: false,
@@ -124,6 +134,9 @@ export default {
 		},
 		isDarkTheme() {
 			return this.$store.state.settings.isDarkTheme;
+		},
+		notifyUnreadCount() {
+			return this.$store.getters['notification/unreadCount'];
 		},
 		appList() {
 			return getPermissionsList(1, null);
@@ -264,6 +277,9 @@ export default {
 		},
 		refresh() {
 			this.$store.commit("refresh");
+		},
+		toggleNotificationCenter() {
+			this.notificationVisible = !this.notificationVisible;
 		},
 		open(menu, event) {
 			// 设置动画原点为任务栏项的位置
@@ -458,6 +474,46 @@ export default {
 	font-size: 16px;
 	margin-right: 0;
 	padding: 0;
+}
+
+.notify-bell-wrap {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 0 4px;
+	height: 100%;
+	border-radius: 4px;
+	transition: background-color 0.2s;
+}
+.notify-bell-wrap:hover {
+	background-color: rgba(0, 0, 0, 0.06);
+}
+.theme-dark-task .notify-bell-wrap:hover {
+	background-color: rgba(255, 255, 255, 0.15);
+}
+.notify-badge {
+	position: absolute;
+	top: 2px;
+	right: -2px;
+	min-width: 16px;
+	height: 16px;
+	padding: 0 4px;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 16px;
+	text-align: center;
+	box-shadow: 0 2px 6px rgba(238, 90, 36, 0.4);
+	animation: badge-pulse 2s infinite;
+	pointer-events: none;
+}
+@keyframes badge-pulse {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.1); }
 }
 
 .task-text {

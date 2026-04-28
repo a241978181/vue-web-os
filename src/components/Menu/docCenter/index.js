@@ -5,6 +5,7 @@ import docGuide from './guide.vue'
 import docAnimation from './animation.vue'
 import docContextMenu from './contextMenu.vue'
 import docTabScroll from './tabScroll.vue'
+import docNotification from './notification.vue'
 
 export default {
     docOverview,
@@ -13,5 +14,6 @@ export default {
     docGuide,
     docAnimation,
     docContextMenu,
-    docTabScroll
+    docTabScroll,
+    docNotification
 }

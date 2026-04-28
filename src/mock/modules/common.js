@@ -251,6 +251,18 @@ if (debug) {
         "image": null,
         "sort": 7,
         "hidden":false
+      },{
+        "id": 19,
+        "permissionsname": "通知中心",
+        "code": "docNotification",
+        "permissionsnameen": "Notification",
+        "state": true,
+        "type": 2,
+        "parentid": 11,
+        "icon": "el-icon-message-solid",
+        "image": null,
+        "sort": 8,
+        "hidden":false
       }]
     }
   });

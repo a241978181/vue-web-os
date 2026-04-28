@@ -32,6 +32,9 @@ import "element-ui/lib/theme-chalk/index.css";
 import "./assets/scss/element-variables.scss";
 import "@/assets/css/fonts.css";
 Vue.use(ElementUI);
+// 安装 $notify 代理插件，拦截通知并记录到通知中心
+import notifyProxy from '@/utils/notifyProxy';
+Vue.use(notifyProxy);
 // 将http绑定到vue原型上
 Vue.prototype.$http = http;
 // 将公共汽车绑定到vue原型上

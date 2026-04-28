@@ -24,7 +24,8 @@ export const m = {
     view: 'View',
     largeIcons: 'Large Icons',
     mediumIcons: 'Medium Icons',
-    smallIcons: 'Small Icons'
+    smallIcons: 'Small Icons',
+    simulateNotification: 'Simulate Notification'
   },
   settings: {
     title: 'System Settings',
@@ -57,5 +58,12 @@ export const m = {
     searchTitle: 'Search Apps',
     searchPlaceholder: 'Search built-in apps',
     searchEmpty: 'No matching apps found'
+  },
+  notification: {
+    title: 'Notifications',
+    markAllRead: 'Mark All Read',
+    clearAll: 'Clear All',
+    empty: 'No notifications',
+    delete: 'Delete'
   }
 }

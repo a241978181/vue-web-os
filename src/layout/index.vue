@@ -178,6 +178,13 @@
 					});
 				}
 
+				// 模拟新通知菜单项
+				this.contextMenuData.menulists.push({
+					fnHandler: 'simulateNotification',
+					icoName: 'fa fa-bell',
+					btnName: this.$t('m.layout.simulateNotification')
+				});
+
 				// Get the current location
 				this.contextMenuData.axis = {
 					x,
@@ -248,6 +255,31 @@
       showSettings(){
         this.$store.commit("setTrueVB","settingsViewBool");
       },
+			//右键--模拟新通知
+			simulateNotification() {
+				const isZh = this.$i18n.locale !== 'en';
+				const pool = isZh ? [
+					{ title: '系统升级提示', message: '系统将于今晚 22:00 进行例行维护升级，预计持续 30 分钟。', type: 'warning' },
+					{ title: '报表导出完成', message: '《2026年Q1季度销售报表》已导出完成，请前往文件中心下载。', type: 'success' },
+					{ title: '安全提醒', message: '检测到您的账号在新设备上登录，如非本人操作请及时修改密码。', type: 'error' },
+					{ title: '新功能上线', message: '通知中心已上线！所有系统消息都会在这里留存。', type: 'info' },
+					{ title: '审批提醒', message: '您有一条待审批的请假申请，请及时处理。', type: 'info' },
+					{ title: '存储空间警告', message: '您的云盘存储空间已使用 85%，建议清理。', type: 'warning' },
+					{ title: '任务完成', message: '数据迁移任务已完成，共处理 12,580 条记录。', type: 'success' },
+					{ title: '系统错误', message: '邮件服务连接超时，部分邮件可能延迟送达。', type: 'error' },
+				] : [
+					{ title: 'System Upgrade', message: 'Scheduled maintenance at 10 PM tonight, ~30 min downtime.', type: 'warning' },
+					{ title: 'Report Ready', message: 'Q1 2026 Sales Report exported and ready for download.', type: 'success' },
+					{ title: 'Security Alert', message: 'New device login detected. Change password if unauthorized.', type: 'error' },
+					{ title: 'New Feature', message: 'Notification Center is live! All messages retained here.', type: 'info' },
+					{ title: 'Approval Needed', message: 'You have a pending leave request to review.', type: 'info' },
+					{ title: 'Storage Warning', message: 'Cloud storage 85% full. Consider cleanup.', type: 'warning' },
+					{ title: 'Task Complete', message: 'Data migration done. 12,580 records processed.', type: 'success' },
+					{ title: 'System Error', message: 'Mail service timeout. Some emails may be delayed.', type: 'error' },
+				];
+				const msg = pool[Math.floor(Math.random() * pool.length)];
+				this.$notify({ title: msg.title, message: msg.message, type: msg.type, duration: 4000 });
+			},
 			//鼠标左键点击
 			danji() {
 				this.menuVisible = false;
