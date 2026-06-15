@@ -7,7 +7,7 @@ const ThemeColorReplacer = require("webpack-theme-color-replacer");
 const forElementUI = require("webpack-theme-color-replacer/forElementUI");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/vue-web-os/" : "/",
+  publicPath: process.env.IS_ELECTRON ? './' : (process.env.NODE_ENV === "production" ? "/vue-web-os/" : "/"),
   productionSourceMap: false,
   devServer: {
 	openPage:'#/signin',
@@ -37,6 +37,38 @@ module.exports = {
           })
         ]
       };
+    }
+  },
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true,
+      builderOptions: {
+        appId: 'com.vue-web-os.app',
+        productName: 'Vue Web OS',
+        directories: {
+          output: 'dist_electron'
+        },
+        win: {
+          target: [
+            {
+              target: 'nsis',
+              arch: ['x64']
+            }
+          ]
+        },
+        nsis: {
+          oneClick: false,
+          allowToChangeInstallationDirectory: true,
+          createDesktopShortcut: true,
+          createStartMenuShortcut: true
+        },
+        mac: {
+          target: ['dmg']
+        },
+        linux: {
+          target: ['AppImage']
+        }
+      }
     }
   },
   css: {

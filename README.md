@@ -1,4 +1,4 @@
-# Vue-Web-OS v3.3.0
+# Vue-Web-OS v3.4.0
 
 > **版本号命名规则 (v X.Y.Z)**：
 > - **X (第一位)**：架构级别改动
@@ -67,16 +67,30 @@
 # 安装依赖
 npm install
 
-# 启动开发服务器
+# 启动开发服务器（Web 版）
 npm run serve
 
-# 打包生产环境
+# 打包生产环境（Web 版）
 npm run build
 
 # 本地预览打包产物（需全局安装 http-server）
 cd dist
 http-server
 ```
+
+### 🖥️ 桌面应用 (Electron)
+
+本项目已集成 Electron 桌面应用支持，可一键打包为 Windows/macOS/Linux 安装包。
+
+```bash
+# 启动桌面应用开发模式（带热更新）
+npm run electron:serve
+
+# 打包桌面应用安装包（Windows .exe）
+npm run electron:build
+```
+
+> **镜像说明**：首次打包需从网络下载 Electron 二进制文件和 NSIS 打包工具。项目已配置 npmmirror 国内镜像源（`electron_mirror` 和 `ELECTRON_BUILDER_BINARIES_MIRROR`），国内网络可正常打包。安装包输出目录为 `dist_electron/`。
 
 ## 📁 项目结构
 
@@ -92,6 +106,7 @@ src/
 ├── mock/                # Mockjs 模拟数据
 ├── store/               # Vuex 状态管理
 ├── utils/               # 工具函数（权限、拖拽指令等）
+├── background.js        # Electron 主进程入口（菜单、IPC、窗口管理）
 └── App.vue              # 根组件
 ```
 
@@ -149,10 +164,20 @@ src/
 | vue-context-menu | 1.0.2 | 右键菜单 |
 | ECharts | - | 数据可视化 |
 | vue-i18n | - | 国际化完整支持 |
+| Electron | 13.x | 桌面应用运行时 |
+| electron-builder | 22.x | 桌面应用打包工具 |
 
 ## 📋 版本更新记录
 
-### v3.3.0 (新发布)
+### v3.4.0 (新发布)
+- **Electron 桌面应用集成**：新增 Electron 桌面应用支持，通过 `vue-cli-plugin-electron-builder` 将项目打包为原生桌面安装包（Windows .exe NSIS 安装程序）。支持自定义安装目录、桌面快捷方式、开始菜单快捷方式。
+- **自定义应用菜单栏**：替换 Electron 默认英文菜单为中文菜单（文件、编辑、视图、帮助），支持快捷键操作（F12 开发者工具、F11 全屏、Ctrl+Q 退出等），集成关于对话框。
+- **主进程与渲染进程 IPC 通信架构**：基于 Electron IPC 机制搭建主进程（background.js）与 Vue 渲染进程的双向通信桥梁，支持 `webContents.send` 下行通知和 `ipcRenderer.invoke` 上行请求。
+- **GPU 渲染性能优化**：针对 Electron Chromium 渲染器进行专项优化，移除 `backdrop-filter: blur()` 和动画关键帧中的 `filter: blur()` 等掉帧元凶，添加 `transform: translateZ(0)` GPU 合成层提示和 `will-change` 属性，配置 `ignore-gpu-blacklist`、`CalculateNativeWinOcclusion` 等 GPU 管线参数，确保弹窗动画达到浏览器级别的流畅度。
+- **Electron 开发工具链配置**：集成 `electron-devtools-installer` 支持 Vue Devtools 浏览器扩展，配置 `cross-env` 跨平台环境变量，`electron:build` 脚本内置 npmmirror 镜像源确保国内网络可正常打包。
+- **Web 版完全兼容**：所有 Electron 相关配置均通过环境变量隔离（`IS_ELECTRON`），`npm run serve` 和 `npm run build` 的 Web 版构建不受任何影响。
+
+### v3.3.0
 - **消息通知中心**：任务栏右下角新增铃铛图标，点击从右侧滑出抽屉面板，集中展示全系统历史通知。通过代理插件自动拦截所有 `$notify` 调用并写入 Vuex Store 留存。未读消息以红色角标（呼吸缩放动画）和紫色脉冲圆点双重提示。支持标记已读、全部已读、单条删除、清空全部操作，通知条目带滑入/滑出过渡动画。完整适配深色模式。
 - **右键模拟通知**：桌面右键菜单新增「模拟新通知」选项，点击随机生成一条通知消息，同时弹出 Element UI 弹窗并自动记录到通知中心，便于功能演示。
 - **通知中心文档**：「介绍文档」应用新增「通知中心」专题页面，详细介绍核心架构、交互操作、呼吸灯/脉冲动画原理、已读逻辑流程及 Demo 体验方式。

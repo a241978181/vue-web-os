@@ -1,18 +1,23 @@
 {
   "name": "vue-web-os",
   "version": "2.0.0",
+  "description": "Vue Web OS - 基于 Vue 的 Web 桌面操作系统",
+  "author": "Vue-Web-OS",
+  "main": "background.js",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "analysis": "npm run build --report"
+    "analysis": "npm run build --report",
+    "electron:serve": "vue-cli-service electron:serve",
+    "electron:build": "cross-env ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/ vue-cli-service electron:build"
   },
   "dependencies": {
     "@xunlei/vue-context-menu": "^1.0.2",
     "axios": "^0.24.0",
-    "dayjs": "1.8.33",
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.4.3",
+    "dayjs": "1.8.33",
     "element-ui": "^2.15.14",
     "font-awesome": "^4.7.0",
     "jsonp": "^0.2.1",
@@ -30,8 +35,13 @@
     "@vue/cli-plugin-router": "^4.1.0",
     "@vue/cli-plugin-vuex": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^13.0.0",
+    "electron-builder": "^26.15.3",
+    "electron-devtools-installer": "^3.2.0",
     "sass": "~1.32.13",
     "sass-loader": "^8.0.0",
+    "vue-cli-plugin-electron-builder": "^2.1.1",
     "vue-template-compiler": "^2.6.10",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-theme-color-replacer": "^1.3.3"

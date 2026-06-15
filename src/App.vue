@@ -55,11 +55,12 @@ body {
   border-radius: 10px !important;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.95) !important;
+  /* backdrop-filter 在 Electron 中会严重掉帧，改为不透明背景 */
+  background: rgba(255, 255, 255, 0.98) !important;
   max-height: 88vh;
   display: flex;
   flex-direction: column;
+  transform: translateZ(0);  /* 强制启用 GPU 合成层 */
 }
 
 /* 深色模式仅针对外层装饰，不感染业务内容区 */
@@ -186,6 +187,7 @@ body {
 .dialog-fade-enter-active .el-dialog {
   animation: os-window-zoom-in 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
   transform-origin: var(--anim-origin-x, 50%) var(--anim-origin-y, 50%);
+  will-change: transform, opacity;
 }
 
 /* 关闭动画：Zoom Out 缩小消失 */
@@ -196,6 +198,7 @@ body {
 .dialog-fade-leave-active .el-dialog {
   animation: os-window-zoom-out 0.27s cubic-bezier(0.4, 0, 1, 1) both;
   transform-origin: var(--anim-origin-x, 50%) var(--anim-origin-y, 100%);
+  will-change: transform, opacity;
 }
 
 /* 入场起始状态 */
@@ -214,39 +217,27 @@ body {
   opacity: 0 !important;
 }
 
-/* Zoom In 关键帧：从小到大，伴随模糊→清晰 */
+/* Zoom In 关键帧：从小到大（移除 blur 提升性能） */
 @keyframes os-window-zoom-in {
   0% {
-    transform: scale(0.15);
+    transform: scale(0.3);
     opacity: 0;
-    filter: blur(8px);
-  }
-  40% {
-    opacity: 1;
-    filter: blur(2px);
   }
   100% {
     transform: scale(1);
     opacity: 1;
-    filter: blur(0);
   }
 }
 
-/* Zoom Out 关键帧：从大到小，伴随清晰→模糊 */
+/* Zoom Out 关键帧：从大到小（移除 blur 提升性能） */
 @keyframes os-window-zoom-out {
   0% {
     transform: scale(1);
     opacity: 1;
-    filter: blur(0);
-  }
-  60% {
-    opacity: 0.5;
-    filter: blur(2px);
   }
   100% {
-    transform: scale(0.12);
+    transform: scale(0.3);
     opacity: 0;
-    filter: blur(6px);
   }
 }
 </style>
